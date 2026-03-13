@@ -8,7 +8,7 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
 - API
 created: '2025-02-21'
-modified: '2025-02-21'
+modified: '2026-03-04'
 url: https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
@@ -21,9 +21,102 @@ apis:
   properties:
   - type: Documentation
     url: ' https://www.perplexity.ai/'
+- aid: perplexity:sonar-api
+  name: Perplexity Sonar API
+  description: The Sonar API provides access to Perplexity's Sonar family of models including sonar, sonar-pro, sonar-reasoning-pro, and sonar-deep-research via an OpenAI-compatible chat completions endpoint with built-in web search grounding.
+  humanURL: https://docs.perplexity.ai/docs/sonar/quickstart
+  baseURL: https://api.perplexity.ai
+  tags:
+  - Artificial Intelligence
+  - Large Language Models
+  - Search
+  - Chat Completions
+  - Grounding
+  properties:
+  - type: Documentation
+    url: https://docs.perplexity.ai/docs/sonar/quickstart
+  - type: API Reference
+    url: https://docs.perplexity.ai/api-reference/chat-completions-post
+  - type: Authentication
+    url: https://docs.perplexity.ai/guides/api-key-management
+  - type: Pricing
+    url: https://docs.perplexity.ai/docs/getting-started/pricing
+- aid: perplexity:async-chat-completions-api
+  name: Perplexity Async Chat Completions API
+  description: The Async Chat Completions API enables developers to submit long-running chat completion requests for background processing. Requests are queued and processed asynchronously, returning a unique identifier for tracking status through creation, processing, completion, or failure stages, making it ideal for deep research and computationally intensive queries.
+  humanURL: https://docs.perplexity.ai/api-reference/async-chat-completions-post
+  baseURL: https://api.perplexity.ai
+  tags:
+  - Artificial Intelligence
+  - Large Language Models
+  - Asynchronous
+  - Chat Completions
+  properties:
+  - type: Documentation
+    url: https://docs.perplexity.ai/api-reference/async-chat-completions-post
+  - type: API Reference
+    url: https://docs.perplexity.ai/api-reference/async-chat-completions-get
+  - type: Authentication
+    url: https://docs.perplexity.ai/guides/api-key-management
+- aid: perplexity:search-api
+  name: Perplexity Search API
+  description: The Search API enables developers to perform ranked web searches with advanced filtering including domain, language, country, and date recency controls, returning structured results with titles, URLs, snippets, and publication dates.
+  humanURL: https://docs.perplexity.ai/guides/search-quickstart
+  baseURL: https://api.perplexity.ai
+  tags:
+  - Search
+  - Web Search
+  - Ranking
+  - Filtering
+  properties:
+  - type: Documentation
+    url: https://docs.perplexity.ai/guides/search-quickstart
+  - type: API Reference
+    url: https://docs.perplexity.ai/api-reference/search-post
+  - type: Authentication
+    url: https://docs.perplexity.ai/guides/api-key-management
+  - type: Best Practices
+    url: https://docs.perplexity.ai/guides/search-best-practices
+- aid: perplexity:responses-api
+  name: Perplexity Responses API
+  description: The Responses API (Agentic Research API) provides access to third-party frontier models from providers like OpenAI, Anthropic, Google, and xAI with integrated web search tools, URL fetching, function calling, and multi-step reasoning presets such as pro-search and deep-research.
+  humanURL: https://docs.perplexity.ai/docs/grounded-llm/responses/quickstart
+  baseURL: https://api.perplexity.ai
+  tags:
+  - Artificial Intelligence
+  - Large Language Models
+  - Agents
+  - Research
+  - Web Search
+  properties:
+  - type: Documentation
+    url: https://docs.perplexity.ai/docs/grounded-llm/responses/quickstart
+  - type: API Reference
+    url: https://docs.perplexity.ai/api-reference/responses-post
+  - type: Authentication
+    url: https://docs.perplexity.ai/guides/api-key-management
+- aid: perplexity:embeddings-api
+  name: Perplexity Embeddings API
+  description: The Embeddings API generates high-quality text embeddings for semantic search and retrieval, offering both standard embeddings for independent texts and contextualized embeddings for document chunks that share context, with support for Matryoshka representation learning for flexible dimensionality.
+  humanURL: https://docs.perplexity.ai/docs/embeddings/quickstart
+  baseURL: https://api.perplexity.ai
+  tags:
+  - Embeddings
+  - Semantic Search
+  - Vectors
+  - Retrieval
+  properties:
+  - type: Documentation
+    url: https://docs.perplexity.ai/docs/embeddings/quickstart
+  - type: API Reference
+    url: https://docs.perplexity.ai/api-reference/embeddings-post
+  - type: Authentication
+    url: https://docs.perplexity.ai/guides/api-key-management
+  - type: Best Practices
+    url: https://docs.perplexity.ai/docs/embeddings/best-practices
 maintainers:
 - FN: Kin Lane
-  email: info@apievangelist.com
+  email: kin@apievangelist.com
 - FN: Perplexity AI
   email: support@perplexity.ai
   url: https://www.perplexity.ai
@@ -42,3 +135,71 @@ common:
   type: Privacy Policy
 - url: https://www.perplexity.ai/hub/blog
   type: Blog
+- url: https://docs.perplexity.ai/docs/getting-started/quickstart
+  type: Quickstart
+- url: https://docs.perplexity.ai/docs/getting-started/pricing
+  type: Pricing Page
+- url: https://docs.perplexity.ai/docs/getting-started/models
+  type: Model Directory
+- url: https://docs.perplexity.ai/docs/resources/changelog
+  type: Change Log
+- url: https://www.perplexity.ai/changelog
+  type: Product Change Log
+- url: https://docs.perplexity.ai/guides/usage-tiers
+  type: Rate Limits
+- url: https://perplexity.ai/account/api
+  type: Sign Up
+- url: https://www.perplexity.ai/account/api/group
+  type: Dashboard
+- url: https://perplexity.ai/account/api/playground/search
+  type: API Playground
+- url: https://docs.perplexity.ai/guides/perplexity-sdk
+  type: SDKs
+- url: https://github.com/perplexityai
+  type: GitHub Org
+- url: https://github.com/perplexityai/perplexity-py
+  type: Python SDK
+- url: https://docs.perplexity.ai/guides/search-best-practices
+  type: Best Practices
+- url: https://docs.perplexity.ai/guides/mcp-server
+  type: MCP Server
+- url: https://www.perplexity.ai/help-center/en
+  type: Support
+- url: https://community.perplexity.ai
+  type: Forum
+- url: https://www.perplexity.ai/api-platform
+  type: Portal
+- url: https://docs.perplexity.ai/llms.txt
+  type: LLMs TXT
+- url: https://www.perplexity.ai
+  type: Website
+- url: https://docs.perplexity.ai
+  type: Documentation
+- url: https://docs.perplexity.ai/guides/api-key-management
+  type: Authentication
+- url: https://status.perplexity.com
+  type: Status
+- url: https://docs.perplexity.ai/feature-roadmap
+  type: Roadmap
+- url: https://docs.perplexity.ai/docs/cookbook
+  type: Cookbook
+- url: https://docs.perplexity.ai/guides/prompt-guide
+  type: Prompt Guide
+- url: https://docs.perplexity.ai/guides/structured-outputs
+  type: Structured Outputs Guide
+- url: https://docs.perplexity.ai/guides/perplexity-sdk-performance
+  type: Performance Guide
+- url: https://docs.perplexity.ai/guides/date-range-filter-guide
+  type: Date Range Filter Guide
+- url: https://docs.perplexity.ai/guides/academic-filter-guide
+  type: Academic Filter Guide
+- url: https://docs.perplexity.ai/docs/resources/perplexity-crawlers
+  type: Crawlers
+- url: https://www.perplexity.ai/hub/legal/perplexity-api-terms-of-service
+  type: API Terms of Service
+- url: https://docs.perplexity.ai/discussions/discussions
+  type: Discussions
+- url: https://discord.com/invite/perplexity-ai
+  type: Discord
+- url: https://x.com/perplexity_ai
+  type: X
