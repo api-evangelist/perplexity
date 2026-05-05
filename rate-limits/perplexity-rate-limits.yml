@@ -1,0 +1,45 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Perplexity
+providerId: perplexity
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - AI
+description: Perplexity API rate limits per API key by usage tier.
+sources:
+  - https://docs.perplexity.ai/guides/pricing
+  - https://docs.perplexity.ai/guides/rate-limits
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+limits:
+  - name: Sonar (default)
+    scope: key
+    metric: requests_per_minute
+    limit: 50
+    timeFrame: minute
+  - name: Sonar Pro
+    scope: key
+    metric: requests_per_minute
+    limit: 50
+    timeFrame: minute
+  - name: Deep Research
+    scope: key
+    metric: requests_per_minute
+    limit: 5
+    timeFrame: minute
+  - name: Tier 0 spend
+    scope: account
+    metric: monthly_spend
+    limit: $5
+    timeFrame: month
+  - name: Higher tiers
+    scope: account
+    metric: monthly_spend
+    limit: raised by spend
+    timeFrame: month

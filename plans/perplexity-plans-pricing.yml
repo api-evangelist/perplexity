@@ -1,0 +1,209 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Perplexity
+providerId: perplexity
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - AI
+  - LLM
+  - Search
+  - RAG
+description: Perplexity Sonar API pricing combines per-token and per-search costs.
+sources:
+  - https://docs.perplexity.ai/guides/pricing
+plans:
+  - id: perplexity-sonar
+    name: Sonar
+    type: usage-based
+    description: Per-token pricing for Sonar.
+    entries:
+      - label: Input tokens
+        name: input
+        type: metered
+        metric: tokens
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000000
+        price: '1.00'
+        userMultiplied: false
+      - label: Output tokens
+        name: output
+        type: metered
+        metric: tokens
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000000
+        price: '1.00'
+        userMultiplied: false
+      - label: Search per 1K (low context)
+        name: search_low
+        type: metered
+        metric: search
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000
+        price: '5.00'
+        userMultiplied: false
+      - label: Search per 1K (high context)
+        name: search_high
+        type: metered
+        metric: search
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000
+        price: '12.00'
+        userMultiplied: false
+    elements:
+      - name: Lightweight web-grounded answers
+      - name: Citation included
+  - id: perplexity-sonar-pro
+    name: Sonar Pro
+    type: usage-based
+    description: Per-token pricing for Sonar Pro.
+    entries:
+      - label: Input tokens
+        name: input
+        type: metered
+        metric: tokens
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000000
+        price: '3.00'
+        userMultiplied: false
+      - label: Output tokens
+        name: output
+        type: metered
+        metric: tokens
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000000
+        price: '15.00'
+        userMultiplied: false
+      - label: Search per 1K (low context)
+        name: search_low
+        type: metered
+        metric: search
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000
+        price: '6.00'
+        userMultiplied: false
+      - label: Search per 1K (high context)
+        name: search_high
+        type: metered
+        metric: search
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000
+        price: '14.00'
+        userMultiplied: false
+    elements:
+      - name: Per-token billing
+      - name: Pay as you go
+  - id: perplexity-sonar-reasoning-pro
+    name: Sonar Reasoning Pro
+    type: usage-based
+    description: Per-token pricing for Sonar Reasoning Pro.
+    entries:
+      - label: Input tokens
+        name: input
+        type: metered
+        metric: tokens
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000000
+        price: '2.00'
+        userMultiplied: false
+      - label: Output tokens
+        name: output
+        type: metered
+        metric: tokens
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000000
+        price: '8.00'
+        userMultiplied: false
+      - label: Search per 1K
+        name: search
+        type: metered
+        metric: search
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000
+        price: 6.00-14.00
+        userMultiplied: false
+    elements:
+      - name: Per-token billing
+      - name: Pay as you go
+  - id: perplexity-sonar-deep-research
+    name: Sonar Deep Research
+    type: usage-based
+    description: Per-token pricing for Sonar Deep Research.
+    entries:
+      - label: Input tokens
+        name: input
+        type: metered
+        metric: tokens
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000000
+        price: '2.00'
+        userMultiplied: false
+      - label: Output tokens
+        name: output
+        type: metered
+        metric: tokens
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000000
+        price: '8.00'
+        userMultiplied: false
+      - label: Search queries per 1K
+        name: queries
+        type: metered
+        metric: query
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000
+        price: '5.00'
+        userMultiplied: false
+      - label: Citations per MTok
+        name: citations
+        type: metered
+        metric: tokens
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000000
+        price: '2.00'
+        userMultiplied: false
+      - label: Reasoning tokens per MTok
+        name: reasoning
+        type: metered
+        metric: tokens
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000000
+        price: '3.00'
+        userMultiplied: false
+    elements:
+      - name: Long-form research synthesis
+      - name: Multi-step retrieval
