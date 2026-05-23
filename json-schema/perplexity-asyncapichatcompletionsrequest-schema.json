@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AsyncApiChatCompletionsRequest",
+  "title": "AsyncApiChatCompletionsRequest",
+  "description": "Request body for creating an asynchronous chat completion",
+  "properties": {
+    "request": {
+      "$ref": "#/components/schemas/ApiChatCompletionsRequest",
+      "description": "The chat completion request to execute asynchronously"
+    },
+    "idempotency_key": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Idempotency Key",
+      "description": "Unique key to prevent duplicate requests"
+    }
+  },
+  "type": "object",
+  "required": [
+    "request"
+  ]
+}

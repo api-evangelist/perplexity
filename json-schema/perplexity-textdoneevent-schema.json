@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TextDoneEvent",
+  "title": "TextDoneEvent",
+  "description": "Text done event (type: \"response.output_text.done\").\nContains the final text content.\n",
+  "properties": {
+    "content_index": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "item_id": {
+      "type": "string"
+    },
+    "output_index": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "sequence_number": {
+      "description": "Monotonically increasing sequence number for event ordering",
+      "format": "int64",
+      "type": "integer"
+    },
+    "text": {
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/components/schemas/EventType"
+    }
+  },
+  "required": [
+    "type",
+    "sequence_number",
+    "item_id",
+    "output_index",
+    "content_index",
+    "text"
+  ],
+  "type": "object"
+}

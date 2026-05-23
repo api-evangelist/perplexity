@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiSearchRequest",
+  "title": "ApiSearchRequest",
+  "allOf": [
+    {
+      "properties": {
+        "country": {
+          "description": "ISO 3166-1 alpha-2 country code",
+          "maxLength": 2,
+          "minLength": 2,
+          "type": "string"
+        },
+        "max_results": {
+          "default": 10,
+          "description": "Maximum number of results to return",
+          "maximum": 20,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "max_tokens": {
+          "default": 10000,
+          "description": "Maximum tokens for context",
+          "maximum": 1000000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "max_tokens_per_page": {
+          "default": 4096,
+          "description": "Maximum tokens per page",
+          "maximum": 1000000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "query": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          ],
+          "title": "Query",
+          "description": "Search query (required)"
+        },
+        "search_language_filter": {
+          "description": "ISO 639-1 language codes (2-character max)",
+          "items": {
+            "maxLength": 2,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "type": "array"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/SearchDomainFilter"
+    },
+    {
+      "$ref": "#/components/schemas/DateFilters"
+    }
+  ],
+  "type": "object"
+}

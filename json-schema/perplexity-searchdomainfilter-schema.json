@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchDomainFilter",
+  "title": "SearchDomainFilter",
+  "properties": {
+    "search_domain_filter": {
+      "description": "Limit search results to specific domains (max 20)",
+      "items": {
+        "maxLength": 253,
+        "type": "string"
+      },
+      "maxItems": 20,
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

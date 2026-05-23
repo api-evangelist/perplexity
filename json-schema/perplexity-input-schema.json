@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Input",
+  "title": "Input",
+  "description": "Input content - either a string or array of input items",
+  "oneOf": [
+    {
+      "title": "StringInput",
+      "type": "string"
+    },
+    {
+      "items": {
+        "$ref": "#/components/schemas/InputItem"
+      },
+      "title": "InputItemArray",
+      "type": "array"
+    }
+  ]
+}

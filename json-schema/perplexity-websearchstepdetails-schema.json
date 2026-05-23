@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebSearchStepDetails",
+  "title": "WebSearchStepDetails",
+  "properties": {
+    "search_results": {
+      "items": {
+        "$ref": "#/components/schemas/ApiPublicSearchResult"
+      },
+      "type": "array",
+      "title": "Search Results"
+    },
+    "search_keywords": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array",
+      "title": "Search Keywords"
+    }
+  },
+  "type": "object",
+  "required": [
+    "search_results",
+    "search_keywords"
+  ],
+  "description": "Web search step details wrapper class"
+}

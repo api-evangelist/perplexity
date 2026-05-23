@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResponsesRequest",
+  "title": "ResponsesRequest",
+  "properties": {
+    "input": {
+      "$ref": "#/components/schemas/Input"
+    },
+    "instructions": {
+      "description": "System instructions for the model",
+      "type": "string"
+    },
+    "language_preference": {
+      "description": "ISO 639-1 language code for response language",
+      "type": "string"
+    },
+    "max_output_tokens": {
+      "description": "Maximum tokens to generate",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    },
+    "max_steps": {
+      "description": "Maximum number of research loop steps.\nIf provided, overrides the preset's max_steps value.\nMust be >= 1 if specified. Maximum allowed is 10.\n",
+      "format": "int32",
+      "maximum": 10,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "model": {
+      "description": "Model ID in provider/model format (e.g., \"xai/grok-4-1\", \"openai/gpt-4o\").\nIf models is also provided, models takes precedence.\nRequired if neither models nor preset is provided.\n",
+      "type": "string"
+    },
+    "models": {
+      "description": "Model fallback chain. Each model is in provider/model format.\nModels are tried in order until one succeeds.\nMax 5 models allowed. If set, takes precedence over single model field.\nThe response.model will reflect the model that actually succeeded.\n",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 5,
+      "minItems": 1,
+      "type": "array"
+    },
+    "preset": {
+      "description": "Preset configuration name (e.g., \"fast-search\", \"pro-search\", \"deep-research\").\nPre-configured model with system prompt and search parameters.\nRequired if model is not provided.\n",
+      "type": "string"
+    },
+    "reasoning": {
+      "$ref": "#/components/schemas/ReasoningConfig"
+    },
+    "response_format": {
+      "$ref": "#/components/schemas/ResponseFormat"
+    },
+    "stream": {
+      "description": "If true, returns SSE stream instead of JSON",
+      "type": "boolean"
+    },
+    "tools": {
+      "description": "Tools available to the model",
+      "items": {
+        "$ref": "#/components/schemas/Tool"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "input"
+  ],
+  "type": "object"
+}

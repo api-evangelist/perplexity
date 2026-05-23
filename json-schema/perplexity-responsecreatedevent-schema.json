@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResponseCreatedEvent",
+  "title": "ResponseCreatedEvent",
+  "description": "Response created event (type: \"response.created\").\nContains the initial response object.\n",
+  "properties": {
+    "response": {
+      "$ref": "#/components/schemas/ResponsesResponse"
+    },
+    "sequence_number": {
+      "description": "Monotonically increasing sequence number for event ordering",
+      "format": "int64",
+      "type": "integer"
+    },
+    "type": {
+      "$ref": "#/components/schemas/EventType"
+    }
+  },
+  "required": [
+    "type",
+    "sequence_number"
+  ],
+  "type": "object"
+}

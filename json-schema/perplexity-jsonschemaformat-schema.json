@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JSONSchemaFormat",
+  "title": "JSONSchemaFormat",
+  "description": "Defines a JSON schema for structured output validation",
+  "properties": {
+    "description": {
+      "description": "Optional description of the schema",
+      "type": "string"
+    },
+    "name": {
+      "description": "Name of the schema (1-64 alphanumeric chars)",
+      "maxLength": 64,
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema": {
+      "additionalProperties": true,
+      "description": "The JSON schema object",
+      "type": "object"
+    },
+    "strict": {
+      "description": "Whether to enforce strict schema validation",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "name",
+    "schema"
+  ],
+  "type": "object"
+}

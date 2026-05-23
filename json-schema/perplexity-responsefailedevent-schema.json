@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResponseFailedEvent",
+  "title": "ResponseFailedEvent",
+  "description": "Response failed event (type: \"response.failed\").\nContains error details when streaming fails.\n",
+  "properties": {
+    "error": {
+      "$ref": "#/components/schemas/ErrorInfo"
+    },
+    "sequence_number": {
+      "description": "Monotonically increasing sequence number for event ordering",
+      "format": "int64",
+      "type": "integer"
+    },
+    "type": {
+      "$ref": "#/components/schemas/EventType"
+    }
+  },
+  "required": [
+    "type",
+    "sequence_number",
+    "error"
+  ],
+  "type": "object"
+}

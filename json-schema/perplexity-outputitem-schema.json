@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OutputItem",
+  "title": "OutputItem",
+  "discriminator": {
+    "mapping": {
+      "fetch_url_results": "#/components/schemas/FetchUrlResultsOutputItem",
+      "function_call": "#/components/schemas/FunctionCallOutputItem",
+      "message": "#/components/schemas/MessageOutputItem",
+      "search_results": "#/components/schemas/SearchResultsOutputItem"
+    },
+    "propertyName": "type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/MessageOutputItem"
+    },
+    {
+      "$ref": "#/components/schemas/SearchResultsOutputItem"
+    },
+    {
+      "$ref": "#/components/schemas/FetchUrlResultsOutputItem"
+    },
+    {
+      "$ref": "#/components/schemas/FunctionCallOutputItem"
+    }
+  ]
+}

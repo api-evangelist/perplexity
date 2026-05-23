@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChatMessage-Output",
+  "title": "ChatMessage",
+  "properties": {
+    "role": {
+      "$ref": "#/components/schemas/ChatMessageRole"
+    },
+    "content": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ChatMessageContentTextChunk"
+              },
+              {
+                "$ref": "#/components/schemas/ChatMessageContentImageChunk"
+              },
+              {
+                "$ref": "#/components/schemas/ChatMessageContentFileChunk"
+              },
+              {
+                "$ref": "#/components/schemas/ChatMessageContentPDFChunk"
+              },
+              {
+                "$ref": "#/components/schemas/ChatMessageContentVideoChunk"
+              }
+            ]
+          },
+          "type": "array",
+          "title": "Structured Content"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Content"
+    }
+  },
+  "type": "object",
+  "required": [
+    "role",
+    "content"
+  ]
+}

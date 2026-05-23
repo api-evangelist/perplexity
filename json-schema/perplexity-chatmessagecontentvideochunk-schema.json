@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChatMessageContentVideoChunk",
+  "title": "ChatMessageContentVideoChunk",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "video_url",
+      "title": "Type"
+    },
+    "video_url": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/VideoURL"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "title": "Video Url"
+    }
+  },
+  "type": "object",
+  "required": [
+    "type",
+    "video_url"
+  ]
+}

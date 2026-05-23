@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Annotation",
+  "title": "Annotation",
+  "description": "Text annotation (URL citation)",
+  "properties": {
+    "end_index": {
+      "description": "End character index of the annotated text",
+      "format": "int32",
+      "type": "integer"
+    },
+    "start_index": {
+      "description": "Start character index of the annotated text",
+      "format": "int32",
+      "type": "integer"
+    },
+    "title": {
+      "description": "Title of the cited source",
+      "type": "string"
+    },
+    "type": {
+      "description": "Annotation type (url_citation)",
+      "type": "string"
+    },
+    "url": {
+      "description": "URL of the cited source",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

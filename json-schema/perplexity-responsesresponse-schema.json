@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResponsesResponse",
+  "title": "ResponsesResponse",
+  "description": "Non-streaming response returned when stream is false",
+  "properties": {
+    "created_at": {
+      "description": "Unix timestamp when the response was created",
+      "format": "int64",
+      "type": "integer"
+    },
+    "error": {
+      "$ref": "#/components/schemas/ErrorInfo",
+      "description": "Error details if the response failed"
+    },
+    "id": {
+      "description": "Unique identifier for the response",
+      "type": "string"
+    },
+    "model": {
+      "description": "Model used for generation",
+      "type": "string"
+    },
+    "object": {
+      "$ref": "#/components/schemas/ResponsesObjectType",
+      "description": "Object type identifier"
+    },
+    "output": {
+      "description": "Array of output items (messages, search results, tool calls)",
+      "items": {
+        "$ref": "#/components/schemas/OutputItem"
+      },
+      "type": "array"
+    },
+    "status": {
+      "$ref": "#/components/schemas/Status",
+      "description": "Status of the response"
+    },
+    "usage": {
+      "$ref": "#/components/schemas/ResponsesUsage",
+      "description": "Token usage and cost information"
+    }
+  },
+  "required": [
+    "id",
+    "object",
+    "created_at",
+    "status",
+    "model",
+    "output"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebSearchTool",
+  "title": "WebSearchTool",
+  "description": "Web search tool configuration for the Responses API",
+  "properties": {
+    "filters": {
+      "$ref": "#/components/schemas/WebSearchFilters",
+      "description": "Domain and date filters for search results"
+    },
+    "max_tokens": {
+      "description": "Maximum total tokens for search context",
+      "format": "int32",
+      "type": "integer"
+    },
+    "max_tokens_per_page": {
+      "description": "Maximum tokens to extract per search result page",
+      "format": "int32",
+      "type": "integer"
+    },
+    "type": {
+      "description": "Tool type identifier",
+      "enum": [
+        "web_search"
+      ],
+      "type": "string"
+    },
+    "user_location": {
+      "$ref": "#/components/schemas/ToolUserLocation",
+      "description": "User's location for search personalization"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "type": "object"
+}

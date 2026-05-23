@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InputContentPart",
+  "title": "InputContentPart",
+  "properties": {
+    "image_url": {
+      "maxLength": 2048,
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "input_text",
+        "input_image"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "type": "object"
+}

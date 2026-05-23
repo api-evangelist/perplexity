@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResponseStreamEvent",
+  "title": "ResponseStreamEvent",
+  "description": "SSE stream event. Discriminate by the `type` field:\n- `response.created`: Initial response object\n- `response.in_progress`: Response processing started\n- `response.completed`: Final response with output\n- `response.failed`: Error occurred\n- `response.output_item.added`: New output item started\n- `response.output_item.done`: Output item completed\n- `response.output_text.delta`: Streaming text delta\n- `response.output_text.done`: Final text content\n- `response.reasoning.started`: Reasoning phase started\n- `response.reasoning.search_queries`: Search queries issued\n- `response.reasoning.search_results`: Search results received\n- `response.reasoning.fetch_url_queries`: URL fetch queries issued\n- `response.reasoning.fetch_url_results`: URL fetch results received\n- `response.reasoning.stopped`: Reasoning phase complete\n",
+  "discriminator": {
+    "mapping": {
+      "response.completed": "#/components/schemas/ResponseCompletedEvent",
+      "response.created": "#/components/schemas/ResponseCreatedEvent",
+      "response.failed": "#/components/schemas/ResponseFailedEvent",
+      "response.in_progress": "#/components/schemas/ResponseInProgressEvent",
+      "response.output_item.added": "#/components/schemas/OutputItemAddedEvent",
+      "response.output_item.done": "#/components/schemas/OutputItemDoneEvent",
+      "response.output_text.delta": "#/components/schemas/TextDeltaEvent",
+      "response.output_text.done": "#/components/schemas/TextDoneEvent",
+      "response.reasoning.fetch_url_queries": "#/components/schemas/FetchUrlQueriesEvent",
+      "response.reasoning.fetch_url_results": "#/components/schemas/FetchUrlResultsEvent",
+      "response.reasoning.search_queries": "#/components/schemas/SearchQueriesEvent",
+      "response.reasoning.search_results": "#/components/schemas/SearchResultsEvent",
+      "response.reasoning.started": "#/components/schemas/ReasoningStartedEvent",
+      "response.reasoning.stopped": "#/components/schemas/ReasoningStoppedEvent"
+    },
+    "propertyName": "type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/ResponseCreatedEvent"
+    },
+    {
+      "$ref": "#/components/schemas/ResponseInProgressEvent"
+    },
+    {
+      "$ref": "#/components/schemas/ResponseCompletedEvent"
+    },
+    {
+      "$ref": "#/components/schemas/ResponseFailedEvent"
+    },
+    {
+      "$ref": "#/components/schemas/OutputItemAddedEvent"
+    },
+    {
+      "$ref": "#/components/schemas/OutputItemDoneEvent"
+    },
+    {
+      "$ref": "#/components/schemas/TextDeltaEvent"
+    },
+    {
+      "$ref": "#/components/schemas/TextDoneEvent"
+    },
+    {
+      "$ref": "#/components/schemas/ReasoningStartedEvent"
+    },
+    {
+      "$ref": "#/components/schemas/SearchQueriesEvent"
+    },
+    {
+      "$ref": "#/components/schemas/SearchResultsEvent"
+    },
+    {
+      "$ref": "#/components/schemas/FetchUrlQueriesEvent"
+    },
+    {
+      "$ref": "#/components/schemas/FetchUrlResultsEvent"
+    },
+    {
+      "$ref": "#/components/schemas/ReasoningStoppedEvent"
+    }
+  ]
+}

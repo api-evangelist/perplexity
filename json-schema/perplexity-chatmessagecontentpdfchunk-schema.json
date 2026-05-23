@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChatMessageContentPDFChunk",
+  "title": "ChatMessageContentPDFChunk",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "pdf_url",
+      "title": "Type"
+    },
+    "pdf_url": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/URL"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "title": "Pdf Url"
+    }
+  },
+  "type": "object",
+  "required": [
+    "type",
+    "pdf_url"
+  ]
+}

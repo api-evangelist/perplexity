@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReasoningConfig",
+  "title": "ReasoningConfig",
+  "properties": {
+    "effort": {
+      "description": "How much effort the model should spend on reasoning",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

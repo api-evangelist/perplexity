@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResponseFormat",
+  "title": "ResponseFormat",
+  "description": "Specifies the desired output format for the model response",
+  "properties": {
+    "json_schema": {
+      "$ref": "#/components/schemas/JSONSchemaFormat"
+    },
+    "type": {
+      "description": "The type of response format",
+      "enum": [
+        "json_schema"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "type": "object"
+}

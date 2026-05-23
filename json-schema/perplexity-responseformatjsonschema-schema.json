@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResponseFormatJSONSchema",
+  "title": "ResponseFormatJSONSchema",
+  "description": "Constrains the model output to match the provided JSON schema.",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "json_schema",
+      "title": "Type",
+      "description": "Must be `json_schema`."
+    },
+    "json_schema": {
+      "$ref": "#/components/schemas/JSONSchema"
+    }
+  },
+  "type": "object",
+  "required": [
+    "type",
+    "json_schema"
+  ]
+}

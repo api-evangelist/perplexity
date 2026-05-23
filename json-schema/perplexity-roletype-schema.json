@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RoleType",
+  "title": "RoleType",
+  "description": "Role in a message",
+  "enum": [
+    "assistant"
+  ],
+  "type": "string"
+}

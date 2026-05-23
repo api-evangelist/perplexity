@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ToolCallDetails",
+  "title": "ToolCallDetails",
+  "description": "Details about a tool call invocation",
+  "properties": {
+    "invocation": {
+      "description": "Number of times this tool was invoked",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  "type": "object"
+}

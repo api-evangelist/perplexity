@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AsyncApiChatCompletionsResponseSummary",
+  "title": "AsyncApiChatCompletionsResponseSummary",
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Id"
+    },
+    "created_at": {
+      "type": "integer",
+      "title": "Created At"
+    },
+    "started_at": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Started At"
+    },
+    "completed_at": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Completed At"
+    },
+    "failed_at": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Failed At"
+    },
+    "model": {
+      "type": "string",
+      "title": "Model"
+    },
+    "status": {
+      "$ref": "#/components/schemas/AsyncProcessingStatus"
+    }
+  },
+  "type": "object",
+  "required": [
+    "id",
+    "created_at",
+    "model",
+    "status"
+  ]
+}

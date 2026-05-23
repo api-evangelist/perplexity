@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageOutputItem",
+  "title": "MessageOutputItem",
+  "properties": {
+    "content": {
+      "items": {
+        "$ref": "#/components/schemas/ContentPart"
+      },
+      "type": "array"
+    },
+    "id": {
+      "type": "string"
+    },
+    "role": {
+      "$ref": "#/components/schemas/RoleType"
+    },
+    "status": {
+      "$ref": "#/components/schemas/Status"
+    },
+    "type": {
+      "enum": [
+        "message"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "status",
+    "role",
+    "content"
+  ],
+  "type": "object"
+}

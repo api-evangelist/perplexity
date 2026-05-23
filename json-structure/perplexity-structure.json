@@ -1,0 +1,976 @@
+{
+  "provider": "Perplexity",
+  "providerId": "perplexity",
+  "kind": "json-structure",
+  "description": "Structural overview of the Perplexity API surface; extracted from openapi/.",
+  "schemaCount": 108,
+  "operationCount": 9,
+  "schemas": [
+    {
+      "name": "ApiChatCompletionsRequest",
+      "type": "object",
+      "propertyCount": 26,
+      "required": [
+        "model",
+        "messages"
+      ]
+    },
+    {
+      "name": "ApiPublicSearchResult",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "title",
+        "url"
+      ]
+    },
+    {
+      "name": "ImageResult",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "image_url",
+        "origin_url",
+        "title",
+        "width",
+        "height"
+      ]
+    },
+    {
+      "name": "ApiSearchPage",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "title",
+        "url",
+        "snippet"
+      ]
+    },
+    {
+      "name": "ApiSearchRequest",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ApiSearchResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "results",
+        "id"
+      ]
+    },
+    {
+      "name": "AsyncApiChatCompletionsRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "request"
+      ]
+    },
+    {
+      "name": "AsyncApiChatCompletionsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "id",
+        "model",
+        "created_at",
+        "status"
+      ]
+    },
+    {
+      "name": "AsyncApiChatCompletionsResponseSummary",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "id",
+        "created_at",
+        "model",
+        "status"
+      ]
+    },
+    {
+      "name": "AsyncProcessingStatus",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ChatMessage-Input",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "role",
+        "content"
+      ]
+    },
+    {
+      "name": "ChatMessage-Output",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "role",
+        "content"
+      ]
+    },
+    {
+      "name": "ChatMessageContentFileChunk",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "file_url"
+      ]
+    },
+    {
+      "name": "ChatMessageContentImageChunk",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "image_url"
+      ]
+    },
+    {
+      "name": "ChatMessageContentPDFChunk",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "pdf_url"
+      ]
+    },
+    {
+      "name": "ChatMessageContentTextChunk",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "text"
+      ]
+    },
+    {
+      "name": "ChatMessageContentVideoChunk",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "video_url"
+      ]
+    },
+    {
+      "name": "ChatMessageRole",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Choice",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "index",
+        "message",
+        "delta"
+      ]
+    },
+    {
+      "name": "CompletionResponse",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "id",
+        "model",
+        "created",
+        "choices"
+      ]
+    },
+    {
+      "name": "CompletionResponseStatus",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CompletionResponseType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Cost",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "input_tokens_cost",
+        "output_tokens_cost",
+        "total_cost"
+      ]
+    },
+    {
+      "name": "Currency",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ExecutePythonStepDetails",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "code",
+        "result"
+      ]
+    },
+    {
+      "name": "FetchUrlContentStepDetails",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "contents"
+      ]
+    },
+    {
+      "name": "HTTPValidationError",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "JSONSchema",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "schema"
+      ]
+    },
+    {
+      "name": "ListAsyncApiChatCompletionsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "requests"
+      ]
+    },
+    {
+      "name": "ReasoningStep-Output",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "thought"
+      ]
+    },
+    {
+      "name": "ResponseFormatJSONSchema",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "json_schema"
+      ]
+    },
+    {
+      "name": "ResponseFormatText",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "ToolCall",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ToolCallFunction",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "URL",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "url"
+      ]
+    },
+    {
+      "name": "UsageInfo",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "prompt_tokens",
+        "completion_tokens",
+        "total_tokens",
+        "cost"
+      ]
+    },
+    {
+      "name": "UserLocation",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ValidationError",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "loc",
+        "msg",
+        "type"
+      ]
+    },
+    {
+      "name": "VideoURL",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "url"
+      ]
+    },
+    {
+      "name": "WebSearchOptions",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ResponsesRequest",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "input"
+      ]
+    },
+    {
+      "name": "ResponsesResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "object",
+        "created_at",
+        "status",
+        "model",
+        "output"
+      ]
+    },
+    {
+      "name": "ResponsesObjectType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ResponsesUsage",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "input_tokens",
+        "output_tokens",
+        "total_tokens"
+      ]
+    },
+    {
+      "name": "ResponsesCost",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "currency",
+        "input_cost",
+        "output_cost",
+        "total_cost"
+      ]
+    },
+    {
+      "name": "Input",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "InputItem",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "InputMessage",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "role",
+        "content"
+      ]
+    },
+    {
+      "name": "InputContent",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "InputContentPart",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "OutputItem",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "MessageOutputItem",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "type",
+        "id",
+        "status",
+        "role",
+        "content"
+      ]
+    },
+    {
+      "name": "SearchResultsOutputItem",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "results"
+      ]
+    },
+    {
+      "name": "FetchUrlResultsOutputItem",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "contents"
+      ]
+    },
+    {
+      "name": "ContentPart",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "text"
+      ]
+    },
+    {
+      "name": "ContentPartType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Annotation",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "SearchResult",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "id",
+        "url",
+        "title",
+        "snippet"
+      ]
+    },
+    {
+      "name": "SearchSource",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "UrlContent",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "url",
+        "title",
+        "snippet"
+      ]
+    },
+    {
+      "name": "RoleType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ErrorInfo",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "message"
+      ]
+    },
+    {
+      "name": "ReasoningConfig",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ResponseFormat",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "JSONSchemaFormat",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "schema"
+      ]
+    },
+    {
+      "name": "FunctionCallInput",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "type",
+        "call_id",
+        "name",
+        "arguments"
+      ]
+    },
+    {
+      "name": "FunctionCallOutputInput",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "type",
+        "call_id",
+        "output"
+      ]
+    },
+    {
+      "name": "FunctionCallOutputItem",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "type",
+        "id",
+        "status",
+        "name",
+        "call_id",
+        "arguments"
+      ]
+    },
+    {
+      "name": "FunctionTool",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "type",
+        "name"
+      ]
+    },
+    {
+      "name": "Tool",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "WebSearchTool",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "FinanceSearchTool",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "FetchUrlTool",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "WebSearchFilters",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SearchDomainFilter",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DateFilters",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Date",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SearchRecencyFilter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ToolUserLocation",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ToolCallDetails",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ResponseStreamEvent",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "EventType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ResponseCreatedEvent",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "sequence_number"
+      ]
+    },
+    {
+      "name": "ResponseInProgressEvent",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "sequence_number"
+      ]
+    },
+    {
+      "name": "ResponseCompletedEvent",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "sequence_number"
+      ]
+    },
+    {
+      "name": "ResponseFailedEvent",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "sequence_number",
+        "error"
+      ]
+    },
+    {
+      "name": "OutputItemAddedEvent",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "type",
+        "sequence_number",
+        "item",
+        "output_index"
+      ]
+    },
+    {
+      "name": "OutputItemDoneEvent",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "type",
+        "sequence_number",
+        "item",
+        "output_index"
+      ]
+    },
+    {
+      "name": "TextDeltaEvent",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "type",
+        "sequence_number",
+        "item_id",
+        "output_index",
+        "content_index",
+        "delta"
+      ]
+    },
+    {
+      "name": "TextDoneEvent",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "type",
+        "sequence_number",
+        "item_id",
+        "output_index",
+        "content_index",
+        "text"
+      ]
+    },
+    {
+      "name": "ReasoningStartedEvent",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "sequence_number"
+      ]
+    },
+    {
+      "name": "SearchQueriesEvent",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "type",
+        "sequence_number",
+        "queries"
+      ]
+    },
+    {
+      "name": "SearchResultsEvent",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "type",
+        "sequence_number",
+        "results"
+      ]
+    },
+    {
+      "name": "FetchUrlQueriesEvent",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "type",
+        "sequence_number",
+        "urls"
+      ]
+    },
+    {
+      "name": "FetchUrlResultsEvent",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "type",
+        "sequence_number",
+        "contents"
+      ]
+    },
+    {
+      "name": "ReasoningStoppedEvent",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "sequence_number"
+      ]
+    },
+    {
+      "name": "WebSearchStepDetails",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "search_results",
+        "search_keywords"
+      ]
+    },
+    {
+      "name": "FinanceSearchStepDetails",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "search_results",
+        "search_keywords"
+      ]
+    },
+    {
+      "name": "EmbeddingsRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "input",
+        "model"
+      ]
+    },
+    {
+      "name": "EmbeddingsResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "EmbeddingObject",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "EmbeddingsUsage",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ContextualizedEmbeddingsRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "input",
+        "model"
+      ]
+    },
+    {
+      "name": "ContextualizedEmbeddingsResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ContextualizedEmbeddingObject",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Model",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "object",
+        "created",
+        "owned_by"
+      ]
+    },
+    {
+      "name": "ListModelsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "object",
+        "data"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/v1/sonar",
+      "operationId": "chat_completions_chat_completions_post",
+      "summary": "Create Chat Completion",
+      "tags": []
+    },
+    {
+      "method": "POST",
+      "path": "/search",
+      "operationId": "search_search_post",
+      "summary": "Search the Web",
+      "tags": []
+    },
+    {
+      "method": "POST",
+      "path": "/v1/embeddings",
+      "operationId": "embeddings_v1_embeddings_post",
+      "summary": "Create Embeddings",
+      "tags": []
+    },
+    {
+      "method": "POST",
+      "path": "/v1/contextualizedembeddings",
+      "operationId": "contextualized_embeddings_v1_contextualizedembeddings_post",
+      "summary": "Create Contextualized Embeddings",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/v1/async/sonar/{api_request}",
+      "operationId": "get_async_chat_completion_response_async_chat_completions__api_request__get",
+      "summary": "Get Async Chat Completion",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/v1/async/sonar",
+      "operationId": "list_async_chat_completions_async_chat_completions_get",
+      "summary": "List Async Chat Completions",
+      "tags": []
+    },
+    {
+      "method": "POST",
+      "path": "/v1/async/sonar",
+      "operationId": "create_async_chat_completions_async_chat_completions_post",
+      "summary": "Create Async Chat Completion",
+      "tags": []
+    },
+    {
+      "method": "POST",
+      "path": "/v1/agent",
+      "operationId": "createAgent",
+      "summary": "Create Agent Response",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/v1/models",
+      "operationId": "listModels",
+      "summary": "List Models",
+      "tags": []
+    }
+  ]
+}

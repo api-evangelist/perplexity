@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FetchUrlResultsEvent",
+  "title": "FetchUrlResultsEvent",
+  "description": "URL fetch results event (type: \"response.reasoning.fetch_url_results\").\nContains fetched URL contents.\n",
+  "properties": {
+    "contents": {
+      "items": {
+        "$ref": "#/components/schemas/UrlContent"
+      },
+      "type": "array"
+    },
+    "sequence_number": {
+      "description": "Monotonically increasing sequence number for event ordering",
+      "format": "int64",
+      "type": "integer"
+    },
+    "thought": {
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/components/schemas/EventType"
+    }
+  },
+  "required": [
+    "type",
+    "sequence_number",
+    "contents"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebSearchOptions",
+  "title": "WebSearchOptions",
+  "description": "Configuration options for web search behavior",
+  "properties": {
+    "search_context_size": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "title": "Search Context Size",
+      "description": "Amount of search context to include (low, medium, or high)",
+      "default": "low"
+    },
+    "search_type": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "fast",
+            "pro",
+            "auto"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Search Type",
+      "description": "Search type (fast for speed, pro for quality, auto to let the model decide)"
+    },
+    "user_location": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/UserLocation"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "image_results_enhanced_relevance": {
+      "type": "boolean",
+      "title": "Image Results Enhanced Relevance",
+      "description": "When true, applies enhanced relevance filtering to image results",
+      "default": false
+    }
+  },
+  "type": "object"
+}

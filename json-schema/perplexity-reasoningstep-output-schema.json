@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReasoningStep-Output",
+  "title": "ReasoningStep",
+  "properties": {
+    "thought": {
+      "type": "string",
+      "title": "Thought"
+    },
+    "type": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Type"
+    },
+    "web_search": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/WebSearchStepDetails"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "finance_search": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/FinanceSearchStepDetails"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "fetch_url_content": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/FetchUrlContentStepDetails"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "execute_python": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/ExecutePythonStepDetails"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "required": [
+    "thought"
+  ],
+  "description": "Reasoning step wrapper class"
+}

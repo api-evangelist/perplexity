@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InputContent",
+  "title": "InputContent",
+  "description": "Message content - either a string or array of content parts",
+  "oneOf": [
+    {
+      "title": "StringContent",
+      "type": "string"
+    },
+    {
+      "items": {
+        "$ref": "#/components/schemas/InputContentPart"
+      },
+      "title": "ContentPartArray",
+      "type": "array"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FunctionCallOutputItem",
+  "title": "FunctionCallOutputItem",
+  "properties": {
+    "arguments": {
+      "description": "JSON string of arguments",
+      "type": "string"
+    },
+    "call_id": {
+      "description": "Correlates with function_call_output input",
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/components/schemas/Status"
+    },
+    "thought_signature": {
+      "description": "Base64-encoded opaque signature for thinking models",
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "function_call"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "status",
+    "name",
+    "call_id",
+    "arguments"
+  ],
+  "type": "object"
+}

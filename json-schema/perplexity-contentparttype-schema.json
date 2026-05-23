@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContentPartType",
+  "title": "ContentPartType",
+  "description": "Type of a content part",
+  "enum": [
+    "output_text"
+  ],
+  "type": "string"
+}

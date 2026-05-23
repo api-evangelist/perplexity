@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DateFilters",
+  "title": "DateFilters",
+  "properties": {
+    "last_updated_after_filter": {
+      "$ref": "#/components/schemas/Date",
+      "description": "Return results updated after this date (MM/DD/YYYY)"
+    },
+    "last_updated_before_filter": {
+      "$ref": "#/components/schemas/Date",
+      "description": "Return results updated before this date (MM/DD/YYYY)"
+    },
+    "search_after_date_filter": {
+      "$ref": "#/components/schemas/Date",
+      "description": "Return results published after this date (MM/DD/YYYY)"
+    },
+    "search_before_date_filter": {
+      "$ref": "#/components/schemas/Date",
+      "description": "Return results published before this date (MM/DD/YYYY)"
+    },
+    "search_recency_filter": {
+      "$ref": "#/components/schemas/SearchRecencyFilter",
+      "description": "Filter by publication recency (hour/day/week/month/year)"
+    }
+  },
+  "type": "object"
+}

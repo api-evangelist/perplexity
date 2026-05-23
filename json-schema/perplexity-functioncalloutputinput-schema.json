@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FunctionCallOutputInput",
+  "title": "FunctionCallOutputInput",
+  "properties": {
+    "call_id": {
+      "description": "The call_id from function_call output",
+      "type": "string"
+    },
+    "name": {
+      "description": "Function name (required by some providers)",
+      "type": "string"
+    },
+    "output": {
+      "description": "Function result (JSON string)",
+      "type": "string"
+    },
+    "thought_signature": {
+      "description": "Base64-encoded signature from function_call",
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "function_call_output"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "call_id",
+    "output"
+  ],
+  "type": "object"
+}

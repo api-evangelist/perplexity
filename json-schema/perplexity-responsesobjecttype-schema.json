@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResponsesObjectType",
+  "title": "ResponsesObjectType",
+  "description": "Object type in API responses",
+  "enum": [
+    "response"
+  ],
+  "type": "string"
+}

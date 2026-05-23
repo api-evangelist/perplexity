@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmbeddingObject",
+  "title": "Embedding Object",
+  "type": "object",
+  "description": "A single embedding result",
+  "properties": {
+    "object": {
+      "type": "string",
+      "title": "Object",
+      "description": "The object type",
+      "example": "embedding"
+    },
+    "index": {
+      "type": "integer",
+      "title": "Index",
+      "description": "The index of the input text this embedding corresponds to"
+    },
+    "embedding": {
+      "type": "string",
+      "title": "Embedding",
+      "description": "Base64-encoded embedding vector. For base64_int8: decode to signed int8 array (length = dimensions). For base64_binary: decode to packed bits (length = dimensions / 8 bytes)."
+    }
+  }
+}

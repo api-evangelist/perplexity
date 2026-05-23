@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResponsesUsage",
+  "title": "ResponsesUsage",
+  "description": "Token usage and cost information for a Responses API request",
+  "properties": {
+    "cost": {
+      "$ref": "#/components/schemas/ResponsesCost",
+      "description": "Cost breakdown for the request"
+    },
+    "input_tokens": {
+      "description": "Number of input tokens used",
+      "format": "int64",
+      "type": "integer"
+    },
+    "input_tokens_details": {
+      "properties": {
+        "cache_creation_input_tokens": {
+          "description": "Tokens used for cache creation",
+          "format": "int64",
+          "type": "integer"
+        },
+        "cache_read_input_tokens": {
+          "description": "Tokens read from cache",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "output_tokens": {
+      "description": "Number of output tokens generated",
+      "format": "int64",
+      "type": "integer"
+    },
+    "tool_calls_details": {
+      "description": "Details about tool call invocations",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/ToolCallDetails"
+      },
+      "type": "object"
+    },
+    "total_tokens": {
+      "description": "Total tokens used (input + output)",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "input_tokens",
+    "output_tokens",
+    "total_tokens"
+  ],
+  "type": "object"
+}

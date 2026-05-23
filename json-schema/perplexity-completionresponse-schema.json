@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CompletionResponse",
+  "title": "CompletionResponse",
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Id",
+      "description": "Unique identifier for the completion"
+    },
+    "model": {
+      "type": "string",
+      "title": "Model",
+      "description": "Model used for generation"
+    },
+    "created": {
+      "type": "integer",
+      "title": "Created",
+      "description": "Unix timestamp when the completion was created"
+    },
+    "usage": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/UsageInfo"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "object": {
+      "type": "string",
+      "title": "Object",
+      "description": "Object type identifier",
+      "default": "chat.completion"
+    },
+    "choices": {
+      "items": {
+        "$ref": "#/components/schemas/Choice"
+      },
+      "type": "array",
+      "title": "Choices",
+      "description": "Array of completion choices"
+    },
+    "citations": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Citations",
+      "description": "URLs of sources used to generate the response"
+    },
+    "search_results": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/components/schemas/ApiPublicSearchResult"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Search Results",
+      "description": "Search results used for context in the response"
+    },
+    "images": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/components/schemas/ImageResult"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Images",
+      "description": "Array of images returned when return_images is true"
+    },
+    "related_questions": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Related Questions",
+      "description": "Array of related questions returned when return_related_questions is true"
+    }
+  },
+  "type": "object",
+  "required": [
+    "id",
+    "model",
+    "created",
+    "choices"
+  ]
+}

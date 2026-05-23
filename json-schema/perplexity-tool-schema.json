@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Tool",
+  "title": "Tool",
+  "discriminator": {
+    "mapping": {
+      "fetch_url": "#/components/schemas/FetchUrlTool",
+      "finance_search": "#/components/schemas/FinanceSearchTool",
+      "function": "#/components/schemas/FunctionTool",
+      "web_search": "#/components/schemas/WebSearchTool"
+    },
+    "propertyName": "type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/WebSearchTool"
+    },
+    {
+      "$ref": "#/components/schemas/FinanceSearchTool"
+    },
+    {
+      "$ref": "#/components/schemas/FetchUrlTool"
+    },
+    {
+      "$ref": "#/components/schemas/FunctionTool"
+    }
+  ]
+}

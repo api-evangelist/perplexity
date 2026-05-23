@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmbeddingsRequest",
+  "title": "Embeddings Request",
+  "type": "object",
+  "description": "Request body for creating embeddings",
+  "required": [
+    "input",
+    "model"
+  ],
+  "properties": {
+    "input": {
+      "title": "Input",
+      "description": "Input text to embed, encoded as a string or array of strings. Maximum 512 texts per request. Each input must not exceed 32K tokens. All inputs in a single request must not exceed 120,000 tokens combined. Empty strings are not allowed.",
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "maxItems": 512
+        }
+      ]
+    },
+    "model": {
+      "type": "string",
+      "title": "Model",
+      "description": "The embedding model to use",
+      "enum": [
+        "pplx-embed-v1-0.6b",
+        "pplx-embed-v1-4b"
+      ]
+    },
+    "dimensions": {
+      "type": "integer",
+      "title": "Dimensions",
+      "description": "Number of dimensions for output embeddings (Matryoshka). Range: 128-1024 for pplx-embed-v1-0.6b, 128-2560 for pplx-embed-v1-4b. Defaults to full dimensions (1024 or 2560).",
+      "minimum": 128,
+      "maximum": 2560
+    },
+    "encoding_format": {
+      "type": "string",
+      "title": "Encoding Format",
+      "description": "Output encoding format for embeddings. base64_int8 returns base64-encoded signed int8 values. base64_binary returns base64-encoded packed binary (1 bit per dimension).",
+      "enum": [
+        "base64_int8",
+        "base64_binary"
+      ],
+      "default": "base64_int8"
+    }
+  }
+}

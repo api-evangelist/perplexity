@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiPublicSearchResult",
+  "title": "ApiPublicSearchResult",
+  "description": "A single search result from the web",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title",
+      "description": "Title of the search result page"
+    },
+    "url": {
+      "type": "string",
+      "title": "Url",
+      "description": "URL of the search result page"
+    },
+    "date": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Date",
+      "description": "Publication date of the result"
+    },
+    "last_updated": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Last Updated",
+      "description": "Date the result was last updated"
+    },
+    "snippet": {
+      "type": "string",
+      "title": "Snippet",
+      "description": "Text snippet from the search result",
+      "default": ""
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "web",
+        "attachment"
+      ],
+      "title": "Source",
+      "description": "Source type of the result (web or attachment)",
+      "default": "web"
+    }
+  },
+  "type": "object",
+  "required": [
+    "title",
+    "url"
+  ]
+}

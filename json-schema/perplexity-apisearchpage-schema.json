@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiSearchPage",
+  "title": "ApiSearchPage",
+  "description": "A single page from search results",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title",
+      "description": "Title of the page"
+    },
+    "url": {
+      "type": "string",
+      "title": "Url",
+      "description": "URL of the page"
+    },
+    "snippet": {
+      "type": "string",
+      "title": "Snippet",
+      "description": "Content snippet extracted from the page"
+    },
+    "date": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Date",
+      "description": "Publication date of the page"
+    },
+    "last_updated": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Last Updated",
+      "description": "Date the page was last updated"
+    }
+  },
+  "type": "object",
+  "required": [
+    "title",
+    "url",
+    "snippet"
+  ]
+}

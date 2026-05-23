@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChatMessageContentFileChunk",
+  "title": "ChatMessageContentFileChunk",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "file_url",
+      "title": "Type"
+    },
+    "file_url": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/URL"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "title": "File Url"
+    },
+    "file_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "File Name"
+    }
+  },
+  "type": "object",
+  "required": [
+    "type",
+    "file_url"
+  ]
+}

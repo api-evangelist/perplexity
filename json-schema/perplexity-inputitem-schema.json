@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InputItem",
+  "title": "InputItem",
+  "discriminator": {
+    "mapping": {
+      "function_call": "#/components/schemas/FunctionCallInput",
+      "function_call_output": "#/components/schemas/FunctionCallOutputInput",
+      "message": "#/components/schemas/InputMessage"
+    },
+    "propertyName": "type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/InputMessage"
+    },
+    {
+      "$ref": "#/components/schemas/FunctionCallOutputInput"
+    },
+    {
+      "$ref": "#/components/schemas/FunctionCallInput"
+    }
+  ]
+}

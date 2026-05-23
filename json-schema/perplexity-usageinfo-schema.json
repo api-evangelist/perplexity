@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UsageInfo",
+  "title": "UsageInfo",
+  "description": "Token usage and cost information for a request",
+  "properties": {
+    "prompt_tokens": {
+      "type": "integer",
+      "title": "Prompt Tokens",
+      "description": "Number of tokens in the prompt/input"
+    },
+    "completion_tokens": {
+      "type": "integer",
+      "title": "Completion Tokens",
+      "description": "Number of tokens in the completion/output"
+    },
+    "total_tokens": {
+      "type": "integer",
+      "title": "Total Tokens",
+      "description": "Total tokens used (prompt + completion)"
+    },
+    "search_context_size": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Search Context Size",
+      "description": "Size of search context used"
+    },
+    "citation_tokens": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Citation Tokens",
+      "description": "Number of tokens used for citations"
+    },
+    "num_search_queries": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Num Search Queries",
+      "description": "Number of search queries executed"
+    },
+    "reasoning_tokens": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Reasoning Tokens",
+      "description": "Number of tokens used for reasoning"
+    },
+    "cost": {
+      "$ref": "#/components/schemas/Cost",
+      "description": "Cost breakdown for the request"
+    }
+  },
+  "type": "object",
+  "required": [
+    "prompt_tokens",
+    "completion_tokens",
+    "total_tokens",
+    "cost"
+  ]
+}

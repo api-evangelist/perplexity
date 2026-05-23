@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FetchUrlContentStepDetails",
+  "title": "FetchUrlContentStepDetails",
+  "properties": {
+    "contents": {
+      "items": {
+        "$ref": "#/components/schemas/ApiPublicSearchResult"
+      },
+      "type": "array",
+      "title": "Contents"
+    }
+  },
+  "type": "object",
+  "required": [
+    "contents"
+  ],
+  "description": "Fetch url content step details wrapper class"
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Date",
+  "title": "Date",
+  "description": "Input: MM/DD/YYYY, Output: YYYY-MM-DD",
+  "type": "string"
+}

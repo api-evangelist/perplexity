@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Cost",
+  "title": "Cost",
+  "description": "Cost breakdown for a chat completion request",
+  "properties": {
+    "input_tokens_cost": {
+      "type": "number",
+      "title": "Input Tokens Cost",
+      "description": "Cost for input tokens in USD"
+    },
+    "output_tokens_cost": {
+      "type": "number",
+      "title": "Output Tokens Cost",
+      "description": "Cost for output tokens in USD"
+    },
+    "reasoning_tokens_cost": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Reasoning Tokens Cost",
+      "description": "Cost for reasoning tokens in USD"
+    },
+    "request_cost": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Request Cost",
+      "description": "Cost for web search requests in USD (includes pro search cost if applicable)"
+    },
+    "citation_tokens_cost": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Citation Tokens Cost",
+      "description": "Cost for citation tokens in USD"
+    },
+    "search_queries_cost": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Search Queries Cost",
+      "description": "Cost for search queries in USD"
+    },
+    "total_cost": {
+      "type": "number",
+      "title": "Total Cost",
+      "description": "Total cost for the request in USD"
+    }
+  },
+  "type": "object",
+  "required": [
+    "input_tokens_cost",
+    "output_tokens_cost",
+    "total_cost"
+  ]
+}

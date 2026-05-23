@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExecutePythonStepDetails",
+  "title": "ExecutePythonStepDetails",
+  "properties": {
+    "code": {
+      "type": "string",
+      "title": "Code"
+    },
+    "result": {
+      "type": "string",
+      "title": "Result"
+    }
+  },
+  "type": "object",
+  "required": [
+    "code",
+    "result"
+  ],
+  "description": "Code generation step details wrapper class"
+}

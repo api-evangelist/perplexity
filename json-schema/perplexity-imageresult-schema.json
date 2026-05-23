@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImageResult",
+  "title": "ImageResult",
+  "properties": {
+    "image_url": {
+      "type": "string",
+      "title": "Image Url",
+      "description": "URL of the image"
+    },
+    "origin_url": {
+      "type": "string",
+      "title": "Origin Url",
+      "description": "Original URL where the image was found"
+    },
+    "title": {
+      "type": "string",
+      "title": "Title",
+      "description": "Title or description of the image"
+    },
+    "width": {
+      "type": "integer",
+      "title": "Width",
+      "description": "Width of the image in pixels"
+    },
+    "height": {
+      "type": "integer",
+      "title": "Height",
+      "description": "Height of the image in pixels"
+    }
+  },
+  "type": "object",
+  "required": [
+    "image_url",
+    "origin_url",
+    "title",
+    "width",
+    "height"
+  ]
+}

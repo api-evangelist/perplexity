@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ToolCall",
+  "title": "ToolCall",
+  "properties": {
+    "id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Id"
+    },
+    "type": {
+      "anyOf": [
+        {
+          "type": "string",
+          "const": "function"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Type"
+    },
+    "function": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/ToolCallFunction"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "type": "object"
+}

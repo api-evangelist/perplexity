@@ -1,0 +1,23 @@
+{
+  "operationId": "create_async_chat_completions_async_chat_completions_post",
+  "method": "POST",
+  "path": "/v1/async/sonar",
+  "summary": "Create Async Chat Completion",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "request": {
+          "model": "sonar-deep-research",
+          "messages": [
+            {
+              "role": "<string>",
+              "content": "<string>"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

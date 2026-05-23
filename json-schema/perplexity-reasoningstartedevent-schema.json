@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReasoningStartedEvent",
+  "title": "ReasoningStartedEvent",
+  "description": "Reasoning started event (type: \"response.reasoning.started\").\nSignals the model has started reasoning/searching.\n",
+  "properties": {
+    "sequence_number": {
+      "description": "Monotonically increasing sequence number for event ordering",
+      "format": "int64",
+      "type": "integer"
+    },
+    "thought": {
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/components/schemas/EventType"
+    }
+  },
+  "required": [
+    "type",
+    "sequence_number"
+  ],
+  "type": "object"
+}

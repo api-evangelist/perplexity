@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContentPart",
+  "title": "ContentPart",
+  "properties": {
+    "annotations": {
+      "items": {
+        "$ref": "#/components/schemas/Annotation"
+      },
+      "type": "array"
+    },
+    "text": {
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/components/schemas/ContentPartType"
+    }
+  },
+  "required": [
+    "type",
+    "text"
+  ],
+  "type": "object"
+}

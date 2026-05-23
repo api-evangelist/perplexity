@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ToolUserLocation",
+  "title": "ToolUserLocation",
+  "description": "User's geographic location for search personalization",
+  "properties": {
+    "city": {
+      "description": "City name",
+      "type": "string"
+    },
+    "country": {
+      "description": "ISO 3166-1 alpha-2 country code",
+      "type": "string"
+    },
+    "latitude": {
+      "description": "Latitude coordinate",
+      "format": "double",
+      "type": "number"
+    },
+    "longitude": {
+      "description": "Longitude coordinate",
+      "format": "double",
+      "type": "number"
+    },
+    "region": {
+      "description": "State or region name",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

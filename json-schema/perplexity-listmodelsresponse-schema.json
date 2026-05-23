@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListModelsResponse",
+  "title": "ListModelsResponse",
+  "type": "object",
+  "description": "Response from the List Models endpoint. Contains a list of available models.",
+  "properties": {
+    "object": {
+      "type": "string",
+      "description": "The object type, which is always `list`.",
+      "enum": [
+        "list"
+      ],
+      "example": "list"
+    },
+    "data": {
+      "type": "array",
+      "description": "A list of model objects.",
+      "items": {
+        "$ref": "#/components/schemas/Model"
+      }
+    }
+  },
+  "required": [
+    "object",
+    "data"
+  ]
+}

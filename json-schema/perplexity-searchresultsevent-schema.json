@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchResultsEvent",
+  "title": "SearchResultsEvent",
+  "description": "Search results event (type: \"response.reasoning.search_results\").\nContains search results returned.\n",
+  "properties": {
+    "results": {
+      "items": {
+        "$ref": "#/components/schemas/SearchResult"
+      },
+      "type": "array"
+    },
+    "sequence_number": {
+      "description": "Monotonically increasing sequence number for event ordering",
+      "format": "int64",
+      "type": "integer"
+    },
+    "thought": {
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/components/schemas/EventType"
+    },
+    "usage": {
+      "$ref": "#/components/schemas/ResponsesUsage"
+    }
+  },
+  "required": [
+    "type",
+    "sequence_number",
+    "results"
+  ],
+  "type": "object"
+}

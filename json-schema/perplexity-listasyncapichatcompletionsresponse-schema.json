@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListAsyncApiChatCompletionsResponse",
+  "title": "ListAsyncApiChatCompletionsResponse",
+  "properties": {
+    "next_token": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Next Token"
+    },
+    "requests": {
+      "items": {
+        "$ref": "#/components/schemas/AsyncApiChatCompletionsResponseSummary"
+      },
+      "type": "array",
+      "title": "Requests"
+    }
+  },
+  "type": "object",
+  "required": [
+    "requests"
+  ]
+}

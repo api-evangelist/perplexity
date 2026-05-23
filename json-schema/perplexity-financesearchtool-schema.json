@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FinanceSearchTool",
+  "title": "FinanceSearchTool",
+  "description": "Finance search tool configuration for the Agent API",
+  "properties": {
+    "type": {
+      "description": "Tool type identifier",
+      "enum": [
+        "finance_search"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "type": "object"
+}

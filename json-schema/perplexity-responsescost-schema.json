@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResponsesCost",
+  "title": "ResponsesCost",
+  "description": "Cost breakdown for a Responses API request",
+  "properties": {
+    "cache_creation_cost": {
+      "description": "Cost for cache creation in USD",
+      "format": "double",
+      "type": "number"
+    },
+    "cache_read_cost": {
+      "description": "Cost for cache reads in USD",
+      "format": "double",
+      "type": "number"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency",
+      "description": "Currency of the cost values"
+    },
+    "input_cost": {
+      "description": "Cost for input tokens in USD",
+      "format": "double",
+      "type": "number"
+    },
+    "output_cost": {
+      "description": "Cost for output tokens in USD",
+      "format": "double",
+      "type": "number"
+    },
+    "tool_calls_cost": {
+      "description": "Cost for tool call invocations in USD",
+      "format": "double",
+      "type": "number"
+    },
+    "total_cost": {
+      "description": "Total cost for the request in USD",
+      "format": "double",
+      "type": "number"
+    }
+  },
+  "required": [
+    "currency",
+    "input_cost",
+    "output_cost",
+    "total_cost"
+  ],
+  "type": "object"
+}

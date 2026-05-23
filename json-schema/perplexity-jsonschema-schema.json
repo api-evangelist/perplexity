@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JSONSchema",
+  "title": "JSONSchema",
+  "properties": {
+    "schema": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Schema"
+    },
+    "name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Name",
+      "default": "schema"
+    },
+    "description": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Description"
+    },
+    "strict": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Strict",
+      "default": true
+    }
+  },
+  "type": "object",
+  "required": [
+    "schema"
+  ]
+}

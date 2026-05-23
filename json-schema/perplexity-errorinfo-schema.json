@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorInfo",
+  "title": "ErrorInfo",
+  "description": "Error information returned when a request fails",
+  "properties": {
+    "code": {
+      "description": "Error code",
+      "type": "string"
+    },
+    "message": {
+      "description": "Human-readable error message",
+      "type": "string"
+    },
+    "type": {
+      "description": "Error type category",
+      "type": "string"
+    }
+  },
+  "required": [
+    "message"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmbeddingsUsage",
+  "title": "Embeddings Usage",
+  "type": "object",
+  "description": "Token usage for the embeddings request",
+  "properties": {
+    "prompt_tokens": {
+      "type": "integer",
+      "title": "Prompt Tokens",
+      "description": "Number of tokens in the input texts"
+    },
+    "total_tokens": {
+      "type": "integer",
+      "title": "Total Tokens",
+      "description": "Total number of tokens processed"
+    },
+    "cost": {
+      "type": "object",
+      "title": "Cost",
+      "description": "Cost breakdown for the request",
+      "properties": {
+        "input_cost": {
+          "type": "number",
+          "title": "Input Cost",
+          "description": "Cost for input tokens in USD"
+        },
+        "total_cost": {
+          "type": "number",
+          "title": "Total Cost",
+          "description": "Total cost for the request in USD"
+        },
+        "currency": {
+          "type": "string",
+          "title": "Currency",
+          "description": "Currency of the cost values",
+          "enum": [
+            "USD"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Choice",
+  "title": "Choice",
+  "description": "A single completion choice",
+  "properties": {
+    "index": {
+      "type": "integer",
+      "title": "Index",
+      "description": "Index of the choice in the array"
+    },
+    "finish_reason": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "stop",
+            "length"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Finish Reason",
+      "description": "Reason generation stopped (stop or length)"
+    },
+    "message": {
+      "$ref": "#/components/schemas/ChatMessage-Output",
+      "description": "Complete message (non-streaming)"
+    },
+    "delta": {
+      "$ref": "#/components/schemas/ChatMessage-Output",
+      "description": "Incremental message delta (streaming)"
+    }
+  },
+  "type": "object",
+  "required": [
+    "index",
+    "message",
+    "delta"
+  ]
+}

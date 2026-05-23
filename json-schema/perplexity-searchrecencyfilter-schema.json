@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchRecencyFilter",
+  "title": "SearchRecencyFilter",
+  "description": "Time-based recency filter for search results",
+  "enum": [
+    "hour",
+    "day",
+    "week",
+    "month",
+    "year"
+  ],
+  "type": "string"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OutputItemDoneEvent",
+  "title": "OutputItemDoneEvent",
+  "description": "Output item done event (type: \"response.output_item.done\").\nEmitted when an output item (message or tool call) completes.\n",
+  "properties": {
+    "item": {
+      "$ref": "#/components/schemas/OutputItem"
+    },
+    "output_index": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "sequence_number": {
+      "description": "Monotonically increasing sequence number for event ordering",
+      "format": "int64",
+      "type": "integer"
+    },
+    "type": {
+      "$ref": "#/components/schemas/EventType"
+    }
+  },
+  "required": [
+    "type",
+    "sequence_number",
+    "item",
+    "output_index"
+  ],
+  "type": "object"
+}

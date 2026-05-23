@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChatMessageContentImageChunk",
+  "title": "ChatMessageContentImageChunk",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "image_url",
+      "title": "Type"
+    },
+    "image_url": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/URL"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "title": "Image Url"
+    }
+  },
+  "type": "object",
+  "required": [
+    "type",
+    "image_url"
+  ]
+}

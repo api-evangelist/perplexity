@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChatMessageContentTextChunk",
+  "title": "ChatMessageContentTextChunk",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "text",
+      "title": "Type"
+    },
+    "text": {
+      "type": "string",
+      "title": "Text"
+    }
+  },
+  "type": "object",
+  "required": [
+    "type",
+    "text"
+  ]
+}

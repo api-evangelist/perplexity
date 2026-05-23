@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OutputItemAddedEvent",
+  "title": "OutputItemAddedEvent",
+  "description": "Output item added event (type: \"response.output_item.added\").\nEmitted when a new output item (message or tool call) starts.\n",
+  "properties": {
+    "item": {
+      "$ref": "#/components/schemas/OutputItem"
+    },
+    "output_index": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "sequence_number": {
+      "description": "Monotonically increasing sequence number for event ordering",
+      "format": "int64",
+      "type": "integer"
+    },
+    "type": {
+      "$ref": "#/components/schemas/EventType"
+    }
+  },
+  "required": [
+    "type",
+    "sequence_number",
+    "item",
+    "output_index"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AsyncProcessingStatus",
+  "title": "AsyncProcessingStatus",
+  "type": "string",
+  "enum": [
+    "CREATED",
+    "IN_PROGRESS",
+    "COMPLETED",
+    "FAILED"
+  ],
+  "description": "Status enum for async processing."
+}

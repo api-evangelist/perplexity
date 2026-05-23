@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchResultsOutputItem",
+  "title": "SearchResultsOutputItem",
+  "properties": {
+    "queries": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "results": {
+      "items": {
+        "$ref": "#/components/schemas/SearchResult"
+      },
+      "type": "array"
+    },
+    "type": {
+      "enum": [
+        "search_results"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "results"
+  ],
+  "type": "object"
+}

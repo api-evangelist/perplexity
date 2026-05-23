@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InputMessage",
+  "title": "InputMessage",
+  "properties": {
+    "content": {
+      "$ref": "#/components/schemas/InputContent"
+    },
+    "role": {
+      "enum": [
+        "user",
+        "assistant",
+        "system",
+        "developer"
+      ],
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "message"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "role",
+    "content"
+  ],
+  "type": "object"
+}

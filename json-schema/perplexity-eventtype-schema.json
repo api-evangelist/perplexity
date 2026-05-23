@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EventType",
+  "title": "EventType",
+  "description": "SSE event type discriminator",
+  "enum": [
+    "response.created",
+    "response.in_progress",
+    "response.completed",
+    "response.failed",
+    "response.output_item.added",
+    "response.output_item.done",
+    "response.output_text.delta",
+    "response.output_text.done",
+    "response.reasoning.started",
+    "response.reasoning.search_queries",
+    "response.reasoning.search_results",
+    "response.reasoning.fetch_url_queries",
+    "response.reasoning.fetch_url_results",
+    "response.reasoning.stopped"
+  ],
+  "type": "string"
+}

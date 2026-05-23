@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TextDeltaEvent",
+  "title": "TextDeltaEvent",
+  "description": "Text delta event (type: \"response.output_text.delta\").\nContains incremental text content.\n",
+  "properties": {
+    "content_index": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "delta": {
+      "type": "string"
+    },
+    "item_id": {
+      "type": "string"
+    },
+    "output_index": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "sequence_number": {
+      "description": "Monotonically increasing sequence number for event ordering",
+      "format": "int64",
+      "type": "integer"
+    },
+    "type": {
+      "$ref": "#/components/schemas/EventType"
+    }
+  },
+  "required": [
+    "type",
+    "sequence_number",
+    "item_id",
+    "output_index",
+    "content_index",
+    "delta"
+  ],
+  "type": "object"
+}

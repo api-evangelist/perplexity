@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResponseFormatText",
+  "title": "ResponseFormatText",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "text",
+      "title": "Type",
+      "description": "Must be `text`."
+    }
+  },
+  "type": "object",
+  "required": [
+    "type"
+  ]
+}

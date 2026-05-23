@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContextualizedEmbeddingObject",
+  "title": "Contextualized Embedding Object",
+  "type": "object",
+  "description": "A single contextualized embedding result",
+  "properties": {
+    "object": {
+      "type": "string",
+      "title": "Object",
+      "description": "The object type",
+      "example": "list"
+    },
+    "index": {
+      "type": "integer",
+      "title": "Index",
+      "description": "The index of the document this chunk belongs to"
+    },
+    "data": {
+      "type": "array",
+      "title": "Data",
+      "description": "List of embedding objects for chunks in this document",
+      "items": {
+        "$ref": "#/components/schemas/EmbeddingObject"
+      }
+    }
+  }
+}

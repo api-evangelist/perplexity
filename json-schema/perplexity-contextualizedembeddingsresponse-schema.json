@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContextualizedEmbeddingsResponse",
+  "title": "Contextualized Embeddings Response",
+  "type": "object",
+  "description": "Response body for contextualized embeddings request",
+  "properties": {
+    "object": {
+      "type": "string",
+      "title": "Object",
+      "description": "The object type",
+      "example": "list"
+    },
+    "data": {
+      "type": "array",
+      "title": "Data",
+      "description": "List of contextualized embedding objects",
+      "items": {
+        "$ref": "#/components/schemas/ContextualizedEmbeddingObject"
+      }
+    },
+    "model": {
+      "type": "string",
+      "title": "Model",
+      "description": "The model used to generate embeddings"
+    },
+    "usage": {
+      "$ref": "#/components/schemas/EmbeddingsUsage"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FetchUrlTool",
+  "title": "FetchUrlTool",
+  "properties": {
+    "max_urls": {
+      "description": "Maximum number of URLs to fetch per tool call",
+      "format": "int32",
+      "maximum": 10,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "type": {
+      "enum": [
+        "fetch_url"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "type": "object"
+}
