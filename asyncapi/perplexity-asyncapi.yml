@@ -1,0 +1,880 @@
+asyncapi: 2.6.0
+info:
+  title: Perplexity Streaming API (HTTP + Server-Sent Events)
+  version: 2026-05-29
+  description: |
+    AsyncAPI description of Perplexity's HTTP-based streaming surface.
+
+    IMPORTANT TRANSPORT NOTE
+    ------------------------
+    Perplexity does NOT expose a WebSocket (ws://, wss://) API. Every streaming
+    interaction documented here is delivered as HTTP Server-Sent Events (SSE)
+    over the same REST endpoints used for non-streaming requests, opted into by
+    setting `stream: true` in the JSON request body. SSE is a unidirectional,
+    server-to-client streaming transport using `Content-Type: text/event-stream`
+    over a single long-lived HTTP response. It is not WebSocket. This AsyncAPI
+    document is therefore an honest model of HTTP + SSE, not of a bidirectional
+    socket. The bindings below explicitly use the `http` protocol binding to
+    reflect that fact.
+
+    Long-running Sonar workloads use a different pattern: a REST POST queues a
+    job, and a REST GET is polled to retrieve the result. The async Sonar flow
+    is included here as a non-streaming async pattern for completeness, but
+    note that polling is also not a push transport.
+
+    Source: https://docs.perplexity.ai (API Reference, Sonar streaming guides,
+    Agent API output control, streaming-citations cookbook, llms.txt).
+  contact:
+    name: Perplexity AI
+    url: https://docs.perplexity.ai
+    email: support@perplexity.ai
+  license:
+    name: Perplexity API Terms of Service
+    url: https://www.perplexity.ai/hub/legal/perplexity-api-terms-of-service
+
+defaultContentType: text/event-stream
+
+servers:
+  production:
+    url: api.perplexity.ai
+    protocol: https
+    description: |
+      Perplexity API production host. All endpoints are HTTPS REST. Streaming
+      endpoints respond with `Content-Type: text/event-stream` (SSE) when the
+      request body sets `stream: true`. This is HTTP + SSE, not WebSocket.
+    security:
+      - bearerAuth: []
+
+channels:
+  /chat/completions:
+    description: |
+      OpenAI-compatible Chat Completions endpoint. When the request body
+      includes `stream: true`, the server upgrades the response to SSE and
+      emits a sequence of `chat.completion.chunk` events terminated by a
+      `data: [DONE]` sentinel (OpenAI-compatible behavior). Search results,
+      citations, and the final `usage` object are documented to arrive in
+      the final chunk(s) of the stream, not progressively.
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: openChatCompletionsStream
+      summary: Open an SSE stream for chat completions
+      description: |
+        Client POSTs a chat completions request with `stream: true`. The HTTP
+        response body becomes a server-sent event stream of completion chunks.
+      message:
+        $ref: '#/components/messages/ChatCompletionStreamRequest'
+    subscribe:
+      operationId: receiveChatCompletionChunks
+      summary: Receive SSE chat completion chunks
+      description: |
+        Server emits a sequence of `chat.completion.chunk` SSE messages. Each
+        message is a single `data:` line carrying a JSON chunk. The stream is
+        terminated by `data: [DONE]`.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/ChatCompletionChunk'
+          - $ref: '#/components/messages/StreamDoneSentinel'
+
+  /v1/sonar:
+    description: |
+      Sonar chat completions endpoint (sonar, sonar-pro, sonar-reasoning-pro,
+      sonar-deep-research). When `stream: true`, responds with SSE. The
+      `stream_mode` parameter controls event shape:
+        - `full` (default): each chunk has shape `chat.completion.chunk`
+          (OpenAI-compatible), with server-side aggregated message; search
+          results may appear multiple times during the stream.
+        - `concise`: emits four distinct event objects routed by their
+          `object` field: `chat.reasoning`, `chat.reasoning.done`,
+          `chat.completion.chunk`, and `chat.completion.done`.
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: openSonarStream
+      summary: Open an SSE stream for Sonar chat completions
+      message:
+        $ref: '#/components/messages/SonarStreamRequest'
+    subscribe:
+      operationId: receiveSonarStreamEvents
+      summary: Receive Sonar SSE events (full or concise mode)
+      description: |
+        In `full` mode the server emits `chat.completion.chunk` events. In
+        `concise` mode the server emits `chat.reasoning`,
+        `chat.reasoning.done`, `chat.completion.chunk`, and a terminal
+        `chat.completion.done`. Routing is based on the `object` field per
+        the Sonar stream-mode documentation.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/ChatCompletionChunk'
+          - $ref: '#/components/messages/SonarChatReasoning'
+          - $ref: '#/components/messages/SonarChatReasoningDone'
+          - $ref: '#/components/messages/SonarChatCompletionDone'
+          - $ref: '#/components/messages/StreamDoneSentinel'
+
+  /v1/agent:
+    description: |
+      Agent API (Responses/Agentic Research). When `stream: true`, returns
+      `text/event-stream` with typed events. Each event carries a `type` and
+      `sequence_number`. Event types documented by Perplexity:
+        - response.created
+        - response.in_progress
+        - response.completed
+        - response.failed
+        - response.output_item.added
+        - response.output_item.done
+        - response.output_text.delta
+        - response.output_text.done
+        - response.reasoning.started
+        - response.reasoning.search_queries
+        - response.reasoning.search_results
+        - response.reasoning.fetch_url_queries
+        - response.reasoning.fetch_url_results
+        - response.reasoning.stopped
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: openAgentStream
+      summary: Open an SSE stream for the Agent API
+      message:
+        $ref: '#/components/messages/AgentStreamRequest'
+    subscribe:
+      operationId: receiveAgentStreamEvents
+      summary: Receive Agent API SSE events
+      message:
+        oneOf:
+          - $ref: '#/components/messages/AgentResponseCreated'
+          - $ref: '#/components/messages/AgentResponseInProgress'
+          - $ref: '#/components/messages/AgentResponseCompleted'
+          - $ref: '#/components/messages/AgentResponseFailed'
+          - $ref: '#/components/messages/AgentOutputItemAdded'
+          - $ref: '#/components/messages/AgentOutputItemDone'
+          - $ref: '#/components/messages/AgentOutputTextDelta'
+          - $ref: '#/components/messages/AgentOutputTextDone'
+          - $ref: '#/components/messages/AgentReasoningStarted'
+          - $ref: '#/components/messages/AgentReasoningSearchQueries'
+          - $ref: '#/components/messages/AgentReasoningSearchResults'
+          - $ref: '#/components/messages/AgentReasoningFetchUrlQueries'
+          - $ref: '#/components/messages/AgentReasoningFetchUrlResults'
+          - $ref: '#/components/messages/AgentReasoningStopped'
+
+  /v1/async/sonar:
+    description: |
+      Async Sonar chat completions. NOT a push/streaming transport. Client
+      POSTs to enqueue a job and later GETs the request id to retrieve the
+      response. Modeled here only because it is Perplexity's other documented
+      asynchronous interaction pattern; there is no SSE on this channel.
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: enqueueAsyncSonarJob
+      summary: Enqueue an asynchronous Sonar chat completion job
+      message:
+        $ref: '#/components/messages/AsyncSonarEnqueueRequest'
+    subscribe:
+      operationId: receiveAsyncSonarJobAcknowledgement
+      summary: Receive job acknowledgement with request id (polled, not pushed)
+      message:
+        $ref: '#/components/messages/AsyncSonarJobAcknowledgement'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: |
+        Authorization: Bearer <PERPLEXITY_API_KEY>. Manage keys per
+        https://docs.perplexity.ai/guides/api-key-management.
+
+  messages:
+    ChatCompletionStreamRequest:
+      name: ChatCompletionStreamRequest
+      title: Chat Completions request with stream=true
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ChatCompletionRequest'
+
+    SonarStreamRequest:
+      name: SonarStreamRequest
+      title: Sonar chat completions request with stream=true
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SonarRequest'
+
+    AgentStreamRequest:
+      name: AgentStreamRequest
+      title: Agent API request with stream=true
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentRequest'
+
+    AsyncSonarEnqueueRequest:
+      name: AsyncSonarEnqueueRequest
+      title: Enqueue async Sonar job (non-SSE)
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AsyncSonarRequest'
+
+    ChatCompletionChunk:
+      name: ChatCompletionChunk
+      title: SSE data event carrying a chat.completion.chunk
+      summary: |
+        One `data:` SSE event whose payload is a JSON object with
+        `object: chat.completion.chunk`. The stream ends with a terminal
+        `data: [DONE]` line.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ChatCompletionChunk'
+
+    StreamDoneSentinel:
+      name: StreamDoneSentinel
+      title: Terminal [DONE] sentinel
+      summary: |
+        OpenAI-compatible terminal SSE line `data: [DONE]` marking end of stream.
+      contentType: text/plain
+      payload:
+        type: string
+        const: '[DONE]'
+
+    SonarChatReasoning:
+      name: SonarChatReasoning
+      title: Sonar concise-mode chat.reasoning event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SonarChatReasoning'
+
+    SonarChatReasoningDone:
+      name: SonarChatReasoningDone
+      title: Sonar concise-mode chat.reasoning.done event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SonarChatReasoningDone'
+
+    SonarChatCompletionDone:
+      name: SonarChatCompletionDone
+      title: Sonar concise-mode chat.completion.done event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SonarChatCompletionDone'
+
+    AgentResponseCreated:
+      name: AgentResponseCreated
+      title: Agent SSE event response.created
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventResponseCreated'
+
+    AgentResponseInProgress:
+      name: AgentResponseInProgress
+      title: Agent SSE event response.in_progress
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventResponseInProgress'
+
+    AgentResponseCompleted:
+      name: AgentResponseCompleted
+      title: Agent SSE event response.completed
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventResponseCompleted'
+
+    AgentResponseFailed:
+      name: AgentResponseFailed
+      title: Agent SSE event response.failed
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventResponseFailed'
+
+    AgentOutputItemAdded:
+      name: AgentOutputItemAdded
+      title: Agent SSE event response.output_item.added
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventOutputItemAdded'
+
+    AgentOutputItemDone:
+      name: AgentOutputItemDone
+      title: Agent SSE event response.output_item.done
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventOutputItemDone'
+
+    AgentOutputTextDelta:
+      name: AgentOutputTextDelta
+      title: Agent SSE event response.output_text.delta
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventOutputTextDelta'
+
+    AgentOutputTextDone:
+      name: AgentOutputTextDone
+      title: Agent SSE event response.output_text.done
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventOutputTextDone'
+
+    AgentReasoningStarted:
+      name: AgentReasoningStarted
+      title: Agent SSE event response.reasoning.started
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventReasoningStarted'
+
+    AgentReasoningSearchQueries:
+      name: AgentReasoningSearchQueries
+      title: Agent SSE event response.reasoning.search_queries
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventReasoningSearchQueries'
+
+    AgentReasoningSearchResults:
+      name: AgentReasoningSearchResults
+      title: Agent SSE event response.reasoning.search_results
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventReasoningSearchResults'
+
+    AgentReasoningFetchUrlQueries:
+      name: AgentReasoningFetchUrlQueries
+      title: Agent SSE event response.reasoning.fetch_url_queries
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventReasoningFetchUrlQueries'
+
+    AgentReasoningFetchUrlResults:
+      name: AgentReasoningFetchUrlResults
+      title: Agent SSE event response.reasoning.fetch_url_results
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventReasoningFetchUrlResults'
+
+    AgentReasoningStopped:
+      name: AgentReasoningStopped
+      title: Agent SSE event response.reasoning.stopped
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AgentEventReasoningStopped'
+
+    AsyncSonarJobAcknowledgement:
+      name: AsyncSonarJobAcknowledgement
+      title: Async Sonar job acknowledgement (polling pattern)
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AsyncSonarJobAcknowledgement'
+
+  schemas:
+    ChatMessage:
+      type: object
+      required: [role, content]
+      properties:
+        role:
+          type: string
+          enum: [system, user, assistant, tool]
+        content:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: object
+
+    ChatCompletionRequest:
+      type: object
+      required: [model, messages]
+      properties:
+        model:
+          type: string
+          description: Model identifier (e.g. sonar, sonar-pro, sonar-reasoning-pro, sonar-deep-research).
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatMessage'
+        stream:
+          type: boolean
+          default: false
+          description: If true, returns streaming SSE response.
+        stream_mode:
+          type: string
+          enum: [full, concise]
+          default: full
+          description: |
+            Controls SSE event shape. `full` is the OpenAI-compatible
+            single-event-type stream; `concise` emits chat.reasoning,
+            chat.reasoning.done, chat.completion.chunk, and chat.completion.done.
+        max_tokens:
+          type: integer
+        temperature:
+          type: number
+        top_p:
+          type: number
+        stop:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        response_format:
+          type: object
+          description: Text or JSON schema output control.
+
+    SonarRequest:
+      allOf:
+        - $ref: '#/components/schemas/ChatCompletionRequest'
+
+    AsyncSonarRequest:
+      type: object
+      required: [model, messages]
+      properties:
+        model:
+          type: string
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatMessage'
+
+    AsyncSonarJobAcknowledgement:
+      type: object
+      description: |
+        Response body returned by POST /v1/async/sonar. The client polls
+        GET /v1/async/sonar/{api_request} to retrieve the final completion.
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum: [created, processing, completed, failed]
+        created_at:
+          type: integer
+        model:
+          type: string
+
+    ChoiceDelta:
+      type: object
+      description: Incremental message delta (streaming) for one choice.
+      properties:
+        role:
+          type: string
+          enum: [system, user, assistant, tool]
+        content:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: object
+
+    StreamChoice:
+      type: object
+      properties:
+        index:
+          type: integer
+        delta:
+          $ref: '#/components/schemas/ChoiceDelta'
+        message:
+          type: object
+          description: Present in `full` stream_mode where server-side aggregation is included.
+        finish_reason:
+          type: string
+          enum: [stop, length]
+          nullable: true
+
+    Usage:
+      type: object
+      properties:
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
+        search_context_size:
+          type: string
+          description: Documented on concise-mode chat.reasoning.done usage object.
+
+    Cost:
+      type: object
+      description: Cost breakdown reported in chat.completion.done (concise mode).
+      properties:
+        input_tokens_cost:
+          type: number
+        output_tokens_cost:
+          type: number
+        request_cost:
+          type: number
+        total_cost:
+          type: number
+
+    SearchResult:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier used by the model for inline citations like [1], [2].
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
+        snippet:
+          type: string
+        date:
+          type: string
+
+    ImageResult:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+
+    ReasoningStep:
+      type: object
+      description: Member of the `reasoning_steps` array in concise-mode chat.reasoning.
+      properties:
+        thought:
+          type: string
+        type:
+          type: string
+          description: Operation type (e.g. "web_search").
+        web_search:
+          type: object
+          properties:
+            search_results:
+              type: array
+              items:
+                $ref: '#/components/schemas/SearchResult'
+            search_keywords:
+              type: array
+              items:
+                type: string
+
+    ChatCompletionChunk:
+      type: object
+      description: |
+        SSE payload for an OpenAI-compatible / Sonar `full`-mode chunk.
+      required: [id, object, created, model, choices]
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          const: chat.completion.chunk
+        created:
+          type: integer
+        model:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/StreamChoice'
+        citations:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Source URLs. Documented to arrive in the final chunk(s).
+        search_results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+          description: Documented to arrive in the final chunk(s) of the stream.
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageResult'
+        related_questions:
+          type: array
+          items:
+            type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
+
+    SonarChatReasoning:
+      type: object
+      description: Concise-mode reasoning event emitted during the reasoning stage.
+      required: [object]
+      properties:
+        object:
+          type: string
+          const: chat.reasoning
+        delta:
+          type: object
+          properties:
+            reasoning_steps:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReasoningStep'
+
+    SonarChatReasoningDone:
+      type: object
+      description: Marks end of the reasoning stage in concise mode.
+      required: [object]
+      properties:
+        object:
+          type: string
+          const: chat.reasoning.done
+        message:
+          type: object
+          properties:
+            content:
+              type: object
+              properties:
+                reasoning_steps:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ReasoningStep'
+        search_results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageResult'
+        usage:
+          $ref: '#/components/schemas/Usage'
+
+    SonarChatCompletionDone:
+      type: object
+      description: |
+        Final concise-mode chunk providing final search results, usage,
+        and cost.
+      required: [object]
+      properties:
+        object:
+          type: string
+          const: chat.completion.done
+        message:
+          type: object
+          properties:
+            content:
+              type: string
+        search_results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageResult'
+        usage:
+          $ref: '#/components/schemas/Usage'
+        cost:
+          $ref: '#/components/schemas/Cost'
+        finish_reason:
+          type: string
+          enum: [stop]
+
+    AgentRequest:
+      type: object
+      required: [input]
+      properties:
+        input:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: object
+        instructions:
+          type: string
+        language_preference:
+          type: string
+          description: ISO 639-1 language code.
+        max_output_tokens:
+          type: integer
+          minimum: 1
+        max_steps:
+          type: integer
+          minimum: 1
+          maximum: 10
+        model:
+          type: string
+          description: Model ID in provider/model format.
+        models:
+          type: array
+          maxItems: 5
+          items:
+            type: string
+          description: Fallback chain of model IDs.
+        preset:
+          type: string
+        reasoning:
+          type: object
+        response_format:
+          type: object
+        stream:
+          type: boolean
+          default: false
+        tools:
+          type: array
+          items:
+            type: object
+
+    AgentEventEnvelope:
+      type: object
+      required: [type, sequence_number]
+      properties:
+        type:
+          type: string
+        sequence_number:
+          type: integer
+
+    AgentEventResponseCreated:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.created
+            response:
+              type: object
+
+    AgentEventResponseInProgress:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.in_progress
+            response:
+              type: object
+
+    AgentEventResponseCompleted:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.completed
+            response:
+              type: object
+              description: Final response object including aggregated output and `usage`.
+              properties:
+                usage:
+                  $ref: '#/components/schemas/Usage'
+
+    AgentEventResponseFailed:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.failed
+            response:
+              type: object
+
+    AgentEventOutputItemAdded:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.output_item.added
+            item:
+              type: object
+
+    AgentEventOutputItemDone:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.output_item.done
+            item:
+              type: object
+
+    AgentEventOutputTextDelta:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.output_text.delta
+            delta:
+              type: string
+              description: Incremental text chunk being streamed.
+
+    AgentEventOutputTextDone:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.output_text.done
+            text:
+              type: string
+
+    AgentEventReasoningStarted:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.reasoning.started
+
+    AgentEventReasoningSearchQueries:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.reasoning.search_queries
+            queries:
+              type: array
+              items:
+                type: string
+
+    AgentEventReasoningSearchResults:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.reasoning.search_results
+            results:
+              type: array
+              items:
+                $ref: '#/components/schemas/SearchResult'
+
+    AgentEventReasoningFetchUrlQueries:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.reasoning.fetch_url_queries
+            queries:
+              type: array
+              items:
+                type: string
+                format: uri
+
+    AgentEventReasoningFetchUrlResults:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.reasoning.fetch_url_results
+            results:
+              type: array
+              items:
+                type: object
+
+    AgentEventReasoningStopped:
+      allOf:
+        - $ref: '#/components/schemas/AgentEventEnvelope'
+        - type: object
+          properties:
+            type:
+              const: response.reasoning.stopped

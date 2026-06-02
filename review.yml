@@ -1,0 +1,102 @@
+aid: perplexity
+name: Perplexity
+review:
+  question: Does Perplexity expose a documented streaming API surface suitable for AsyncAPI modeling?
+  answer: true
+  date: '2026-05-29'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: true
+  scopeNote: |
+    Under the updated scope, HTTP + Server-Sent Events (SSE) is in-scope for
+    AsyncAPI modeling. Perplexity exposes no WebSocket transport, but it
+    publishes well-documented SSE event streams on three endpoints. Those are
+    modeled here with the AsyncAPI 2.6 `http` protocol binding, explicitly
+    labeled as HTTP+SSE (not WebSocket).
+findings:
+  summary: |
+    Perplexity's public API surface is HTTPS REST under
+    https://api.perplexity.ai. Streaming is delivered as HTTP Server-Sent
+    Events (SSE) on three documented endpoints when the JSON request body
+    includes `stream: true`:
+      1. POST /chat/completions (OpenAI-compatible) — emits
+         `chat.completion.chunk` SSE events terminated by `data: [DONE]`.
+      2. POST /v1/sonar — Sonar chat completions; `stream_mode` selects
+         `full` (OpenAI-compatible chunks) or `concise` (four event objects
+         routed by their `object` field: chat.reasoning, chat.reasoning.done,
+         chat.completion.chunk, chat.completion.done).
+      3. POST /v1/agent — Agent API; returns `text/event-stream` with 14
+         documented typed events including response.created,
+         response.in_progress, response.completed, response.failed,
+         response.output_item.added, response.output_item.done,
+         response.output_text.delta, response.output_text.done,
+         response.reasoning.started, response.reasoning.search_queries,
+         response.reasoning.search_results, response.reasoning.fetch_url_queries,
+         response.reasoning.fetch_url_results, response.reasoning.stopped.
+    Long-running Sonar workloads are handled by an Async Chat Completions
+    endpoint (POST /v1/async/sonar to enqueue, GET to poll); this is a
+    polling pattern, not a push transport, and is included in the AsyncAPI
+    document only for completeness with explicit non-streaming notes.
+    No WebSocket (ws:// or wss://) endpoint is documented anywhere on
+    docs.perplexity.ai or in the llms.txt index as of this review.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.perplexity.ai
+      documented: true
+    - protocol: SSE
+      scheme: https
+      documented: true
+      note: |
+        Server-Sent Events over the same REST endpoints when `stream: true`.
+        Content-Type text/event-stream. Modeled in AsyncAPI with the `http`
+        binding to honestly represent the transport (HTTP+SSE, not WebSocket).
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Perplexity's API reference, Sonar, Search, Agent, Responses, Embeddings, or Async Chat Completions documentation as of the review date.
+  streamingEndpoints:
+    - POST https://api.perplexity.ai/chat/completions
+    - POST https://api.perplexity.ai/v1/sonar
+    - POST https://api.perplexity.ai/v1/agent
+  asyncPollingEndpoints:
+    - POST https://api.perplexity.ai/v1/async/sonar
+    - GET  https://api.perplexity.ai/v1/async/sonar
+    - GET  https://api.perplexity.ai/v1/async/sonar/{api_request}
+sources:
+  - url: https://docs.perplexity.ai
+    type: Documentation
+    note: Documentation hub.
+  - url: https://docs.perplexity.ai/llms.txt
+    type: LLMs TXT
+    note: Complete documentation index of streaming, async, chat, sonar, agent, search, embeddings docs.
+  - url: https://docs.perplexity.ai/api-reference/chat-completions-post
+    type: APIReference
+    note: Documents `stream` parameter as "If true, returns streaming SSE response."
+  - url: https://docs.perplexity.ai/api-reference/sonar-post.md
+    type: APIReference
+    note: Sonar chat completions; documents stream and stream_mode parameters.
+  - url: https://docs.perplexity.ai/docs/sonar/pro-search/stream-mode.md
+    type: Documentation
+    note: Defines `full` and `concise` stream modes and the four concise event types.
+  - url: https://docs.perplexity.ai/docs/sonar/features.md
+    type: Documentation
+    note: Confirms search_results, usage, and metadata arrive in final chunk(s).
+  - url: https://docs.perplexity.ai/api-reference/agent-post.md
+    type: APIReference
+    note: Lists 14 typed SSE events for Agent API streaming.
+  - url: https://docs.perplexity.ai/docs/agent-api/output-control.md
+    type: Documentation
+    note: Agent API streaming output control.
+  - url: https://docs.perplexity.ai/docs/cookbook/articles/streaming-citations/README.md
+    type: Documentation
+    note: Streaming citations consumption pattern for Agent API.
+  - url: https://docs.perplexity.ai/api-reference/async-sonar-post.md
+    type: APIReference
+    note: Async Sonar enqueue (POST) + polling (GET) pattern. Not SSE.
+actions:
+  asyncapiPath: asyncapi/perplexity-asyncapi.yml
+  apisYmlUpdated: true
+  reason: |
+    SSE is in-scope for AsyncAPI modeling per updated scope. The spec uses
+    AsyncAPI 2.6 with the `http` protocol binding and includes explicit
+    in-document statements that transport is HTTP+SSE, not WebSocket.

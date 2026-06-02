@@ -8,7 +8,7 @@ access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags: []
 created: '2025-02-21'
-modified: '2026-05-19'
+modified: '2026-05-29'
 url: https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
@@ -43,6 +43,8 @@ apis:
     url: https://docs.perplexity.ai/docs/getting-started/pricing
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/openapi/perplexity-openapi.json
+  - type: AsyncAPI
+    url: https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/asyncapi/perplexity-asyncapi.yml
   - type: NaftikoCapability
     url: capabilities/perplexity.yaml
 - aid: perplexity:async-chat-completions-api
@@ -64,6 +66,8 @@ apis:
     url: https://docs.perplexity.ai/api-reference/async-chat-completions-get
   - type: Authentication
     url: https://docs.perplexity.ai/guides/api-key-management
+  - type: AsyncAPI
+    url: https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/asyncapi/perplexity-asyncapi.yml
 - aid: perplexity:search-api
   name: Perplexity Search API
   description: The Search API enables developers to perform ranked web searches with advanced filtering including domain,
@@ -105,6 +109,8 @@ apis:
     url: https://docs.perplexity.ai/api-reference/responses-post
   - type: Authentication
     url: https://docs.perplexity.ai/guides/api-key-management
+  - type: AsyncAPI
+    url: https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/asyncapi/perplexity-asyncapi.yml
 - aid: perplexity:embeddings-api
   name: Perplexity Embeddings API
   description: The Embeddings API generates high-quality text embeddings for semantic search and retrieval, offering both
