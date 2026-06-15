@@ -1,0 +1,748 @@
+"""
+Perplexity AI GraphQL Schema
+Conceptual schema derived from Perplexity REST API surface covering Sonar, Async,
+Search, Responses, and Embeddings APIs.
+"""
+
+# ─────────────────────────────────────────────
+# Scalars
+# ─────────────────────────────────────────────
+
+scalar DateTime
+scalar JSON
+scalar Float32
+
+# ─────────────────────────────────────────────
+# Enums
+# ─────────────────────────────────────────────
+
+"""Available Perplexity model identifiers."""
+enum ModelId {
+  SONAR
+  SONAR_PRO
+  SONAR_REASONING
+  SONAR_REASONING_PRO
+  SONAR_DEEP_RESEARCH
+  R1_1776
+  GPT_4O
+  GPT_4O_MINI
+  CLAUDE_3_5_SONNET
+  CLAUDE_3_7_SONNET
+  GEMINI_2_0_FLASH
+  GROK_3_BETA
+}
+
+"""Role of a message participant in a conversation."""
+enum MessageRole {
+  SYSTEM
+  USER
+  ASSISTANT
+  TOOL
+}
+
+"""Finish reason for a chat completion response."""
+enum FinishReason {
+  STOP
+  LENGTH
+  CONTENT_FILTER
+  TOOL_CALLS
+  NULL
+}
+
+"""Status of an asynchronous job."""
+enum AsyncJobStatus {
+  CREATED
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+"""Recency filter for web search results."""
+enum SearchRecency {
+  HOUR
+  DAY
+  WEEK
+  MONTH
+  YEAR
+}
+
+"""The type of search to perform."""
+enum SearchType {
+  WEB
+  ACADEMIC
+}
+
+"""Encoding format for embeddings output."""
+enum EncodingFormat {
+  FLOAT
+  BASE64
+}
+
+"""The type of embedding model to use."""
+enum EmbeddingModel {
+  SONAR_EMBEDDINGS
+  SONAR_EMBEDDINGS_PRO
+}
+
+"""Reasoning effort level for supported models."""
+enum ReasoningEffort {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+"""The preset research mode for the Responses API."""
+enum ResearchPreset {
+  PRO_SEARCH
+  DEEP_RESEARCH
+  DEFAULT
+}
+
+"""Type of tool available to a model."""
+enum ToolType {
+  WEB_SEARCH
+  URL_FETCH
+  FUNCTION
+}
+
+"""How the model should select tools."""
+enum ToolChoice {
+  AUTO
+  NONE
+  REQUIRED
+}
+
+"""Format type for structured outputs."""
+enum ResponseFormatType {
+  TEXT
+  JSON_OBJECT
+  JSON_SCHEMA
+}
+
+"""Tier level for an API user account."""
+enum UsageTier {
+  FREE
+  TIER_1
+  TIER_2
+  TIER_3
+  TIER_4
+  ENTERPRISE
+}
+
+"""Billing dimension for token usage."""
+enum TokenType {
+  PROMPT
+  COMPLETION
+  CITATION
+  REASONING
+}
+
+"""Status of a rate limit window."""
+enum RateLimitStatus {
+  OK
+  APPROACHING
+  EXCEEDED
+}
+
+"""Sort order for list queries."""
+enum SortOrder {
+  ASC
+  DESC
+}
+
+# ─────────────────────────────────────────────
+# Core Message Types
+# ─────────────────────────────────────────────
+
+"""A single message in a conversation."""
+type Message {
+  role: MessageRole!
+  content: String!
+  toolCallId: String
+  toolCalls: [ToolCall!]
+}
+
+"""A tool call issued by the model."""
+type ToolCall {
+  id: String!
+  type: ToolType!
+  function: FunctionCall
+}
+
+"""A function invocation within a tool call."""
+type FunctionCall {
+  name: String!
+  arguments: JSON!
+}
+
+# ─────────────────────────────────────────────
+# Citation & Search Result Types
+# ─────────────────────────────────────────────
+
+"""An inline citation returned with a Sonar answer."""
+type Citation {
+  index: Int!
+  url: String!
+  title: String
+  snippet: String
+  publishedDate: DateTime
+  author: String
+  domain: String
+}
+
+"""A ranked web search result."""
+type SearchResult {
+  rank: Int!
+  url: String!
+  title: String!
+  snippet: String
+  publishedDate: DateTime
+  domain: String
+  language: String
+  country: String
+  score: Float
+}
+
+"""Metadata about the web search performed for a completion."""
+type SearchContext {
+  query: String!
+  results: [SearchResult!]!
+  recency: SearchRecency
+  totalResults: Int
+}
+
+# ─────────────────────────────────────────────
+# Usage / Billing Types
+# ─────────────────────────────────────────────
+
+"""Token-level usage statistics for a single API call."""
+type UsageStats {
+  promptTokens: Int!
+  completionTokens: Int!
+  totalTokens: Int!
+  citationTokens: Int
+  reasoningTokens: Int
+  searchCount: Int
+}
+
+"""Cost estimate for a single API call."""
+type CostEstimate {
+  inputCostUsd: Float!
+  outputCostUsd: Float!
+  citationCostUsd: Float
+  searchCostUsd: Float
+  totalCostUsd: Float!
+}
+
+"""Detailed usage record for billing purposes."""
+type UsageRecord {
+  id: ID!
+  timestamp: DateTime!
+  model: ModelId!
+  endpoint: String!
+  usage: UsageStats!
+  cost: CostEstimate!
+  requestId: String!
+}
+
+"""Aggregated usage summary over a time period."""
+type UsageSummary {
+  periodStart: DateTime!
+  periodEnd: DateTime!
+  totalRequests: Int!
+  totalTokens: Int!
+  totalCostUsd: Float!
+  byModel: [ModelUsageBreakdown!]!
+}
+
+"""Usage broken down by model."""
+type ModelUsageBreakdown {
+  model: ModelId!
+  requests: Int!
+  promptTokens: Int!
+  completionTokens: Int!
+  costUsd: Float!
+}
+
+# ─────────────────────────────────────────────
+# Chat Completion Types
+# ─────────────────────────────────────────────
+
+"""A single choice/candidate in a chat completion response."""
+type CompletionChoice {
+  index: Int!
+  message: Message!
+  finishReason: FinishReason!
+  delta: Message
+}
+
+"""A complete chat completion response from the Sonar API."""
+type ChatCompletion {
+  id: ID!
+  model: ModelId!
+  object: String!
+  created: DateTime!
+  choices: [CompletionChoice!]!
+  usage: UsageStats!
+  citations: [Citation!]
+  searchContext: SearchContext
+  relatedQuestions: [String!]
+}
+
+"""A streaming chunk in a chat completion stream."""
+type ChatCompletionChunk {
+  id: ID!
+  model: ModelId!
+  object: String!
+  created: DateTime!
+  choices: [CompletionChoice!]!
+  usage: UsageStats
+}
+
+# ─────────────────────────────────────────────
+# Async Chat Completion Types
+# ─────────────────────────────────────────────
+
+"""A submitted asynchronous chat completion job."""
+type AsyncJob {
+  id: ID!
+  status: AsyncJobStatus!
+  model: ModelId!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  completedAt: DateTime
+  result: ChatCompletion
+  error: AsyncJobError
+  metadata: JSON
+}
+
+"""Error details for a failed async job."""
+type AsyncJobError {
+  code: String!
+  message: String!
+  details: JSON
+}
+
+"""Paginated list of async jobs."""
+type AsyncJobConnection {
+  nodes: [AsyncJob!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+# ─────────────────────────────────────────────
+# Search API Types
+# ─────────────────────────────────────────────
+
+"""Response from the Search API."""
+type SearchResponse {
+  id: ID!
+  query: String!
+  results: [SearchResult!]!
+  totalResults: Int!
+  searchType: SearchType!
+  recency: SearchRecency
+  usage: UsageStats!
+}
+
+"""Domain filter applied to a search."""
+type DomainFilter {
+  include: [String!]
+  exclude: [String!]
+}
+
+# ─────────────────────────────────────────────
+# Responses (Agentic Research) API Types
+# ─────────────────────────────────────────────
+
+"""A response object from the Responses (Agentic Research) API."""
+type AgentResponse {
+  id: ID!
+  model: ModelId!
+  preset: ResearchPreset!
+  output: [AgentOutputItem!]!
+  usage: UsageStats!
+  citations: [Citation!]
+  createdAt: DateTime!
+}
+
+"""An item in the Responses API output array."""
+type AgentOutputItem {
+  index: Int!
+  type: String!
+  text: String
+  toolCall: ToolCall
+  toolResult: JSON
+}
+
+"""A tool available to an agent in the Responses API."""
+type AgentTool {
+  type: ToolType!
+  name: String
+  description: String
+  parameters: JSON
+}
+
+# ─────────────────────────────────────────────
+# Embeddings API Types
+# ─────────────────────────────────────────────
+
+"""A single embedding vector result."""
+type EmbeddingObject {
+  index: Int!
+  object: String!
+  embedding: [Float!]!
+}
+
+"""Full response from the Embeddings API."""
+type EmbeddingResponse {
+  id: ID!
+  model: EmbeddingModel!
+  object: String!
+  data: [EmbeddingObject!]!
+  usage: UsageStats!
+  dimensions: Int
+}
+
+"""Contextualized embedding result for a document chunk."""
+type ContextualizedEmbedding {
+  chunkIndex: Int!
+  chunkText: String
+  embedding: [Float!]!
+  contextEmbedding: [Float!]
+}
+
+"""Response from the Contextualized Embeddings API."""
+type ContextualizedEmbeddingResponse {
+  id: ID!
+  model: EmbeddingModel!
+  results: [ContextualizedEmbedding!]!
+  usage: UsageStats!
+}
+
+# ─────────────────────────────────────────────
+# Model Types
+# ─────────────────────────────────────────────
+
+"""Metadata about an available model."""
+type Model {
+  id: ModelId!
+  name: String!
+  description: String
+  provider: String!
+  contextWindow: Int!
+  maxOutputTokens: Int
+  supportsStreaming: Boolean!
+  supportsImages: Boolean!
+  supportsTools: Boolean!
+  supportsStructuredOutput: Boolean!
+  supportsSearch: Boolean!
+  inputPricePerMTok: Float!
+  outputPricePerMTok: Float!
+  searchPricePerKQueries: Float
+  isOnline: Boolean!
+  deprecated: Boolean!
+  deprecatedAt: DateTime
+  replacedBy: ModelId
+}
+
+"""A paginated list of models."""
+type ModelConnection {
+  nodes: [Model!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+# ─────────────────────────────────────────────
+# API Key / Account Types
+# ─────────────────────────────────────────────
+
+"""An API key associated with an account."""
+type ApiKey {
+  id: ID!
+  name: String!
+  prefix: String!
+  createdAt: DateTime!
+  lastUsedAt: DateTime
+  expiresAt: DateTime
+  isActive: Boolean!
+  tier: UsageTier!
+  permissions: [String!]!
+}
+
+"""Rate limit configuration for an account."""
+type RateLimit {
+  endpoint: String!
+  requestsPerMinute: Int!
+  requestsPerDay: Int
+  currentUsage: Int!
+  resetAt: DateTime!
+  status: RateLimitStatus!
+}
+
+"""Account information."""
+type Account {
+  id: ID!
+  email: String!
+  tier: UsageTier!
+  createdAt: DateTime!
+  creditBalance: Float!
+  monthlySpendLimitUsd: Float
+  rateLimits: [RateLimit!]!
+  apiKeys: [ApiKey!]!
+}
+
+# ─────────────────────────────────────────────
+# Pagination
+# ─────────────────────────────────────────────
+
+"""Standard pagination cursor info."""
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+# ─────────────────────────────────────────────
+# Input Types
+# ─────────────────────────────────────────────
+
+"""A message to include in a chat completion request."""
+input MessageInput {
+  role: MessageRole!
+  content: String!
+  toolCallId: String
+}
+
+"""Web search options for a chat completion."""
+input WebSearchOptionsInput {
+  enabled: Boolean
+  recency: SearchRecency
+  domainFilter: DomainFilterInput
+  searchType: SearchType
+  maxResults: Int
+}
+
+"""Domain filtering for search."""
+input DomainFilterInput {
+  include: [String!]
+  exclude: [String!]
+}
+
+"""Response format specification."""
+input ResponseFormatInput {
+  type: ResponseFormatType!
+  jsonSchema: JSON
+}
+
+"""Tool definition for the Responses API."""
+input ToolInput {
+  type: ToolType!
+  name: String
+  description: String
+  parameters: JSON
+}
+
+"""Input to create a synchronous chat completion."""
+input ChatCompletionInput {
+  model: ModelId!
+  messages: [MessageInput!]!
+  maxTokens: Int
+  temperature: Float
+  topP: Float
+  topK: Int
+  presencePenalty: Float
+  frequencyPenalty: Float
+  stream: Boolean
+  responseFormat: ResponseFormatInput
+  webSearchOptions: WebSearchOptionsInput
+  returnCitations: Boolean
+  returnImages: Boolean
+  returnRelatedQuestions: Boolean
+  searchRecencyFilter: SearchRecency
+  searchDomainFilter: [String!]
+  reasoningEffort: ReasoningEffort
+  stopSequences: [String!]
+}
+
+"""Input to submit an asynchronous chat completion job."""
+input AsyncChatCompletionInput {
+  model: ModelId!
+  messages: [MessageInput!]!
+  maxTokens: Int
+  temperature: Float
+  topP: Float
+  webSearchOptions: WebSearchOptionsInput
+  returnCitations: Boolean
+  reasoningEffort: ReasoningEffort
+  metadata: JSON
+}
+
+"""Input for the Search API."""
+input SearchInput {
+  query: String!
+  searchType: SearchType
+  recency: SearchRecency
+  domainFilter: DomainFilterInput
+  language: String
+  country: String
+  maxResults: Int
+}
+
+"""Input for the Responses (Agentic Research) API."""
+input AgentResponseInput {
+  model: ModelId!
+  messages: [MessageInput!]!
+  preset: ResearchPreset
+  tools: [ToolInput!]
+  toolChoice: ToolChoice
+  maxTokens: Int
+  temperature: Float
+  stream: Boolean
+  webSearchOptions: WebSearchOptionsInput
+}
+
+"""Input for generating embeddings."""
+input EmbeddingInput {
+  model: EmbeddingModel!
+  input: [String!]!
+  encodingFormat: EncodingFormat
+  dimensions: Int
+}
+
+"""Input for contextualized embeddings."""
+input ContextualizedEmbeddingInput {
+  model: EmbeddingModel!
+  document: String!
+  chunks: [String!]!
+  encodingFormat: EncodingFormat
+  dimensions: Int
+}
+
+"""Input to create a new API key."""
+input CreateApiKeyInput {
+  name: String!
+  expiresAt: DateTime
+  permissions: [String!]
+}
+
+"""Filter input for listing usage records."""
+input UsageFilterInput {
+  startDate: DateTime
+  endDate: DateTime
+  model: ModelId
+  endpoint: String
+  limit: Int
+  offset: Int
+  sortOrder: SortOrder
+}
+
+"""Filter input for listing async jobs."""
+input AsyncJobFilterInput {
+  status: AsyncJobStatus
+  model: ModelId
+  createdAfter: DateTime
+  createdBefore: DateTime
+  limit: Int
+  after: String
+}
+
+# ─────────────────────────────────────────────
+# Query Root
+# ─────────────────────────────────────────────
+
+type Query {
+  """List all available models."""
+  models(
+    supportsSearch: Boolean
+    isOnline: Boolean
+    deprecated: Boolean
+    limit: Int
+    after: String
+  ): ModelConnection!
+
+  """Get details about a specific model."""
+  model(id: ModelId!): Model
+
+  """Retrieve the authenticated user's account."""
+  account: Account!
+
+  """List API keys for the authenticated account."""
+  apiKeys(isActive: Boolean): [ApiKey!]!
+
+  """Get the status of an asynchronous chat completion job."""
+  asyncJob(id: ID!): AsyncJob
+
+  """List asynchronous chat completion jobs."""
+  asyncJobs(filter: AsyncJobFilterInput): AsyncJobConnection!
+
+  """Retrieve a specific usage record."""
+  usageRecord(id: ID!): UsageRecord
+
+  """List usage records with optional filtering."""
+  usageRecords(filter: UsageFilterInput): [UsageRecord!]!
+
+  """Get an aggregated usage summary for a time period."""
+  usageSummary(startDate: DateTime!, endDate: DateTime!): UsageSummary!
+
+  """Get current rate limit status for the authenticated account."""
+  rateLimits: [RateLimit!]!
+
+  """Check the rate limit for a specific endpoint."""
+  rateLimit(endpoint: String!): RateLimit
+}
+
+# ─────────────────────────────────────────────
+# Mutation Root
+# ─────────────────────────────────────────────
+
+type Mutation {
+  """Create a synchronous chat completion."""
+  createChatCompletion(input: ChatCompletionInput!): ChatCompletion!
+
+  """Submit an asynchronous chat completion job."""
+  createAsyncChatCompletion(input: AsyncChatCompletionInput!): AsyncJob!
+
+  """Cancel a pending or processing async job."""
+  cancelAsyncJob(id: ID!): AsyncJob!
+
+  """Perform a web or academic search."""
+  search(input: SearchInput!): SearchResponse!
+
+  """Create an agentic/responses API completion."""
+  createAgentResponse(input: AgentResponseInput!): AgentResponse!
+
+  """Generate text embeddings."""
+  createEmbeddings(input: EmbeddingInput!): EmbeddingResponse!
+
+  """Generate contextualized embeddings for document chunks."""
+  createContextualizedEmbeddings(
+    input: ContextualizedEmbeddingInput!
+  ): ContextualizedEmbeddingResponse!
+
+  """Create a new API key."""
+  createApiKey(input: CreateApiKeyInput!): ApiKey!
+
+  """Revoke (delete) an existing API key."""
+  revokeApiKey(id: ID!): Boolean!
+
+  """Update the name of an existing API key."""
+  updateApiKeyName(id: ID!, name: String!): ApiKey!
+}
+
+# ─────────────────────────────────────────────
+# Subscription Root
+# ─────────────────────────────────────────────
+
+type Subscription {
+  """Stream tokens from a chat completion in real time."""
+  chatCompletionStream(input: ChatCompletionInput!): ChatCompletionChunk!
+
+  """Stream tokens from an agentic response in real time."""
+  agentResponseStream(input: AgentResponseInput!): ChatCompletionChunk!
+
+  """Receive status updates for a running async job."""
+  asyncJobStatus(id: ID!): AsyncJob!
+}
