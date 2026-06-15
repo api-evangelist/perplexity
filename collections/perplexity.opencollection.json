@@ -1,0 +1,172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Perplexity AI API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Create Chat Completion",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/v1/sonar",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Generate a chat completion response for the given conversation."
+    },
+    {
+      "info": {
+        "name": "Search the Web",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/search",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Search the web and retrieve relevant web page contents."
+    },
+    {
+      "info": {
+        "name": "Create Embeddings",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/v1/embeddings",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Generate embeddings for a list of texts. Use these embeddings for semantic search, clustering, and other machine learning applications."
+    },
+    {
+      "info": {
+        "name": "Create Contextualized Embeddings",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/v1/contextualizedembeddings",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Generate contextualized embeddings for document chunks. Chunks from the same document share context awareness, improving retrieval quality for document-based applications."
+    },
+    {
+      "info": {
+        "name": "Get Async Chat Completion",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.perplexity.ai/v1/async/sonar/:api_request",
+        "params": [
+          {
+            "name": "api_request",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Retrieve the response for a given asynchronous chat completion request."
+    },
+    {
+      "info": {
+        "name": "List Async Chat Completions",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.perplexity.ai/v1/async/sonar",
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Retrieve a list of all asynchronous chat completion requests for a given user."
+    },
+    {
+      "info": {
+        "name": "Create Async Chat Completion",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/v1/async/sonar",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Submit an asynchronous chat completion request."
+    },
+    {
+      "info": {
+        "name": "Create Agent Response",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/v1/agent",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Generate a response for the provided input with optional web search and reasoning."
+    },
+    {
+      "info": {
+        "name": "List Models",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.perplexity.ai/v1/models"
+      },
+      "docs": "List the models available for the Agent API. Returns model identifiers that can be used with the `POST /v1/agent` endpoint. The response follows the OpenAI List Models format for compatibility with third-party tools."
+    }
+  ],
+  "bundled": true
+}

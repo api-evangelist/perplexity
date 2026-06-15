@@ -1,0 +1,1304 @@
+{
+  "item": [
+    {
+      "id": "c0bed6db-e035-4de0-a036-f23eeaf2d79a",
+      "name": "Create Chat Completion",
+      "request": {
+        "name": "Create Chat Completion",
+        "description": {
+          "content": "Generate a chat completion response for the given conversation.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v1",
+            "sonar"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"max_tokens\": \"<integer>\",\n  \"stream\": \"<boolean>\",\n  \"stop\": \"<string>\",\n  \"temperature\": \"<number>\",\n  \"top_p\": \"<number>\",\n  \"response_format\": {\n    \"type\": \"<string>\"\n  },\n  \"web_search_options\": {\n    \"search_context_size\": \"low\",\n    \"search_type\": \"<string>\",\n    \"user_location\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"image_results_enhanced_relevance\": false\n  },\n  \"search_mode\": \"<string>\",\n  \"return_images\": \"<boolean>\",\n  \"return_related_questions\": \"<boolean>\",\n  \"enable_search_classifier\": \"<boolean>\",\n  \"disable_search\": \"<boolean>\",\n  \"search_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_recency_filter\": \"<string>\",\n  \"search_after_date_filter\": \"<string>\",\n  \"search_before_date_filter\": \"<string>\",\n  \"last_updated_before_filter\": \"<string>\",\n  \"last_updated_after_filter\": \"<string>\",\n  \"image_format_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"image_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stream_mode\": \"full\",\n  \"reasoning_effort\": \"<string>\",\n  \"language_preference\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "7afa4f13-e766-4428-b020-e149d48e00a8",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "sonar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"role\": \"tool\",\n      \"content\": \"string\"\n    },\n    {\n      \"role\": \"system\",\n      \"content\": \"string\"\n    }\n  ],\n  \"max_tokens\": \"<integer>\",\n  \"stream\": \"<boolean>\",\n  \"stop\": \"<string>\",\n  \"temperature\": \"<number>\",\n  \"top_p\": \"<number>\",\n  \"response_format\": {\n    \"type\": \"string\"\n  },\n  \"web_search_options\": {\n    \"search_context_size\": \"low\",\n    \"search_type\": \"auto\",\n    \"user_location\": {\n      \"latitude\": 7636.164385524602,\n      \"longitude\": 1640.0645580597695,\n      \"country\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\"\n    },\n    \"image_results_enhanced_relevance\": false\n  },\n  \"search_mode\": \"<string>\",\n  \"return_images\": \"<boolean>\",\n  \"return_related_questions\": \"<boolean>\",\n  \"enable_search_classifier\": \"<boolean>\",\n  \"disable_search\": \"<boolean>\",\n  \"search_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_recency_filter\": \"<string>\",\n  \"search_after_date_filter\": \"<string>\",\n  \"search_before_date_filter\": \"<string>\",\n  \"last_updated_before_filter\": \"<string>\",\n  \"last_updated_after_filter\": \"<string>\",\n  \"image_format_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"image_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stream_mode\": \"full\",\n  \"reasoning_effort\": \"<string>\",\n  \"language_preference\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"model\": \"string\",\n  \"created\": 4110,\n  \"choices\": [\n    {\n      \"index\": 4838,\n      \"message\": {\n        \"role\": \"tool\",\n        \"content\": \"string\"\n      },\n      \"delta\": {\n        \"role\": \"assistant\",\n        \"content\": \"string\"\n      },\n      \"finish_reason\": \"length\"\n    },\n    {\n      \"index\": 3796,\n      \"message\": {\n        \"role\": \"user\",\n        \"content\": \"string\"\n      },\n      \"delta\": {\n        \"role\": \"system\",\n        \"content\": \"string\"\n      },\n      \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 7801,\n    \"completion_tokens\": 8379,\n    \"total_tokens\": 8815,\n    \"cost\": {\n      \"input_tokens_cost\": 7756.128487384286,\n      \"output_tokens_cost\": 8774.270010998536,\n      \"total_cost\": 331.5112446292323,\n      \"reasoning_tokens_cost\": 8971.482641741302,\n      \"request_cost\": 8680.849888979054,\n      \"citation_tokens_cost\": 7712.428540536936,\n      \"search_queries_cost\": 1252.7855590728109\n    },\n    \"search_context_size\": \"string\",\n    \"citation_tokens\": 1585,\n    \"num_search_queries\": 4753,\n    \"reasoning_tokens\": 695\n  },\n  \"object\": \"chat.completion\",\n  \"citations\": [\n    \"string\",\n    \"string\"\n  ],\n  \"search_results\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"date\": \"string\",\n      \"last_updated\": \"string\",\n      \"snippet\": \"\",\n      \"source\": \"web\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"date\": \"string\",\n      \"last_updated\": \"string\",\n      \"snippet\": \"\",\n      \"source\": \"web\"\n    }\n  ],\n  \"images\": [\n    {\n      \"image_url\": \"string\",\n      \"origin_url\": \"string\",\n      \"title\": \"string\",\n      \"width\": 4252,\n      \"height\": 7516\n    },\n    {\n      \"image_url\": \"string\",\n      \"origin_url\": \"string\",\n      \"title\": \"string\",\n      \"width\": 75,\n      \"height\": 5868\n    }\n  ],\n  \"related_questions\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "511be4de-48e6-48bf-9071-e08422094611",
+          "name": "Validation Error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "sonar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"role\": \"tool\",\n      \"content\": \"string\"\n    },\n    {\n      \"role\": \"system\",\n      \"content\": \"string\"\n    }\n  ],\n  \"max_tokens\": \"<integer>\",\n  \"stream\": \"<boolean>\",\n  \"stop\": \"<string>\",\n  \"temperature\": \"<number>\",\n  \"top_p\": \"<number>\",\n  \"response_format\": {\n    \"type\": \"string\"\n  },\n  \"web_search_options\": {\n    \"search_context_size\": \"low\",\n    \"search_type\": \"auto\",\n    \"user_location\": {\n      \"latitude\": 7636.164385524602,\n      \"longitude\": 1640.0645580597695,\n      \"country\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\"\n    },\n    \"image_results_enhanced_relevance\": false\n  },\n  \"search_mode\": \"<string>\",\n  \"return_images\": \"<boolean>\",\n  \"return_related_questions\": \"<boolean>\",\n  \"enable_search_classifier\": \"<boolean>\",\n  \"disable_search\": \"<boolean>\",\n  \"search_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_recency_filter\": \"<string>\",\n  \"search_after_date_filter\": \"<string>\",\n  \"search_before_date_filter\": \"<string>\",\n  \"last_updated_before_filter\": \"<string>\",\n  \"last_updated_after_filter\": \"<string>\",\n  \"image_format_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"image_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stream_mode\": \"full\",\n  \"reasoning_effort\": \"<string>\",\n  \"language_preference\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "cd0a0d0c-3ea9-4e5c-95a4-93c11f6c0174",
+      "name": "Search the Web",
+      "request": {
+        "name": "Search the Web",
+        "description": {
+          "content": "Search the web and retrieve relevant web page contents.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "search"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "<object>",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "044aac1d-f556-444e-9e43-fcc8c9c3e082",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"country\": \"<string>\",\n  \"max_results\": 10,\n  \"max_tokens\": 10000,\n  \"max_tokens_per_page\": 4096,\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_domain_filter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"last_updated_after_filter\": \"string\",\n  \"last_updated_before_filter\": \"string\",\n  \"search_after_date_filter\": \"string\",\n  \"search_before_date_filter\": \"string\",\n  \"search_recency_filter\": \"month\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"results\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"snippet\": \"string\",\n      \"date\": \"string\",\n      \"last_updated\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"snippet\": \"string\",\n      \"date\": \"string\",\n      \"last_updated\": \"string\"\n    }\n  ],\n  \"id\": \"string\",\n  \"server_time\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "3110f189-b10c-425a-bafa-d72e0788abbe",
+          "name": "Validation Error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"country\": \"<string>\",\n  \"max_results\": 10,\n  \"max_tokens\": 10000,\n  \"max_tokens_per_page\": 4096,\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_domain_filter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"last_updated_after_filter\": \"string\",\n  \"last_updated_before_filter\": \"string\",\n  \"search_after_date_filter\": \"string\",\n  \"search_before_date_filter\": \"string\",\n  \"search_recency_filter\": \"month\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bb65bb15-22e3-4a91-9db6-11eba2af4732",
+      "name": "Create Embeddings",
+      "request": {
+        "name": "Create Embeddings",
+        "description": {
+          "content": "Generate embeddings for a list of texts. Use these embeddings for semantic search, clustering, and other machine learning applications.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v1",
+            "embeddings"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"<string>\",\n  \"dimensions\": \"<integer>\",\n  \"encoding_format\": \"base64_int8\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "1e761d90-a6a2-456e-99f3-db9c3e592c50",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "embeddings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"<string>\",\n  \"dimensions\": \"<integer>\",\n  \"encoding_format\": \"base64_int8\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"object\": \"embedding\",\n      \"index\": 6542,\n      \"embedding\": \"string\"\n    },\n    {\n      \"object\": \"embedding\",\n      \"index\": 1150,\n      \"embedding\": \"string\"\n    }\n  ],\n  \"model\": \"string\",\n  \"usage\": {\n    \"prompt_tokens\": 8618,\n    \"total_tokens\": 2276,\n    \"cost\": {\n      \"input_cost\": 1605.8658992897456,\n      \"total_cost\": 1865.419544747564,\n      \"currency\": \"USD\"\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1368b4a3-0a6c-4eea-ab7f-a762b764d820",
+          "name": "Validation Error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "embeddings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"<string>\",\n  \"dimensions\": \"<integer>\",\n  \"encoding_format\": \"base64_int8\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "25ff83df-a9d4-4b6f-b14f-09aab652a167",
+      "name": "Create Contextualized Embeddings",
+      "request": {
+        "name": "Create Contextualized Embeddings",
+        "description": {
+          "content": "Generate contextualized embeddings for document chunks. Chunks from the same document share context awareness, improving retrieval quality for document-based applications.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v1",
+            "contextualizedembeddings"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"input\": [\n    [\n      \"<string>\"\n    ]\n  ],\n  \"model\": \"<string>\",\n  \"dimensions\": \"<integer>\",\n  \"encoding_format\": \"base64_int8\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "4dccda8d-e59b-4459-a2ad-f19cbcecfaa7",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "contextualizedembeddings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": [\n    [\n      \"<string>\"\n    ]\n  ],\n  \"model\": \"<string>\",\n  \"dimensions\": \"<integer>\",\n  \"encoding_format\": \"base64_int8\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"object\": \"list\",\n      \"index\": 7729,\n      \"data\": [\n        {\n          \"object\": \"embedding\",\n          \"index\": 6785,\n          \"embedding\": \"string\"\n        },\n        {\n          \"object\": \"embedding\",\n          \"index\": 7576,\n          \"embedding\": \"string\"\n        }\n      ]\n    },\n    {\n      \"object\": \"list\",\n      \"index\": 4694,\n      \"data\": [\n        {\n          \"object\": \"embedding\",\n          \"index\": 783,\n          \"embedding\": \"string\"\n        },\n        {\n          \"object\": \"embedding\",\n          \"index\": 4509,\n          \"embedding\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"model\": \"string\",\n  \"usage\": {\n    \"prompt_tokens\": 9097,\n    \"total_tokens\": 2430,\n    \"cost\": {\n      \"input_cost\": 4794.136587751928,\n      \"total_cost\": 6034.489119913434,\n      \"currency\": \"USD\"\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "c3d58e43-7fd7-454e-b2ba-9a2d0fef82df",
+          "name": "Validation Error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "contextualizedembeddings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": [\n    [\n      \"<string>\"\n    ]\n  ],\n  \"model\": \"<string>\",\n  \"dimensions\": \"<integer>\",\n  \"encoding_format\": \"base64_int8\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f4a85567-e3c1-4892-a984-71097d20debf",
+      "name": "Get Async Chat Completion",
+      "request": {
+        "name": "Get Async Chat Completion",
+        "description": {
+          "content": "Retrieve the response for a given asynchronous chat completion request.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v1",
+            "async",
+            "sonar",
+            ":api_request"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "api_request",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "458b0ad2-6c53-4188-bcbf-85329abdb2a3",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "async",
+                "sonar",
+                ":api_request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api_request",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"model\": \"string\",\n  \"created_at\": 69,\n  \"status\": \"IN_PROGRESS\",\n  \"started_at\": 350,\n  \"completed_at\": 6257,\n  \"response\": {\n    \"id\": \"string\",\n    \"model\": \"string\",\n    \"created\": 8840,\n    \"choices\": [\n      {\n        \"index\": 5326,\n        \"message\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"delta\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"finish_reason\": \"stop\"\n      },\n      {\n        \"index\": 5097,\n        \"message\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"delta\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"finish_reason\": \"length\"\n      }\n    ],\n    \"usage\": {\n      \"prompt_tokens\": 859,\n      \"completion_tokens\": 3976,\n      \"total_tokens\": 540,\n      \"cost\": {\n        \"input_tokens_cost\": 6165.742887177872,\n        \"output_tokens_cost\": 7567.333000549187,\n        \"total_cost\": 3777.0580018206256,\n        \"reasoning_tokens_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"request_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"citation_tokens_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_queries_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"search_context_size\": \"string\",\n      \"citation_tokens\": 6585,\n      \"num_search_queries\": 8244,\n      \"reasoning_tokens\": 4744\n    },\n    \"object\": \"chat.completion\",\n    \"citations\": [\n      \"string\",\n      \"string\"\n    ],\n    \"search_results\": [\n      {\n        \"title\": \"string\",\n        \"url\": \"string\",\n        \"date\": \"string\",\n        \"last_updated\": \"string\",\n        \"snippet\": \"\",\n        \"source\": \"web\"\n      },\n      {\n        \"title\": \"string\",\n        \"url\": \"string\",\n        \"date\": \"string\",\n        \"last_updated\": \"string\",\n        \"snippet\": \"\",\n        \"source\": \"web\"\n      }\n    ],\n    \"images\": [\n      {\n        \"image_url\": \"string\",\n        \"origin_url\": \"string\",\n        \"title\": \"string\",\n        \"width\": 2429,\n        \"height\": 719\n      },\n      {\n        \"image_url\": \"string\",\n        \"origin_url\": \"string\",\n        \"title\": \"string\",\n        \"width\": 1606,\n        \"height\": 685\n      }\n    ],\n    \"related_questions\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"failed_at\": 9597,\n  \"error_message\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "11e8a04d-1332-4c20-803a-080dede3b66d",
+          "name": "Validation Error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "async",
+                "sonar",
+                ":api_request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api_request",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b7098cc1-bcad-4a5b-98fc-9376a747392e",
+      "name": "List Async Chat Completions",
+      "request": {
+        "name": "List Async Chat Completions",
+        "description": {
+          "content": "Retrieve a list of all asynchronous chat completion requests for a given user.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v1",
+            "async",
+            "sonar"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "a64800e9-48ff-409e-8112-da74fc530e6c",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "async",
+                "sonar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"requests\": [\n    {\n      \"id\": \"string\",\n      \"created_at\": 1439,\n      \"model\": \"string\",\n      \"status\": \"IN_PROGRESS\",\n      \"started_at\": 7542,\n      \"completed_at\": 9395,\n      \"failed_at\": 7065\n    },\n    {\n      \"id\": \"string\",\n      \"created_at\": 3052,\n      \"model\": \"string\",\n      \"status\": \"IN_PROGRESS\",\n      \"started_at\": 8379,\n      \"completed_at\": 9562,\n      \"failed_at\": 4125\n    }\n  ],\n  \"next_token\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "16f76df9-1045-4f13-af87-50b74033f351",
+          "name": "Validation Error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "async",
+                "sonar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "02bcb4a2-eb5c-41e9-bcdd-0e1ec061004c",
+      "name": "Create Async Chat Completion",
+      "request": {
+        "name": "Create Async Chat Completion",
+        "description": {
+          "content": "Submit an asynchronous chat completion request.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v1",
+            "async",
+            "sonar"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"request\": {\n    \"model\": \"<string>\",\n    \"messages\": [\n      {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\"\n      },\n      {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\"\n      }\n    ],\n    \"max_tokens\": \"<integer>\",\n    \"stream\": \"<boolean>\",\n    \"stop\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"top_p\": \"<number>\",\n    \"response_format\": {\n      \"type\": \"<string>\"\n    },\n    \"web_search_options\": {\n      \"search_context_size\": \"low\",\n      \"search_type\": \"<string>\",\n      \"user_location\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\"\n      },\n      \"image_results_enhanced_relevance\": false\n    },\n    \"search_mode\": \"<string>\",\n    \"return_images\": \"<boolean>\",\n    \"return_related_questions\": \"<boolean>\",\n    \"enable_search_classifier\": \"<boolean>\",\n    \"disable_search\": \"<boolean>\",\n    \"search_domain_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"search_language_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"search_recency_filter\": \"<string>\",\n    \"search_after_date_filter\": \"<string>\",\n    \"search_before_date_filter\": \"<string>\",\n    \"last_updated_before_filter\": \"<string>\",\n    \"last_updated_after_filter\": \"<string>\",\n    \"image_format_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"image_domain_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"stream_mode\": \"full\",\n    \"reasoning_effort\": \"<string>\",\n    \"language_preference\": \"<string>\"\n  },\n  \"idempotency_key\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "cb602a8f-181f-4fa3-b697-f75ef58e1e10",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "async",
+                "sonar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request\": {\n    \"model\": \"sonar-deep-research\",\n    \"messages\": [\n      {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"model\": \"string\",\n  \"created_at\": 69,\n  \"status\": \"IN_PROGRESS\",\n  \"started_at\": 350,\n  \"completed_at\": 6257,\n  \"response\": {\n    \"id\": \"string\",\n    \"model\": \"string\",\n    \"created\": 8840,\n    \"choices\": [\n      {\n        \"index\": 5326,\n        \"message\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"delta\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"finish_reason\": \"stop\"\n      },\n      {\n        \"index\": 5097,\n        \"message\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"delta\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"finish_reason\": \"length\"\n      }\n    ],\n    \"usage\": {\n      \"prompt_tokens\": 859,\n      \"completion_tokens\": 3976,\n      \"total_tokens\": 540,\n      \"cost\": {\n        \"input_tokens_cost\": 6165.742887177872,\n        \"output_tokens_cost\": 7567.333000549187,\n        \"total_cost\": 3777.0580018206256,\n        \"reasoning_tokens_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"request_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"citation_tokens_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_queries_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"search_context_size\": \"string\",\n      \"citation_tokens\": 6585,\n      \"num_search_queries\": 8244,\n      \"reasoning_tokens\": 4744\n    },\n    \"object\": \"chat.completion\",\n    \"citations\": [\n      \"string\",\n      \"string\"\n    ],\n    \"search_results\": [\n      {\n        \"title\": \"string\",\n        \"url\": \"string\",\n        \"date\": \"string\",\n        \"last_updated\": \"string\",\n        \"snippet\": \"\",\n        \"source\": \"web\"\n      },\n      {\n        \"title\": \"string\",\n        \"url\": \"string\",\n        \"date\": \"string\",\n        \"last_updated\": \"string\",\n        \"snippet\": \"\",\n        \"source\": \"web\"\n      }\n    ],\n    \"images\": [\n      {\n        \"image_url\": \"string\",\n        \"origin_url\": \"string\",\n        \"title\": \"string\",\n        \"width\": 2429,\n        \"height\": 719\n      },\n      {\n        \"image_url\": \"string\",\n        \"origin_url\": \"string\",\n        \"title\": \"string\",\n        \"width\": 1606,\n        \"height\": 685\n      }\n    ],\n    \"related_questions\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"failed_at\": 9597,\n  \"error_message\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1987315d-7d38-4309-90fc-68e960fe5be0",
+          "name": "Validation Error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "async",
+                "sonar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request\": {\n    \"model\": \"sonar-deep-research\",\n    \"messages\": [\n      {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "5e929275-fa5b-4975-9ca9-6089a52c1513",
+      "name": "Create Agent Response",
+      "request": {
+        "name": "Create Agent Response",
+        "description": {
+          "content": "Generate a response for the provided input with optional web search and reasoning.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v1",
+            "agent"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"input\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"language_preference\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_steps\": \"<integer>\",\n  \"model\": \"<string>\",\n  \"models\": [\n    \"<string>\"\n  ],\n  \"preset\": \"<string>\",\n  \"reasoning\": {\n    \"effort\": \"<string>\"\n  },\n  \"response_format\": {\n    \"type\": \"<string>\",\n    \"json_schema\": {\n      \"name\": \"<string>\",\n      \"schema\": {\n        \"key_0\": \"string\",\n        \"key_1\": false,\n        \"key_2\": 6698\n      },\n      \"description\": \"<string>\",\n      \"strict\": \"<boolean>\"\n    }\n  },\n  \"stream\": \"<boolean>\",\n  \"tools\": [\n    {\n      \"type\": \"<string>\",\n      \"filters\": {\n        \"search_domain_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_after_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_before_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_after_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_before_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_recency_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"max_tokens\": \"<integer>\",\n      \"max_tokens_per_page\": \"<integer>\",\n      \"user_location\": {\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\",\n        \"region\": \"<string>\"\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"filters\": {\n        \"search_domain_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_after_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_before_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_after_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_before_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_recency_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"max_tokens\": \"<integer>\",\n      \"max_tokens_per_page\": \"<integer>\",\n      \"user_location\": {\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\",\n        \"region\": \"<string>\"\n      }\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "f6de9ccd-2eba-4d82-a24f-ab6575718de7",
+          "name": "Successful response. Content type depends on `stream` parameter:\n- `stream: false` (default): `application/json` with Response\n- `stream: true`: `text/event-stream` with SSE events\n",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "agent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"string\",\n  \"instructions\": \"<string>\",\n  \"language_preference\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_steps\": \"<integer>\",\n  \"model\": \"<string>\",\n  \"models\": [\n    \"<string>\"\n  ],\n  \"preset\": \"<string>\",\n  \"reasoning\": {\n    \"effort\": \"high\"\n  },\n  \"response_format\": {\n    \"type\": \"json_schema\",\n    \"json_schema\": {\n      \"name\": \"string\",\n      \"schema\": {\n        \"key_0\": 1306,\n        \"key_1\": 9202\n      },\n      \"description\": \"string\",\n      \"strict\": true\n    }\n  },\n  \"stream\": \"<boolean>\",\n  \"tools\": [\n    {\n      \"type\": \"web_search\",\n      \"filters\": {\n        \"search_domain_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_after_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_before_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_after_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_before_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_recency_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"max_tokens\": 815,\n      \"max_tokens_per_page\": 4230,\n      \"user_location\": {\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"latitude\": 2525.733571575682,\n        \"longitude\": 154.85495425931362,\n        \"region\": \"string\"\n      }\n    },\n    {\n      \"type\": \"web_search\",\n      \"filters\": {\n        \"search_domain_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_after_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_before_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_after_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_before_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_recency_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"max_tokens\": 2131,\n      \"max_tokens_per_page\": 1148,\n      \"user_location\": {\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"latitude\": 5490.788680195743,\n        \"longitude\": 8206.366589787147,\n        \"region\": \"string\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"object\": \"response\",\n  \"created_at\": 3688,\n  \"status\": \"failed\",\n  \"model\": \"string\",\n  \"output\": [\n    {\n      \"type\": \"message\",\n      \"id\": \"string\",\n      \"status\": \"completed\",\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"text\": \"string\",\n          \"annotations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"text\": \"string\",\n          \"annotations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"type\": \"message\",\n      \"id\": \"string\",\n      \"status\": \"in_progress\",\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"text\": \"string\",\n          \"annotations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"text\": \"string\",\n          \"annotations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\",\n    \"type\": \"string\"\n  },\n  \"usage\": {\n    \"input_tokens\": 5062,\n    \"output_tokens\": 517,\n    \"total_tokens\": 4800,\n    \"cost\": {\n      \"currency\": \"USD\",\n      \"input_cost\": 9948.374806469503,\n      \"output_cost\": 5841.575990983796,\n      \"total_cost\": 4683.526507800072,\n      \"cache_creation_cost\": 8272.13270501449,\n      \"cache_read_cost\": 3985.127393658631,\n      \"tool_calls_cost\": 6869.81481445962\n    },\n    \"input_tokens_details\": {\n      \"cache_creation_input_tokens\": 45,\n      \"cache_read_input_tokens\": 2443\n    },\n    \"tool_calls_details\": {\n      \"key_0\": {\n        \"invocation\": 1470\n      }\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "23ea23c6-264d-4883-be6b-13c034f333cb",
+      "name": "List Models",
+      "request": {
+        "name": "List Models",
+        "description": {
+          "content": "List the models available for the Agent API. Returns model identifiers that can be used with the `POST /v1/agent` endpoint. The response follows the OpenAI List Models format for compatibility with third-party tools.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v1",
+            "models"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "e6c025c5-5a68-4e7c-ba8f-45b64b8f03a1",
+          "name": "Successful response with the list of available models.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"anthropic/claude-sonnet-4-6\",\n      \"object\": \"model\",\n      \"created\": 0,\n      \"owned_by\": \"anthropic\"\n    },\n    {\n      \"id\": \"openai/gpt-5.4\",\n      \"object\": \"model\",\n      \"created\": 0,\n      \"owned_by\": \"openai\"\n    },\n    {\n      \"id\": \"perplexity/sonar\",\n      \"object\": \"model\",\n      \"created\": 0,\n      \"owned_by\": \"perplexity\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.perplexity.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "51135713-0bd0-4ab9-add6-9147d59f3b32",
+    "name": "Perplexity AI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Perplexity AI API",
+      "type": "text/plain"
+    }
+  }
+}
