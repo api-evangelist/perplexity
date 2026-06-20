@@ -5,7 +5,7 @@ description: Perplexity AI is an answer engine that delivers accurate answers to
 type: Index
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags: []
 created: '2025-02-21'
 modified: '2026-05-29'
