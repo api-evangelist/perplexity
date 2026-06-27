@@ -161,7 +161,7 @@ common:
 - url: https://www.perplexity.ai/hub/blog
   type: Blog
 - url: https://docs.perplexity.ai/docs/getting-started/quickstart
-  type: Quickstart
+  type: GettingStarted
 - url: https://docs.perplexity.ai/docs/getting-started/pricing
   type: Pricing Page
 - url: https://docs.perplexity.ai/docs/getting-started/models
@@ -173,7 +173,7 @@ common:
 - url: https://docs.perplexity.ai/guides/usage-tiers
   type: RateLimits
 - url: https://perplexity.ai/account/api
-  type: SignUp
+  type: Signup
 - url: https://www.perplexity.ai/account/api/group
   type: Dashboard
 - url: https://perplexity.ai/account/api/playground/search
@@ -181,7 +181,7 @@ common:
 - url: https://docs.perplexity.ai/guides/perplexity-sdk
   type: SDKs
 - url: https://github.com/perplexityai
-  type: GitHub Org
+  type: GitHubOrg
 - url: https://github.com/perplexityai/perplexity-py
   type: Python SDK
 - url: https://docs.perplexity.ai/guides/search-best-practices
@@ -191,11 +191,11 @@ common:
 - url: https://www.perplexity.ai/help-center/en
   type: Support
 - url: https://community.perplexity.ai
-  type: Forum
+  type: Forums
 - url: https://www.perplexity.ai/api-platform
   type: Portal
 - url: https://docs.perplexity.ai/llms.txt
-  type: LLMs TXT
+  type: LlmsText
 - url: https://www.perplexity.ai
   type: Website
 - url: https://docs.perplexity.ai
@@ -223,7 +223,7 @@ common:
 - url: https://www.perplexity.ai/hub/legal/perplexity-api-terms-of-service
   type: API Terms of Service
 - url: https://docs.perplexity.ai/discussions/discussions
-  type: Discussions
+  type: Forums
 - url: https://discord.com/invite/perplexity-ai
   type: Discord
 - url: https://x.com/perplexity_ai
