@@ -144,6 +144,12 @@ maintainers:
   email: support@perplexity.ai
   url: https://www.perplexity.ai
 common:
+- type: VulnerabilityDisclosure
+  url: security/perplexity-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/perplexity-domain-security.yml
+- type: Authentication
+  url: authentication/perplexity-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/perplexity-ai
 - url: https://docs.perplexity.ai/docs/getting-started
