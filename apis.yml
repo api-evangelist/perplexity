@@ -144,6 +144,8 @@ maintainers:
   email: support@perplexity.ai
   url: https://www.perplexity.ai
 common:
+- type: AgenticAccess
+  url: agentic-access/perplexity-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/perplexity-vulnerability-disclosure.yml
 - type: DomainSecurity
