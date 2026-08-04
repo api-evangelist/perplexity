@@ -1,0 +1,26 @@
+{
+  "provider": "perplexity",
+  "sources": [
+    "perplexity-agent-api-openapi.yml",
+    "perplexity-async-api-openapi.yml",
+    "perplexity-contextualizedembeddings-api-openapi.yml",
+    "perplexity-embeddings-api-openapi.yml",
+    "perplexity-models-api-openapi.yml",
+    "perplexity-search-api-openapi.yml",
+    "perplexity-sonar-api-openapi.yml"
+  ],
+  "outputs": [
+    "perplexity-agent-api-openapi.yml",
+    "perplexity-async-api-openapi.yml",
+    "perplexity-contextualizedembeddings-api-openapi.yml",
+    "perplexity-embeddings-api-openapi.yml",
+    "perplexity-models-api-openapi.yml",
+    "perplexity-search-api-openapi.yml",
+    "perplexity-sonar-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

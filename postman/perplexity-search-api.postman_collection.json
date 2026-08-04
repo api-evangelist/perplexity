@@ -1,0 +1,196 @@
+{
+  "info": {
+    "_postman_id": "0abdf78c-4f31-4092-a8aa-b4583d31c3da",
+    "name": "Perplexity AI Agent Search API",
+    "description": "Perplexity AI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:35:36.000Z",
+    "updatedAt": "2026-07-28T02:35:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0abdf78c-4f31-4092-a8aa-b4583d31c3da"
+  },
+  "item": [
+    {
+      "name": "search",
+      "item": [
+        {
+          "name": "Search the Web",
+          "id": "1c0bb512-07b4-4637-b180-ac101fa30d2d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"country\": \"<string>\",\n  \"max_results\": 10,\n  \"max_tokens\": 10000,\n  \"max_tokens_per_page\": 4096,\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"last_updated_after_filter\": \"<string>\",\n  \"last_updated_before_filter\": \"<string>\",\n  \"search_after_date_filter\": \"<string>\",\n  \"search_before_date_filter\": \"<string>\",\n  \"search_recency_filter\": \"year\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/search",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search"
+              ]
+            },
+            "description": "Search the web and retrieve relevant web page contents."
+          },
+          "response": [
+            {
+              "id": "992001d0-dad6-490f-a7aa-d3e22f49e2b8",
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"country\": \"<string>\",\n  \"max_results\": 10,\n  \"max_tokens\": 10000,\n  \"max_tokens_per_page\": 4096,\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"last_updated_after_filter\": \"<string>\",\n  \"last_updated_before_filter\": \"<string>\",\n  \"search_after_date_filter\": \"<string>\",\n  \"search_before_date_filter\": \"<string>\",\n  \"search_recency_filter\": \"year\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "search"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"results\": [\n    {\n      \"title\": \"<string>\",\n      \"url\": \"<string>\",\n      \"snippet\": \"<string>\",\n      \"date\": \"<string>\",\n      \"last_updated\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"url\": \"<string>\",\n      \"snippet\": \"<string>\",\n      \"date\": \"<string>\",\n      \"last_updated\": \"<string>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"server_time\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:35:37.000Z",
+              "updatedAt": "2026-07-28T02:35:37.000Z",
+              "uid": "35240-992001d0-dad6-490f-a7aa-d3e22f49e2b8"
+            },
+            {
+              "id": "54335f30-bb80-41c1-bfbf-9802bc6548e6",
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"country\": \"<string>\",\n  \"max_results\": 10,\n  \"max_tokens\": 10000,\n  \"max_tokens_per_page\": 4096,\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"last_updated_after_filter\": \"<string>\",\n  \"last_updated_before_filter\": \"<string>\",\n  \"search_after_date_filter\": \"<string>\",\n  \"search_before_date_filter\": \"<string>\",\n  \"search_recency_filter\": \"year\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "search"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:35:37.000Z",
+              "updatedAt": "2026-07-28T02:35:37.000Z",
+              "uid": "35240-54335f30-bb80-41c1-bfbf-9802bc6548e6"
+            }
+          ],
+          "createdAt": "2026-07-28T02:35:37.000Z",
+          "updatedAt": "2026-07-28T02:35:37.000Z",
+          "uid": "35240-1c0bb512-07b4-4637-b180-ac101fa30d2d"
+        }
+      ],
+      "id": "7ff3465f-974e-44aa-89b0-01c427152e6e",
+      "createdAt": "2026-07-28T02:35:37.000Z",
+      "updatedAt": "2026-07-28T02:35:37.000Z",
+      "uid": "35240-7ff3465f-974e-44aa-89b0-01c427152e6e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.perplexity.ai"
+    }
+  ]
+}

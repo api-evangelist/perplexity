@@ -1,0 +1,108 @@
+{
+  "info": {
+    "_postman_id": "c66e909e-ac35-4c36-9395-60c8b2595caf",
+    "name": "Perplexity AI Agent Models API",
+    "description": "Perplexity AI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:35:35.000Z",
+    "updatedAt": "2026-07-28T02:35:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c66e909e-ac35-4c36-9395-60c8b2595caf"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "models",
+          "item": [
+            {
+              "name": "List Models",
+              "id": "395b55e8-0473-4a2e-adc7-b79004da307b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/models",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "models"
+                  ]
+                },
+                "description": "List the models available for the Agent API. Returns model identifiers that can be used with the `POST /v1/agent` endpoint. The response follows the OpenAI List Models format for compatibility with third-party tools."
+              },
+              "response": [
+                {
+                  "id": "62040d03-85b0-4712-bd91-40261839389f",
+                  "name": "Successful response with the list of available models.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/models",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "models"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"object\": \"model\",\n      \"created\": \"<integer>\",\n      \"owned_by\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"object\": \"model\",\n      \"created\": \"<integer>\",\n      \"owned_by\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:35:36.000Z",
+                  "updatedAt": "2026-07-28T02:35:36.000Z",
+                  "uid": "35240-62040d03-85b0-4712-bd91-40261839389f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:35:36.000Z",
+              "updatedAt": "2026-07-28T02:35:36.000Z",
+              "uid": "35240-395b55e8-0473-4a2e-adc7-b79004da307b"
+            }
+          ],
+          "id": "24f8c00d-1d9e-41a3-ad0c-fe0b9f72c7f5",
+          "createdAt": "2026-07-28T02:35:36.000Z",
+          "updatedAt": "2026-07-28T02:35:36.000Z",
+          "uid": "35240-24f8c00d-1d9e-41a3-ad0c-fe0b9f72c7f5"
+        }
+      ],
+      "id": "6501e115-f6f8-4929-b163-d6ade005a50c",
+      "createdAt": "2026-07-28T02:35:36.000Z",
+      "updatedAt": "2026-07-28T02:35:36.000Z",
+      "uid": "35240-6501e115-f6f8-4929-b163-d6ade005a50c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.perplexity.ai"
+    }
+  ]
+}

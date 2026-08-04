@@ -1,0 +1,208 @@
+{
+  "info": {
+    "_postman_id": "07834a33-96a6-4ae5-b22e-d34f77e13ff7",
+    "name": "Perplexity AI Agent Sonar API",
+    "description": "Perplexity AI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:36:05.000Z",
+    "updatedAt": "2026-07-28T02:36:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-07834a33-96a6-4ae5-b22e-d34f77e13ff7"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "sonar",
+          "item": [
+            {
+              "name": "Create Chat Completion",
+              "id": "65031346-228a-441f-a15b-b6e719804718",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"sonar-pro\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"max_tokens\": \"<integer>\",\n  \"stream\": \"<boolean>\",\n  \"stop\": \"<string>\",\n  \"temperature\": \"<number>\",\n  \"top_p\": \"<number>\",\n  \"response_format\": {\n    \"type\": \"<string>\"\n  },\n  \"web_search_options\": {\n    \"search_context_size\": \"low\",\n    \"search_type\": \"pro\",\n    \"user_location\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"image_results_enhanced_relevance\": false\n  },\n  \"search_mode\": \"academic\",\n  \"return_images\": \"<boolean>\",\n  \"return_related_questions\": \"<boolean>\",\n  \"enable_search_classifier\": \"<boolean>\",\n  \"disable_search\": \"<boolean>\",\n  \"search_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_recency_filter\": \"week\",\n  \"search_after_date_filter\": \"<string>\",\n  \"search_before_date_filter\": \"<string>\",\n  \"last_updated_before_filter\": \"<string>\",\n  \"last_updated_after_filter\": \"<string>\",\n  \"image_format_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"image_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stream_mode\": \"full\",\n  \"reasoning_effort\": \"medium\",\n  \"language_preference\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/sonar",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "sonar"
+                  ]
+                },
+                "description": "Generate a chat completion response for the given conversation."
+              },
+              "response": [
+                {
+                  "id": "e2ba1a53-d93c-425c-869a-761d93e88939",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"sonar-pro\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"max_tokens\": \"<integer>\",\n  \"stream\": \"<boolean>\",\n  \"stop\": \"<string>\",\n  \"temperature\": \"<number>\",\n  \"top_p\": \"<number>\",\n  \"response_format\": {\n    \"type\": \"<string>\"\n  },\n  \"web_search_options\": {\n    \"search_context_size\": \"low\",\n    \"search_type\": \"pro\",\n    \"user_location\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"image_results_enhanced_relevance\": false\n  },\n  \"search_mode\": \"academic\",\n  \"return_images\": \"<boolean>\",\n  \"return_related_questions\": \"<boolean>\",\n  \"enable_search_classifier\": \"<boolean>\",\n  \"disable_search\": \"<boolean>\",\n  \"search_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_recency_filter\": \"week\",\n  \"search_after_date_filter\": \"<string>\",\n  \"search_before_date_filter\": \"<string>\",\n  \"last_updated_before_filter\": \"<string>\",\n  \"last_updated_after_filter\": \"<string>\",\n  \"image_format_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"image_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stream_mode\": \"full\",\n  \"reasoning_effort\": \"medium\",\n  \"language_preference\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sonar",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sonar"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"model\": \"<string>\",\n  \"created\": \"<integer>\",\n  \"choices\": [\n    {\n      \"index\": \"<integer>\",\n      \"message\": {\n        \"role\": \"system\",\n        \"content\": \"<string>\"\n      },\n      \"delta\": {\n        \"role\": \"tool\",\n        \"content\": \"<string>\"\n      },\n      \"finish_reason\": \"length\"\n    },\n    {\n      \"index\": \"<integer>\",\n      \"message\": {\n        \"role\": \"tool\",\n        \"content\": \"<string>\"\n      },\n      \"delta\": {\n        \"role\": \"assistant\",\n        \"content\": \"<string>\"\n      },\n      \"finish_reason\": \"length\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": \"<integer>\",\n    \"completion_tokens\": \"<integer>\",\n    \"total_tokens\": \"<integer>\",\n    \"cost\": {\n      \"input_tokens_cost\": \"<number>\",\n      \"output_tokens_cost\": \"<number>\",\n      \"total_cost\": \"<number>\",\n      \"reasoning_tokens_cost\": \"<number>\",\n      \"request_cost\": \"<number>\",\n      \"citation_tokens_cost\": \"<number>\",\n      \"search_queries_cost\": \"<number>\"\n    },\n    \"search_context_size\": \"<string>\",\n    \"citation_tokens\": \"<integer>\",\n    \"num_search_queries\": \"<integer>\",\n    \"reasoning_tokens\": \"<integer>\"\n  },\n  \"object\": \"chat.completion\",\n  \"citations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_results\": [\n    {\n      \"title\": \"<string>\",\n      \"url\": \"<string>\",\n      \"date\": \"<string>\",\n      \"last_updated\": \"<string>\",\n      \"snippet\": \"\",\n      \"source\": \"web\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"url\": \"<string>\",\n      \"date\": \"<string>\",\n      \"last_updated\": \"<string>\",\n      \"snippet\": \"\",\n      \"source\": \"web\"\n    }\n  ],\n  \"images\": [\n    {\n      \"image_url\": \"<string>\",\n      \"origin_url\": \"<string>\",\n      \"title\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\"\n    },\n    {\n      \"image_url\": \"<string>\",\n      \"origin_url\": \"<string>\",\n      \"title\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"height\": \"<integer>\"\n    }\n  ],\n  \"related_questions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:05.000Z",
+                  "updatedAt": "2026-07-28T02:36:05.000Z",
+                  "uid": "35240-e2ba1a53-d93c-425c-869a-761d93e88939"
+                },
+                {
+                  "id": "ac0254e9-cd10-471d-a874-8d24d8fe3fb7",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"model\": \"sonar-pro\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"max_tokens\": \"<integer>\",\n  \"stream\": \"<boolean>\",\n  \"stop\": \"<string>\",\n  \"temperature\": \"<number>\",\n  \"top_p\": \"<number>\",\n  \"response_format\": {\n    \"type\": \"<string>\"\n  },\n  \"web_search_options\": {\n    \"search_context_size\": \"low\",\n    \"search_type\": \"pro\",\n    \"user_location\": {\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    \"image_results_enhanced_relevance\": false\n  },\n  \"search_mode\": \"academic\",\n  \"return_images\": \"<boolean>\",\n  \"return_related_questions\": \"<boolean>\",\n  \"enable_search_classifier\": \"<boolean>\",\n  \"disable_search\": \"<boolean>\",\n  \"search_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_recency_filter\": \"week\",\n  \"search_after_date_filter\": \"<string>\",\n  \"search_before_date_filter\": \"<string>\",\n  \"last_updated_before_filter\": \"<string>\",\n  \"last_updated_after_filter\": \"<string>\",\n  \"image_format_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"image_domain_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stream_mode\": \"full\",\n  \"reasoning_effort\": \"medium\",\n  \"language_preference\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sonar",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sonar"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:36:05.000Z",
+                  "updatedAt": "2026-07-28T02:36:05.000Z",
+                  "uid": "35240-ac0254e9-cd10-471d-a874-8d24d8fe3fb7"
+                }
+              ],
+              "createdAt": "2026-07-28T02:36:05.000Z",
+              "updatedAt": "2026-07-28T02:36:05.000Z",
+              "uid": "35240-65031346-228a-441f-a15b-b6e719804718"
+            }
+          ],
+          "id": "6a439318-9fb4-4fbb-b081-5cb587e335e6",
+          "createdAt": "2026-07-28T02:36:05.000Z",
+          "updatedAt": "2026-07-28T02:36:05.000Z",
+          "uid": "35240-6a439318-9fb4-4fbb-b081-5cb587e335e6"
+        }
+      ],
+      "id": "595181ba-1ad5-4c99-ac26-838976820557",
+      "createdAt": "2026-07-28T02:36:05.000Z",
+      "updatedAt": "2026-07-28T02:36:05.000Z",
+      "uid": "35240-595181ba-1ad5-4c99-ac26-838976820557"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.perplexity.ai"
+    }
+  ]
+}

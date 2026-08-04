@@ -1,0 +1,512 @@
+{
+  "info": {
+    "_postman_id": "e1d8c9d3-2c7d-4df9-8f58-2ca6152ef61f",
+    "name": "Perplexity AI Agent Async API",
+    "description": "Perplexity AI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:35:24.000Z",
+    "updatedAt": "2026-07-28T02:35:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e1d8c9d3-2c7d-4df9-8f58-2ca6152ef61f"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "async",
+          "item": [
+            {
+              "name": "sonar",
+              "item": [
+                {
+                  "name": "{api_request}",
+                  "item": [
+                    {
+                      "name": "Get Async Chat Completion",
+                      "id": "9f15263d-c3c5-4b90-9b33-e5a69dfa17b9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/async/sonar/:api_request",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "async",
+                            "sonar",
+                            ":api_request"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1f27a8b5-2382-47c2-bdde-1986e65089d7",
+                              "key": "api_request",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve the response for a given asynchronous chat completion request."
+                      },
+                      "response": [
+                        {
+                          "id": "28de60f7-eb13-4af7-9b4c-a0d4bb21fe50",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/async/sonar/:api_request",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "async",
+                                "sonar",
+                                ":api_request"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "api_request"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"model\": \"<string>\",\n  \"created_at\": \"<integer>\",\n  \"status\": \"IN_PROGRESS\",\n  \"started_at\": \"<integer>\",\n  \"completed_at\": \"<integer>\",\n  \"response\": {\n    \"id\": \"<string>\",\n    \"model\": \"<string>\",\n    \"created\": \"<integer>\",\n    \"choices\": [\n      {\n        \"index\": \"<integer>\",\n        \"message\": {\n          \"role\": \"assistant\",\n          \"content\": \"<string>\"\n        },\n        \"delta\": {\n          \"role\": \"user\",\n          \"content\": \"<string>\"\n        },\n        \"finish_reason\": \"stop\"\n      },\n      {\n        \"index\": \"<integer>\",\n        \"message\": {\n          \"role\": \"system\",\n          \"content\": \"<string>\"\n        },\n        \"delta\": {\n          \"role\": \"user\",\n          \"content\": \"<string>\"\n        },\n        \"finish_reason\": \"length\"\n      }\n    ],\n    \"usage\": {\n      \"prompt_tokens\": \"<integer>\",\n      \"completion_tokens\": \"<integer>\",\n      \"total_tokens\": \"<integer>\",\n      \"cost\": {\n        \"input_tokens_cost\": \"<number>\",\n        \"output_tokens_cost\": \"<number>\",\n        \"total_cost\": \"<number>\",\n        \"reasoning_tokens_cost\": \"<number>\",\n        \"request_cost\": \"<number>\",\n        \"citation_tokens_cost\": \"<number>\",\n        \"search_queries_cost\": \"<number>\"\n      },\n      \"search_context_size\": \"<string>\",\n      \"citation_tokens\": \"<integer>\",\n      \"num_search_queries\": \"<integer>\",\n      \"reasoning_tokens\": \"<integer>\"\n    },\n    \"object\": \"chat.completion\",\n    \"citations\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"search_results\": [\n      {\n        \"title\": \"<string>\",\n        \"url\": \"<string>\",\n        \"date\": \"<string>\",\n        \"last_updated\": \"<string>\",\n        \"snippet\": \"\",\n        \"source\": \"web\"\n      },\n      {\n        \"title\": \"<string>\",\n        \"url\": \"<string>\",\n        \"date\": \"<string>\",\n        \"last_updated\": \"<string>\",\n        \"snippet\": \"\",\n        \"source\": \"web\"\n      }\n    ],\n    \"images\": [\n      {\n        \"image_url\": \"<string>\",\n        \"origin_url\": \"<string>\",\n        \"title\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      {\n        \"image_url\": \"<string>\",\n        \"origin_url\": \"<string>\",\n        \"title\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      }\n    ],\n    \"related_questions\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"failed_at\": \"<integer>\",\n  \"error_message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:35:24.000Z",
+                          "updatedAt": "2026-07-28T02:35:24.000Z",
+                          "uid": "35240-28de60f7-eb13-4af7-9b4c-a0d4bb21fe50"
+                        },
+                        {
+                          "id": "61043693-aa6d-41e2-9822-1e3fb45d165c",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/async/sonar/:api_request",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "async",
+                                "sonar",
+                                ":api_request"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "api_request"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:24.000Z",
+                          "updatedAt": "2026-07-28T02:35:24.000Z",
+                          "uid": "35240-61043693-aa6d-41e2-9822-1e3fb45d165c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:35:24.000Z",
+                      "updatedAt": "2026-07-28T02:35:24.000Z",
+                      "uid": "35240-9f15263d-c3c5-4b90-9b33-e5a69dfa17b9"
+                    }
+                  ],
+                  "id": "1f5ec32d-ed66-4a09-80cd-93248fe8b540",
+                  "createdAt": "2026-07-28T02:35:24.000Z",
+                  "updatedAt": "2026-07-28T02:35:24.000Z",
+                  "uid": "35240-1f5ec32d-ed66-4a09-80cd-93248fe8b540"
+                },
+                {
+                  "name": "List Async Chat Completions",
+                  "id": "975a7234-016d-45a7-8cdd-51eb01d26dbc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/async/sonar",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "async",
+                        "sonar"
+                      ]
+                    },
+                    "description": "Retrieve a list of all asynchronous chat completion requests for a given user."
+                  },
+                  "response": [
+                    {
+                      "id": "e69b5275-70d2-4b40-b88a-d74dee8194e5",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/async/sonar",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "async",
+                            "sonar"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requests\": [\n    {\n      \"id\": \"<string>\",\n      \"created_at\": \"<integer>\",\n      \"model\": \"<string>\",\n      \"status\": \"IN_PROGRESS\",\n      \"started_at\": \"<integer>\",\n      \"completed_at\": \"<integer>\",\n      \"failed_at\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"created_at\": \"<integer>\",\n      \"model\": \"<string>\",\n      \"status\": \"CREATED\",\n      \"started_at\": \"<integer>\",\n      \"completed_at\": \"<integer>\",\n      \"failed_at\": \"<integer>\"\n    }\n  ],\n  \"next_token\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:35:24.000Z",
+                      "updatedAt": "2026-07-28T02:35:24.000Z",
+                      "uid": "35240-e69b5275-70d2-4b40-b88a-d74dee8194e5"
+                    },
+                    {
+                      "id": "9e8eae1f-a869-4739-831c-2d6c2326a4f7",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/async/sonar",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "async",
+                            "sonar"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:24.000Z",
+                      "updatedAt": "2026-07-28T02:35:24.000Z",
+                      "uid": "35240-9e8eae1f-a869-4739-831c-2d6c2326a4f7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:35:24.000Z",
+                  "updatedAt": "2026-07-28T02:35:24.000Z",
+                  "uid": "35240-975a7234-016d-45a7-8cdd-51eb01d26dbc"
+                },
+                {
+                  "name": "Create Async Chat Completion",
+                  "id": "3dccf690-9261-4fd3-ace3-d3449d5e0d07",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"request\": {\n    \"model\": \"sonar-reasoning-pro\",\n    \"messages\": [\n      {\n        \"role\": \"assistant\",\n        \"content\": \"<string>\"\n      },\n      {\n        \"role\": \"tool\",\n        \"content\": \"<string>\"\n      }\n    ],\n    \"max_tokens\": \"<integer>\",\n    \"stream\": \"<boolean>\",\n    \"stop\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"top_p\": \"<number>\",\n    \"response_format\": {\n      \"type\": \"<string>\"\n    },\n    \"web_search_options\": {\n      \"search_context_size\": \"low\",\n      \"search_type\": \"auto\",\n      \"user_location\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\"\n      },\n      \"image_results_enhanced_relevance\": false\n    },\n    \"search_mode\": \"academic\",\n    \"return_images\": \"<boolean>\",\n    \"return_related_questions\": \"<boolean>\",\n    \"enable_search_classifier\": \"<boolean>\",\n    \"disable_search\": \"<boolean>\",\n    \"search_domain_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"search_language_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"search_recency_filter\": \"day\",\n    \"search_after_date_filter\": \"<string>\",\n    \"search_before_date_filter\": \"<string>\",\n    \"last_updated_before_filter\": \"<string>\",\n    \"last_updated_after_filter\": \"<string>\",\n    \"image_format_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"image_domain_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"stream_mode\": \"full\",\n    \"reasoning_effort\": \"minimal\",\n    \"language_preference\": \"<string>\"\n  },\n  \"idempotency_key\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/async/sonar",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "async",
+                        "sonar"
+                      ]
+                    },
+                    "description": "Submit an asynchronous chat completion request."
+                  },
+                  "response": [
+                    {
+                      "id": "9a80035b-3b69-4098-9c59-6909311bb66d",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"request\": {\n    \"model\": \"sonar-reasoning-pro\",\n    \"messages\": [\n      {\n        \"role\": \"assistant\",\n        \"content\": \"<string>\"\n      },\n      {\n        \"role\": \"tool\",\n        \"content\": \"<string>\"\n      }\n    ],\n    \"max_tokens\": \"<integer>\",\n    \"stream\": \"<boolean>\",\n    \"stop\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"top_p\": \"<number>\",\n    \"response_format\": {\n      \"type\": \"<string>\"\n    },\n    \"web_search_options\": {\n      \"search_context_size\": \"low\",\n      \"search_type\": \"auto\",\n      \"user_location\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\"\n      },\n      \"image_results_enhanced_relevance\": false\n    },\n    \"search_mode\": \"academic\",\n    \"return_images\": \"<boolean>\",\n    \"return_related_questions\": \"<boolean>\",\n    \"enable_search_classifier\": \"<boolean>\",\n    \"disable_search\": \"<boolean>\",\n    \"search_domain_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"search_language_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"search_recency_filter\": \"day\",\n    \"search_after_date_filter\": \"<string>\",\n    \"search_before_date_filter\": \"<string>\",\n    \"last_updated_before_filter\": \"<string>\",\n    \"last_updated_after_filter\": \"<string>\",\n    \"image_format_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"image_domain_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"stream_mode\": \"full\",\n    \"reasoning_effort\": \"minimal\",\n    \"language_preference\": \"<string>\"\n  },\n  \"idempotency_key\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/async/sonar",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "async",
+                            "sonar"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"model\": \"<string>\",\n  \"created_at\": \"<integer>\",\n  \"status\": \"IN_PROGRESS\",\n  \"started_at\": \"<integer>\",\n  \"completed_at\": \"<integer>\",\n  \"response\": {\n    \"id\": \"<string>\",\n    \"model\": \"<string>\",\n    \"created\": \"<integer>\",\n    \"choices\": [\n      {\n        \"index\": \"<integer>\",\n        \"message\": {\n          \"role\": \"assistant\",\n          \"content\": \"<string>\"\n        },\n        \"delta\": {\n          \"role\": \"user\",\n          \"content\": \"<string>\"\n        },\n        \"finish_reason\": \"stop\"\n      },\n      {\n        \"index\": \"<integer>\",\n        \"message\": {\n          \"role\": \"system\",\n          \"content\": \"<string>\"\n        },\n        \"delta\": {\n          \"role\": \"user\",\n          \"content\": \"<string>\"\n        },\n        \"finish_reason\": \"length\"\n      }\n    ],\n    \"usage\": {\n      \"prompt_tokens\": \"<integer>\",\n      \"completion_tokens\": \"<integer>\",\n      \"total_tokens\": \"<integer>\",\n      \"cost\": {\n        \"input_tokens_cost\": \"<number>\",\n        \"output_tokens_cost\": \"<number>\",\n        \"total_cost\": \"<number>\",\n        \"reasoning_tokens_cost\": \"<number>\",\n        \"request_cost\": \"<number>\",\n        \"citation_tokens_cost\": \"<number>\",\n        \"search_queries_cost\": \"<number>\"\n      },\n      \"search_context_size\": \"<string>\",\n      \"citation_tokens\": \"<integer>\",\n      \"num_search_queries\": \"<integer>\",\n      \"reasoning_tokens\": \"<integer>\"\n    },\n    \"object\": \"chat.completion\",\n    \"citations\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"search_results\": [\n      {\n        \"title\": \"<string>\",\n        \"url\": \"<string>\",\n        \"date\": \"<string>\",\n        \"last_updated\": \"<string>\",\n        \"snippet\": \"\",\n        \"source\": \"web\"\n      },\n      {\n        \"title\": \"<string>\",\n        \"url\": \"<string>\",\n        \"date\": \"<string>\",\n        \"last_updated\": \"<string>\",\n        \"snippet\": \"\",\n        \"source\": \"web\"\n      }\n    ],\n    \"images\": [\n      {\n        \"image_url\": \"<string>\",\n        \"origin_url\": \"<string>\",\n        \"title\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      {\n        \"image_url\": \"<string>\",\n        \"origin_url\": \"<string>\",\n        \"title\": \"<string>\",\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      }\n    ],\n    \"related_questions\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"failed_at\": \"<integer>\",\n  \"error_message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:35:24.000Z",
+                      "updatedAt": "2026-07-28T02:35:24.000Z",
+                      "uid": "35240-9a80035b-3b69-4098-9c59-6909311bb66d"
+                    },
+                    {
+                      "id": "d71f033c-54dc-4ebb-b178-146b3c95f5b8",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"request\": {\n    \"model\": \"sonar-reasoning-pro\",\n    \"messages\": [\n      {\n        \"role\": \"assistant\",\n        \"content\": \"<string>\"\n      },\n      {\n        \"role\": \"tool\",\n        \"content\": \"<string>\"\n      }\n    ],\n    \"max_tokens\": \"<integer>\",\n    \"stream\": \"<boolean>\",\n    \"stop\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"top_p\": \"<number>\",\n    \"response_format\": {\n      \"type\": \"<string>\"\n    },\n    \"web_search_options\": {\n      \"search_context_size\": \"low\",\n      \"search_type\": \"auto\",\n      \"user_location\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\"\n      },\n      \"image_results_enhanced_relevance\": false\n    },\n    \"search_mode\": \"academic\",\n    \"return_images\": \"<boolean>\",\n    \"return_related_questions\": \"<boolean>\",\n    \"enable_search_classifier\": \"<boolean>\",\n    \"disable_search\": \"<boolean>\",\n    \"search_domain_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"search_language_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"search_recency_filter\": \"day\",\n    \"search_after_date_filter\": \"<string>\",\n    \"search_before_date_filter\": \"<string>\",\n    \"last_updated_before_filter\": \"<string>\",\n    \"last_updated_after_filter\": \"<string>\",\n    \"image_format_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"image_domain_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"stream_mode\": \"full\",\n    \"reasoning_effort\": \"minimal\",\n    \"language_preference\": \"<string>\"\n  },\n  \"idempotency_key\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/async/sonar",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "async",
+                            "sonar"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:24.000Z",
+                      "updatedAt": "2026-07-28T02:35:24.000Z",
+                      "uid": "35240-d71f033c-54dc-4ebb-b178-146b3c95f5b8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:35:24.000Z",
+                  "updatedAt": "2026-07-28T02:35:24.000Z",
+                  "uid": "35240-3dccf690-9261-4fd3-ace3-d3449d5e0d07"
+                }
+              ],
+              "id": "a946daf3-ed52-4914-9939-51e218724ea2",
+              "createdAt": "2026-07-28T02:35:24.000Z",
+              "updatedAt": "2026-07-28T02:35:24.000Z",
+              "uid": "35240-a946daf3-ed52-4914-9939-51e218724ea2"
+            }
+          ],
+          "id": "792930e0-b84c-4f83-b8cf-a741cd82313c",
+          "createdAt": "2026-07-28T02:35:24.000Z",
+          "updatedAt": "2026-07-28T02:35:24.000Z",
+          "uid": "35240-792930e0-b84c-4f83-b8cf-a741cd82313c"
+        }
+      ],
+      "id": "5dd8b655-77ce-480b-bbf0-d3e8af0dcec2",
+      "createdAt": "2026-07-28T02:35:24.000Z",
+      "updatedAt": "2026-07-28T02:35:24.000Z",
+      "uid": "35240-5dd8b655-77ce-480b-bbf0-d3e8af0dcec2"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.perplexity.ai"
+    }
+  ]
+}

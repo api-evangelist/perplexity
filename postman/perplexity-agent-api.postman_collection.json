@@ -1,0 +1,151 @@
+{
+  "info": {
+    "_postman_id": "91f6b26b-f327-4af3-ad68-89639100f894",
+    "name": "Perplexity AI Agent API",
+    "description": "Perplexity AI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:35:23.000Z",
+    "updatedAt": "2026-07-28T02:35:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-91f6b26b-f327-4af3-ad68-89639100f894"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "agent",
+          "item": [
+            {
+              "name": "Create Agent Response",
+              "id": "2da4b598-ea9c-41f2-ad06-3a3927ae9ae0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"language_preference\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_steps\": \"<integer>\",\n  \"model\": \"<string>\",\n  \"models\": [\n    \"<string>\"\n  ],\n  \"preset\": \"<string>\",\n  \"reasoning\": {\n    \"effort\": \"medium\"\n  },\n  \"response_format\": {\n    \"type\": \"json_schema\",\n    \"json_schema\": {\n      \"name\": \"<string>\",\n      \"schema\": {\n        \"amet2\": \"do sed\"\n      },\n      \"description\": \"<string>\",\n      \"strict\": \"<boolean>\"\n    }\n  },\n  \"stream\": \"<boolean>\",\n  \"tools\": [\n    {\n      \"type\": \"web_search\",\n      \"filters\": {\n        \"search_domain_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"last_updated_after_filter\": \"<string>\",\n        \"last_updated_before_filter\": \"<string>\",\n        \"search_after_date_filter\": \"<string>\",\n        \"search_before_date_filter\": \"<string>\",\n        \"search_recency_filter\": \"year\"\n      },\n      \"max_tokens\": \"<integer>\",\n      \"max_tokens_per_page\": \"<integer>\",\n      \"user_location\": {\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\",\n        \"region\": \"<string>\"\n      }\n    },\n    {\n      \"type\": \"web_search\",\n      \"filters\": {\n        \"search_domain_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"last_updated_after_filter\": \"<string>\",\n        \"last_updated_before_filter\": \"<string>\",\n        \"search_after_date_filter\": \"<string>\",\n        \"search_before_date_filter\": \"<string>\",\n        \"search_recency_filter\": \"day\"\n      },\n      \"max_tokens\": \"<integer>\",\n      \"max_tokens_per_page\": \"<integer>\",\n      \"user_location\": {\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\",\n        \"region\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/agent",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "agent"
+                  ]
+                },
+                "description": "Generate a response for the provided input with optional web search and reasoning."
+              },
+              "response": [
+                {
+                  "id": "951abcc2-4963-4d17-af51-85cd766c9775",
+                  "name": "Successful response. Content type depends on `stream` parameter:\n- `stream: false` (default): `application/json` with Response\n- `stream: true`: `text/event-stream` with SSE events\n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"input\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"language_preference\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_steps\": \"<integer>\",\n  \"model\": \"<string>\",\n  \"models\": [\n    \"<string>\"\n  ],\n  \"preset\": \"<string>\",\n  \"reasoning\": {\n    \"effort\": \"medium\"\n  },\n  \"response_format\": {\n    \"type\": \"json_schema\",\n    \"json_schema\": {\n      \"name\": \"<string>\",\n      \"schema\": {\n        \"amet2\": \"do sed\"\n      },\n      \"description\": \"<string>\",\n      \"strict\": \"<boolean>\"\n    }\n  },\n  \"stream\": \"<boolean>\",\n  \"tools\": [\n    {\n      \"type\": \"web_search\",\n      \"filters\": {\n        \"search_domain_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"last_updated_after_filter\": \"<string>\",\n        \"last_updated_before_filter\": \"<string>\",\n        \"search_after_date_filter\": \"<string>\",\n        \"search_before_date_filter\": \"<string>\",\n        \"search_recency_filter\": \"year\"\n      },\n      \"max_tokens\": \"<integer>\",\n      \"max_tokens_per_page\": \"<integer>\",\n      \"user_location\": {\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\",\n        \"region\": \"<string>\"\n      }\n    },\n    {\n      \"type\": \"web_search\",\n      \"filters\": {\n        \"search_domain_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"last_updated_after_filter\": \"<string>\",\n        \"last_updated_before_filter\": \"<string>\",\n        \"search_after_date_filter\": \"<string>\",\n        \"search_before_date_filter\": \"<string>\",\n        \"search_recency_filter\": \"day\"\n      },\n      \"max_tokens\": \"<integer>\",\n      \"max_tokens_per_page\": \"<integer>\",\n      \"user_location\": {\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\",\n        \"region\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/agent",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "agent"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"object\": \"response\",\n  \"created_at\": \"<long>\",\n  \"status\": \"completed\",\n  \"model\": \"<string>\",\n  \"output\": [\n    {\n      \"type\": \"message\",\n      \"id\": \"<string>\",\n      \"status\": \"requires_action\",\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"text\": \"<string>\",\n          \"annotations\": [\n            {\n              \"end_index\": \"<integer>\",\n              \"start_index\": \"<integer>\",\n              \"title\": \"<string>\",\n              \"type\": \"<string>\",\n              \"url\": \"<string>\"\n            },\n            {\n              \"end_index\": \"<integer>\",\n              \"start_index\": \"<integer>\",\n              \"title\": \"<string>\",\n              \"type\": \"<string>\",\n              \"url\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"type\": \"output_text\",\n          \"text\": \"<string>\",\n          \"annotations\": [\n            {\n              \"end_index\": \"<integer>\",\n              \"start_index\": \"<integer>\",\n              \"title\": \"<string>\",\n              \"type\": \"<string>\",\n              \"url\": \"<string>\"\n            },\n            {\n              \"end_index\": \"<integer>\",\n              \"start_index\": \"<integer>\",\n              \"title\": \"<string>\",\n              \"type\": \"<string>\",\n              \"url\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"type\": \"message\",\n      \"id\": \"<string>\",\n      \"status\": \"in_progress\",\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"text\": \"<string>\",\n          \"annotations\": [\n            {\n              \"end_index\": \"<integer>\",\n              \"start_index\": \"<integer>\",\n              \"title\": \"<string>\",\n              \"type\": \"<string>\",\n              \"url\": \"<string>\"\n            },\n            {\n              \"end_index\": \"<integer>\",\n              \"start_index\": \"<integer>\",\n              \"title\": \"<string>\",\n              \"type\": \"<string>\",\n              \"url\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"type\": \"output_text\",\n          \"text\": \"<string>\",\n          \"annotations\": [\n            {\n              \"end_index\": \"<integer>\",\n              \"start_index\": \"<integer>\",\n              \"title\": \"<string>\",\n              \"type\": \"<string>\",\n              \"url\": \"<string>\"\n            },\n            {\n              \"end_index\": \"<integer>\",\n              \"start_index\": \"<integer>\",\n              \"title\": \"<string>\",\n              \"type\": \"<string>\",\n              \"url\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"error\": {\n    \"message\": \"<string>\",\n    \"code\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"usage\": {\n    \"input_tokens\": \"<long>\",\n    \"output_tokens\": \"<long>\",\n    \"total_tokens\": \"<long>\",\n    \"cost\": {\n      \"currency\": \"USD\",\n      \"input_cost\": \"<double>\",\n      \"output_cost\": \"<double>\",\n      \"total_cost\": \"<double>\",\n      \"cache_creation_cost\": \"<double>\",\n      \"cache_read_cost\": \"<double>\",\n      \"tool_calls_cost\": \"<double>\"\n    },\n    \"input_tokens_details\": {\n      \"cache_creation_input_tokens\": \"<long>\",\n      \"cache_read_input_tokens\": \"<long>\"\n    },\n    \"tool_calls_details\": {\n      \"eiusmod_f\": {\n        \"invocation\": \"<long>\"\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:35:23.000Z",
+                  "updatedAt": "2026-07-28T02:35:23.000Z",
+                  "uid": "35240-951abcc2-4963-4d17-af51-85cd766c9775"
+                }
+              ],
+              "createdAt": "2026-07-28T02:35:23.000Z",
+              "updatedAt": "2026-07-28T02:35:23.000Z",
+              "uid": "35240-2da4b598-ea9c-41f2-ad06-3a3927ae9ae0"
+            }
+          ],
+          "id": "4b95c008-7f49-4bd7-b42b-4a5f0d75c851",
+          "createdAt": "2026-07-28T02:35:23.000Z",
+          "updatedAt": "2026-07-28T02:35:23.000Z",
+          "uid": "35240-4b95c008-7f49-4bd7-b42b-4a5f0d75c851"
+        }
+      ],
+      "id": "50d0f916-0e14-4c36-b95c-3b6eca96d623",
+      "createdAt": "2026-07-28T02:35:23.000Z",
+      "updatedAt": "2026-07-28T02:35:23.000Z",
+      "uid": "35240-50d0f916-0e14-4c36-b95c-3b6eca96d623"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.perplexity.ai"
+    }
+  ]
+}

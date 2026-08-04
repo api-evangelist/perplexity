@@ -1,0 +1,208 @@
+{
+  "info": {
+    "_postman_id": "15785930-4e90-4b63-9df9-47eec174b123",
+    "name": "Perplexity AI Agent Embeddings API",
+    "description": "Perplexity AI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:35:34.000Z",
+    "updatedAt": "2026-07-28T02:35:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-15785930-4e90-4b63-9df9-47eec174b123"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "embeddings",
+          "item": [
+            {
+              "name": "Create Embeddings",
+              "id": "c7e84ca5-05d5-4162-83e3-be0cbd280da3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"pplx-embed-v1-4b\",\n  \"dimensions\": \"<integer>\",\n  \"encoding_format\": \"base64_int8\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/embeddings",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "embeddings"
+                  ]
+                },
+                "description": "Generate embeddings for a list of texts. Use these embeddings for semantic search, clustering, and other machine learning applications."
+              },
+              "response": [
+                {
+                  "id": "045f4f0c-5559-457b-b250-b62a3c9a4e5b",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"pplx-embed-v1-4b\",\n  \"dimensions\": \"<integer>\",\n  \"encoding_format\": \"base64_int8\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/embeddings",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "embeddings"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"index\": \"<integer>\",\n      \"embedding\": \"<string>\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"index\": \"<integer>\",\n      \"embedding\": \"<string>\"\n    }\n  ],\n  \"model\": \"<string>\",\n  \"usage\": {\n    \"prompt_tokens\": \"<integer>\",\n    \"total_tokens\": \"<integer>\",\n    \"cost\": {\n      \"input_cost\": \"<number>\",\n      \"total_cost\": \"<number>\",\n      \"currency\": \"USD\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:35:34.000Z",
+                  "updatedAt": "2026-07-28T02:35:34.000Z",
+                  "uid": "35240-045f4f0c-5559-457b-b250-b62a3c9a4e5b"
+                },
+                {
+                  "id": "10a392b9-b34d-4011-90da-62496ef27c5c",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"pplx-embed-v1-4b\",\n  \"dimensions\": \"<integer>\",\n  \"encoding_format\": \"base64_int8\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/embeddings",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "embeddings"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:35:34.000Z",
+                  "updatedAt": "2026-07-28T02:35:34.000Z",
+                  "uid": "35240-10a392b9-b34d-4011-90da-62496ef27c5c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:35:34.000Z",
+              "updatedAt": "2026-07-28T02:35:34.000Z",
+              "uid": "35240-c7e84ca5-05d5-4162-83e3-be0cbd280da3"
+            }
+          ],
+          "id": "aecc323e-fa73-4789-9229-81831356e150",
+          "createdAt": "2026-07-28T02:35:34.000Z",
+          "updatedAt": "2026-07-28T02:35:34.000Z",
+          "uid": "35240-aecc323e-fa73-4789-9229-81831356e150"
+        }
+      ],
+      "id": "a6d31df4-46a9-4449-803d-3d23e3578d79",
+      "createdAt": "2026-07-28T02:35:34.000Z",
+      "updatedAt": "2026-07-28T02:35:34.000Z",
+      "uid": "35240-a6d31df4-46a9-4449-803d-3d23e3578d79"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.perplexity.ai"
+    }
+  ]
+}
