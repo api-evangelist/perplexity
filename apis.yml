@@ -31,8 +31,6 @@ apis:
   humanURL: ' https://www.perplexity.ai/'
   tags: []
   properties:
-  - type: Documentation
-    url: ' https://www.perplexity.ai/'
   - url: graphql/perplexity-graphql.md
     type: GraphQL
 - aid: perplexity:async-chat-completions-api
