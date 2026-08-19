@@ -1,0 +1,190 @@
+{
+  "item": [
+    {
+      "id": "b548f24d-8cec-44d0-8e5e-f5d7a6509d3e",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd48ea6c-7bd2-49ee-8ecd-0a7292bc88b2",
+          "name": "Search the Web",
+          "request": {
+            "name": "Search the Web",
+            "description": {
+              "content": "Search the web and retrieve relevant web page contents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f4f4e127-82f9-4acf-83cc-0c6fa00f2d8a",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"country\": \"<string>\",\n  \"max_results\": 10,\n  \"max_tokens\": 10000,\n  \"max_tokens_per_page\": 4096,\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_domain_filter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"last_updated_after_filter\": \"string\",\n  \"last_updated_before_filter\": \"string\",\n  \"search_after_date_filter\": \"string\",\n  \"search_before_date_filter\": \"string\",\n  \"search_recency_filter\": \"hour\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"snippet\": \"string\",\n      \"date\": \"string\",\n      \"last_updated\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"snippet\": \"string\",\n      \"date\": \"string\",\n      \"last_updated\": \"string\"\n    }\n  ],\n  \"id\": \"string\",\n  \"server_time\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b2273c9-4fdf-4b32-97a7-c3492604146e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"country\": \"<string>\",\n  \"max_results\": 10,\n  \"max_tokens\": 10000,\n  \"max_tokens_per_page\": 4096,\n  \"search_language_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search_domain_filter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"last_updated_after_filter\": \"string\",\n  \"last_updated_before_filter\": \"string\",\n  \"search_after_date_filter\": \"string\",\n  \"search_before_date_filter\": \"string\",\n  \"search_recency_filter\": \"hour\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.perplexity.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "984efa5f-568e-44a8-8df7-5832428edc30",
+    "name": "Perplexity AI Agent Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Perplexity AI API",
+      "type": "text/plain"
+    }
+  }
+}

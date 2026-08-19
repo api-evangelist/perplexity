@@ -1,0 +1,193 @@
+{
+  "item": [
+    {
+      "id": "e81de0e0-01f4-43a9-9ceb-ab22d37cc701",
+      "name": "Contextualizedembeddings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd7b4f77-fc95-4cc4-a2c3-40c2868295fc",
+          "name": "Create Contextualized Embeddings",
+          "request": {
+            "name": "Create Contextualized Embeddings",
+            "description": {
+              "content": "Generate contextualized embeddings for document chunks. Chunks from the same document share context awareness, improving retrieval quality for document-based applications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contextualizedembeddings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": [\n    [\n      \"<string>\"\n    ]\n  ],\n  \"model\": \"<string>\",\n  \"dimensions\": \"<integer>\",\n  \"encoding_format\": \"base64_int8\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ea43d55-dc1f-4ea6-8e0f-5f71989999d7",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contextualizedembeddings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": [\n    [\n      \"<string>\"\n    ]\n  ],\n  \"model\": \"<string>\",\n  \"dimensions\": \"<integer>\",\n  \"encoding_format\": \"base64_int8\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"object\": \"list\",\n      \"index\": 8997,\n      \"data\": [\n        {\n          \"object\": \"embedding\",\n          \"index\": 7889,\n          \"embedding\": \"string\"\n        },\n        {\n          \"object\": \"embedding\",\n          \"index\": 8194,\n          \"embedding\": \"string\"\n        }\n      ]\n    },\n    {\n      \"object\": \"list\",\n      \"index\": 397,\n      \"data\": [\n        {\n          \"object\": \"embedding\",\n          \"index\": 7422,\n          \"embedding\": \"string\"\n        },\n        {\n          \"object\": \"embedding\",\n          \"index\": 7237,\n          \"embedding\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"model\": \"string\",\n  \"usage\": {\n    \"prompt_tokens\": 1101,\n    \"total_tokens\": 2771,\n    \"cost\": {\n      \"input_cost\": 8604.990651678907,\n      \"total_cost\": 7548.521917724388,\n      \"currency\": \"USD\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b25d5aa6-2fac-425c-8e1b-2bbd022817bd",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contextualizedembeddings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": [\n    [\n      \"<string>\"\n    ]\n  ],\n  \"model\": \"<string>\",\n  \"dimensions\": \"<integer>\",\n  \"encoding_format\": \"base64_int8\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.perplexity.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1b756b45-3bfb-4bef-94e7-eb7588536a8f",
+    "name": "Perplexity AI Agent Contextualizedembeddings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Perplexity AI API",
+      "type": "text/plain"
+    }
+  }
+}

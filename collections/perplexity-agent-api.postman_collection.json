@@ -1,0 +1,141 @@
+{
+  "item": [
+    {
+      "id": "7fbda122-4144-4d6c-99ef-d49ea12f494c",
+      "name": "Agent",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2eeb8b10-db99-4fef-87f5-32419bdaca45",
+          "name": "Create Agent Response",
+          "request": {
+            "name": "Create Agent Response",
+            "description": {
+              "content": "Generate a response for the provided input with optional web search and reasoning.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "agent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"language_preference\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_steps\": \"<integer>\",\n  \"model\": \"<string>\",\n  \"models\": [\n    \"<string>\"\n  ],\n  \"preset\": \"<string>\",\n  \"reasoning\": {\n    \"effort\": \"<string>\"\n  },\n  \"response_format\": {\n    \"type\": \"<string>\",\n    \"json_schema\": {\n      \"name\": \"<string>\",\n      \"schema\": {\n        \"key_0\": 8833,\n        \"key_1\": true\n      },\n      \"description\": \"<string>\",\n      \"strict\": \"<boolean>\"\n    }\n  },\n  \"stream\": \"<boolean>\",\n  \"tools\": [\n    {\n      \"type\": \"<string>\",\n      \"filters\": {\n        \"search_domain_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_after_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_before_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_after_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_before_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_recency_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"max_tokens\": \"<integer>\",\n      \"max_tokens_per_page\": \"<integer>\",\n      \"user_location\": {\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\",\n        \"region\": \"<string>\"\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"filters\": {\n        \"search_domain_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_after_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_before_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_after_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_before_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_recency_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"max_tokens\": \"<integer>\",\n      \"max_tokens_per_page\": \"<integer>\",\n      \"user_location\": {\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\",\n        \"region\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1af42fea-a7e4-4484-98f2-5f23bca1dd98",
+              "name": "Successful response. Content type depends on `stream` parameter:\n- `stream: false` (default): `application/json` with Response\n- `stream: true`: `text/event-stream` with SSE events\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"string\",\n  \"instructions\": \"<string>\",\n  \"language_preference\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_steps\": \"<integer>\",\n  \"model\": \"<string>\",\n  \"models\": [\n    \"<string>\"\n  ],\n  \"preset\": \"<string>\",\n  \"reasoning\": {\n    \"effort\": \"high\"\n  },\n  \"response_format\": {\n    \"type\": \"json_schema\",\n    \"json_schema\": {\n      \"name\": \"string\",\n      \"schema\": {\n        \"key_0\": 6889.143298760655\n      },\n      \"description\": \"string\",\n      \"strict\": true\n    }\n  },\n  \"stream\": \"<boolean>\",\n  \"tools\": [\n    {\n      \"type\": \"web_search\",\n      \"filters\": {\n        \"search_domain_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_after_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_before_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_after_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_before_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_recency_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"max_tokens\": 5684,\n      \"max_tokens_per_page\": 8561,\n      \"user_location\": {\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"latitude\": 245.3020803091166,\n        \"longitude\": 9882.093423308073,\n        \"region\": \"string\"\n      }\n    },\n    {\n      \"type\": \"web_search\",\n      \"filters\": {\n        \"search_domain_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_after_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_before_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_after_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_before_date_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_recency_filter\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"max_tokens\": 3003,\n      \"max_tokens_per_page\": 5440,\n      \"user_location\": {\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"latitude\": 4798.085914839997,\n        \"longitude\": 2196.860791544284,\n        \"region\": \"string\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"object\": \"response\",\n  \"created_at\": 9588,\n  \"status\": \"requires_action\",\n  \"model\": \"string\",\n  \"output\": [\n    {\n      \"type\": \"message\",\n      \"id\": \"string\",\n      \"status\": \"failed\",\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"text\": \"string\",\n          \"annotations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"text\": \"string\",\n          \"annotations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"type\": \"message\",\n      \"id\": \"string\",\n      \"status\": \"in_progress\",\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"text\": \"string\",\n          \"annotations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"text\": \"string\",\n          \"annotations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\",\n    \"type\": \"string\"\n  },\n  \"usage\": {\n    \"input_tokens\": 2708,\n    \"output_tokens\": 9634,\n    \"total_tokens\": 8979,\n    \"cost\": {\n      \"currency\": \"USD\",\n      \"input_cost\": 7299.638153889862,\n      \"output_cost\": 3865.2021316180862,\n      \"total_cost\": 89.40963126196743,\n      \"cache_creation_cost\": 5318.832773787363,\n      \"cache_read_cost\": 4284.554189956971,\n      \"tool_calls_cost\": 3938.1173767240075\n    },\n    \"input_tokens_details\": {\n      \"cache_creation_input_tokens\": 7633,\n      \"cache_read_input_tokens\": 7787\n    },\n    \"tool_calls_details\": {\n      \"key_0\": {\n        \"invocation\": 2236\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.perplexity.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7e863692-8305-488b-b0d1-08d7cfae5310",
+    "name": "Perplexity AI Agent API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Perplexity AI API",
+      "type": "text/plain"
+    }
+  }
+}

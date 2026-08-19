@@ -1,0 +1,493 @@
+{
+  "item": [
+    {
+      "id": "da73819f-d832-43d8-8df2-8234f6d94a9b",
+      "name": "Async",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6bae2bd3-83b8-4cd6-b21c-e6ab617abeb4",
+          "name": "Get Async Chat Completion",
+          "request": {
+            "name": "Get Async Chat Completion",
+            "description": {
+              "content": "Retrieve the response for a given asynchronous chat completion request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "async",
+                "sonar",
+                ":api_request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api_request",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1ed17590-5a91-4e6b-9aaf-de73fb22beb3",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "async",
+                    "sonar",
+                    ":api_request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api_request",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"model\": \"string\",\n  \"created_at\": 6411,\n  \"status\": \"FAILED\",\n  \"started_at\": 2285,\n  \"completed_at\": 2394,\n  \"response\": {\n    \"id\": \"string\",\n    \"model\": \"string\",\n    \"created\": 1180,\n    \"choices\": [\n      {\n        \"index\": 5715,\n        \"message\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"delta\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"finish_reason\": \"stop\"\n      },\n      {\n        \"index\": 8948,\n        \"message\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"delta\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"finish_reason\": \"length\"\n      }\n    ],\n    \"usage\": {\n      \"prompt_tokens\": 4139,\n      \"completion_tokens\": 6009,\n      \"total_tokens\": 2237,\n      \"cost\": {\n        \"input_tokens_cost\": 1284.0211953032244,\n        \"output_tokens_cost\": 2595.4625423644175,\n        \"total_cost\": 3280.7082783766828,\n        \"reasoning_tokens_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"request_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"citation_tokens_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_queries_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"search_context_size\": \"string\",\n      \"citation_tokens\": 8172,\n      \"num_search_queries\": 9954,\n      \"reasoning_tokens\": 865\n    },\n    \"object\": \"chat.completion\",\n    \"citations\": [\n      \"string\",\n      \"string\"\n    ],\n    \"search_results\": [\n      {\n        \"title\": \"string\",\n        \"url\": \"string\",\n        \"date\": \"string\",\n        \"last_updated\": \"string\",\n        \"snippet\": \"\",\n        \"source\": \"web\"\n      },\n      {\n        \"title\": \"string\",\n        \"url\": \"string\",\n        \"date\": \"string\",\n        \"last_updated\": \"string\",\n        \"snippet\": \"\",\n        \"source\": \"web\"\n      }\n    ],\n    \"images\": [\n      {\n        \"image_url\": \"string\",\n        \"origin_url\": \"string\",\n        \"title\": \"string\",\n        \"width\": 4544,\n        \"height\": 9758\n      },\n      {\n        \"image_url\": \"string\",\n        \"origin_url\": \"string\",\n        \"title\": \"string\",\n        \"width\": 7585,\n        \"height\": 4244\n      }\n    ],\n    \"related_questions\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"failed_at\": 5917,\n  \"error_message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4eabe63-f5c0-4e0e-91a3-7b3a13482e19",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "async",
+                    "sonar",
+                    ":api_request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api_request",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d967fbd3-21c4-460a-aa86-d10e40953a49",
+          "name": "List Async Chat Completions",
+          "request": {
+            "name": "List Async Chat Completions",
+            "description": {
+              "content": "Retrieve a list of all asynchronous chat completion requests for a given user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "async",
+                "sonar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2b4185ea-21ad-4cb8-8af6-792940a93cb5",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "async",
+                    "sonar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requests\": [\n    {\n      \"id\": \"string\",\n      \"created_at\": 1,\n      \"model\": \"string\",\n      \"status\": \"CREATED\",\n      \"started_at\": 3652,\n      \"completed_at\": 8741,\n      \"failed_at\": 1480\n    },\n    {\n      \"id\": \"string\",\n      \"created_at\": 1201,\n      \"model\": \"string\",\n      \"status\": \"CREATED\",\n      \"started_at\": 7708,\n      \"completed_at\": 4596,\n      \"failed_at\": 8357\n    }\n  ],\n  \"next_token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39433e09-0044-4289-bcb8-e04645e4dce8",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "async",
+                    "sonar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b2dd3e3-688f-4781-a60b-bac8a8b19685",
+          "name": "Create Async Chat Completion",
+          "request": {
+            "name": "Create Async Chat Completion",
+            "description": {
+              "content": "Submit an asynchronous chat completion request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "async",
+                "sonar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request\": {\n    \"model\": \"<string>\",\n    \"messages\": [\n      {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\"\n      },\n      {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\"\n      }\n    ],\n    \"max_tokens\": \"<integer>\",\n    \"stream\": \"<boolean>\",\n    \"stop\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"top_p\": \"<number>\",\n    \"response_format\": {\n      \"type\": \"<string>\"\n    },\n    \"web_search_options\": {\n      \"search_context_size\": \"low\",\n      \"search_type\": \"<string>\",\n      \"user_location\": {\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\",\n        \"country\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\"\n      },\n      \"image_results_enhanced_relevance\": false\n    },\n    \"search_mode\": \"<string>\",\n    \"return_images\": \"<boolean>\",\n    \"return_related_questions\": \"<boolean>\",\n    \"enable_search_classifier\": \"<boolean>\",\n    \"disable_search\": \"<boolean>\",\n    \"search_domain_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"search_language_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"search_recency_filter\": \"<string>\",\n    \"search_after_date_filter\": \"<string>\",\n    \"search_before_date_filter\": \"<string>\",\n    \"last_updated_before_filter\": \"<string>\",\n    \"last_updated_after_filter\": \"<string>\",\n    \"image_format_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"image_domain_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"stream_mode\": \"full\",\n    \"reasoning_effort\": \"<string>\",\n    \"language_preference\": \"<string>\"\n  },\n  \"idempotency_key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d34ae4c5-081c-48e5-982b-081390af6eb6",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "async",
+                    "sonar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request\": {\n    \"model\": \"sonar-deep-research\",\n    \"messages\": [\n      {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"model\": \"string\",\n  \"created_at\": 6411,\n  \"status\": \"FAILED\",\n  \"started_at\": 2285,\n  \"completed_at\": 2394,\n  \"response\": {\n    \"id\": \"string\",\n    \"model\": \"string\",\n    \"created\": 1180,\n    \"choices\": [\n      {\n        \"index\": 5715,\n        \"message\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"delta\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"finish_reason\": \"stop\"\n      },\n      {\n        \"index\": 8948,\n        \"message\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"delta\": {\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"finish_reason\": \"length\"\n      }\n    ],\n    \"usage\": {\n      \"prompt_tokens\": 4139,\n      \"completion_tokens\": 6009,\n      \"total_tokens\": 2237,\n      \"cost\": {\n        \"input_tokens_cost\": 1284.0211953032244,\n        \"output_tokens_cost\": 2595.4625423644175,\n        \"total_cost\": 3280.7082783766828,\n        \"reasoning_tokens_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"request_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"citation_tokens_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"search_queries_cost\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"search_context_size\": \"string\",\n      \"citation_tokens\": 8172,\n      \"num_search_queries\": 9954,\n      \"reasoning_tokens\": 865\n    },\n    \"object\": \"chat.completion\",\n    \"citations\": [\n      \"string\",\n      \"string\"\n    ],\n    \"search_results\": [\n      {\n        \"title\": \"string\",\n        \"url\": \"string\",\n        \"date\": \"string\",\n        \"last_updated\": \"string\",\n        \"snippet\": \"\",\n        \"source\": \"web\"\n      },\n      {\n        \"title\": \"string\",\n        \"url\": \"string\",\n        \"date\": \"string\",\n        \"last_updated\": \"string\",\n        \"snippet\": \"\",\n        \"source\": \"web\"\n      }\n    ],\n    \"images\": [\n      {\n        \"image_url\": \"string\",\n        \"origin_url\": \"string\",\n        \"title\": \"string\",\n        \"width\": 4544,\n        \"height\": 9758\n      },\n      {\n        \"image_url\": \"string\",\n        \"origin_url\": \"string\",\n        \"title\": \"string\",\n        \"width\": 7585,\n        \"height\": 4244\n      }\n    ],\n    \"related_questions\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"failed_at\": 5917,\n  \"error_message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "874b17d0-fa06-4e9c-b2ce-4b1fad726942",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "async",
+                    "sonar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request\": {\n    \"model\": \"sonar-deep-research\",\n    \"messages\": [\n      {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.perplexity.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "aa281b93-000f-42b0-864b-c775e5b584c1",
+    "name": "Perplexity AI Agent Async API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Perplexity AI API",
+      "type": "text/plain"
+    }
+  }
+}

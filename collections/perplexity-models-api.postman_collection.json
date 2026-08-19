@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "f4a45951-c349-45d4-910e-f2b3e7d50fa4",
+      "name": "Models",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7d53c8dc-4cef-474a-830d-59b20d36c57f",
+          "name": "List Models",
+          "request": {
+            "name": "List Models",
+            "description": {
+              "content": "List the models available for the Agent API. Returns model identifiers that can be used with the `POST /v1/agent` endpoint. The response follows the OpenAI List Models format for compatibility with third-party tools.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ffe6b532-99ea-4f9b-8bfc-405e84b978d6",
+              "name": "Successful response with the list of available models.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"anthropic/claude-sonnet-4-6\",\n      \"object\": \"model\",\n      \"created\": 0,\n      \"owned_by\": \"anthropic\"\n    },\n    {\n      \"id\": \"openai/gpt-5.4\",\n      \"object\": \"model\",\n      \"created\": 0,\n      \"owned_by\": \"openai\"\n    },\n    {\n      \"id\": \"perplexity/sonar\",\n      \"object\": \"model\",\n      \"created\": 0,\n      \"owned_by\": \"perplexity\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.perplexity.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e1959e49-eb94-409b-9b97-6ff45075ffa7",
+    "name": "Perplexity AI Agent Models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Perplexity AI API",
+      "type": "text/plain"
+    }
+  }
+}
