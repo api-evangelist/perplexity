@@ -131,6 +131,8 @@ apis:
   humanURL: ' https://www.perplexity.ai/'
   baseURL: https://api.perplexity.ai
   tags:
+  - Agents
+  tags_raw:
   - Agent
   properties:
   - type: OpenAPI
