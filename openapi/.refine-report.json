@@ -1,13 +1,7 @@
 {
   "provider": "perplexity",
   "sources": [
-    "perplexity-agent-api-openapi.yml",
-    "perplexity-async-api-openapi.yml",
-    "perplexity-contextualizedembeddings-api-openapi.yml",
-    "perplexity-embeddings-api-openapi.yml",
-    "perplexity-models-api-openapi.yml",
-    "perplexity-search-api-openapi.yml",
-    "perplexity-sonar-api-openapi.yml"
+    "_original/perplexity-openapi.json"
   ],
   "outputs": [
     "perplexity-agent-api-openapi.yml",
@@ -21,6 +15,34 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "perplexity-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "perplexity-openapi.json: tagged paths POST /v1/sonar -> Sonar",
+    "perplexity-openapi.json: tagged paths POST /search -> Search",
+    "perplexity-openapi.json: tagged paths POST /v1/embeddings -> Embeddings",
+    "perplexity-openapi.json: tagged paths POST /v1/contextualizedembeddings -> Contextualizedembeddings",
+    "perplexity-openapi.json: tagged paths GET /v1/async/sonar/{api_request} -> Async",
+    "perplexity-openapi.json: tagged paths GET /v1/async/sonar -> Async",
+    "perplexity-openapi.json: tagged paths POST /v1/async/sonar -> Async",
+    "perplexity-openapi.json: tagged paths POST /v1/agent -> Agent",
+    "perplexity-openapi.json: tagged paths GET /v1/models -> Models",
+    "perplexity-openapi.json: declared missing tag: Agent",
+    "perplexity-openapi.json: declared missing tag: Async",
+    "perplexity-openapi.json: declared missing tag: Contextualizedembeddings",
+    "perplexity-openapi.json: declared missing tag: Embeddings",
+    "perplexity-openapi.json: declared missing tag: Models",
+    "perplexity-openapi.json: declared missing tag: Search",
+    "perplexity-openapi.json: declared missing tag: Sonar",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "perplexity-agent-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "perplexity-async-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "perplexity-contextualizedembeddings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "perplexity-embeddings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "perplexity-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "perplexity-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "perplexity-sonar-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

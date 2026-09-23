@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Perplexity AI Agent API
   description: Perplexity AI API
@@ -42,6 +42,103 @@ paths:
       - Agent
 components:
   schemas:
+    UrlContent:
+      description: Content fetched from a URL
+      properties:
+        snippet:
+          description: The fetched content snippet
+          type: string
+        title:
+          description: The title of the page
+          type: string
+        url:
+          description: The URL from which content was fetched
+          type: string
+      required:
+      - url
+      - title
+      - snippet
+      type: object
+      title: UrlContent
+    ReasoningStoppedEvent:
+      description: 'Reasoning stopped event (type: "response.reasoning.stopped").
+
+        Signals the model has finished reasoning/searching.
+
+        '
+      properties:
+        sequence_number:
+          description: Monotonically increasing sequence number for event ordering
+          format: int64
+          type: integer
+        thought:
+          type: string
+        type:
+          $ref: '#/components/schemas/EventType'
+      required:
+      - type
+      - sequence_number
+      type: object
+      title: ReasoningStoppedEvent
+    OutputItemDoneEvent:
+      description: 'Output item done event (type: "response.output_item.done").
+
+        Emitted when an output item (message or tool call) completes.
+
+        '
+      properties:
+        item:
+          $ref: '#/components/schemas/OutputItem'
+        output_index:
+          format: int64
+          type: integer
+        sequence_number:
+          description: Monotonically increasing sequence number for event ordering
+          format: int64
+          type: integer
+        type:
+          $ref: '#/components/schemas/EventType'
+      required:
+      - type
+      - sequence_number
+      - item
+      - output_index
+      type: object
+      title: OutputItemDoneEvent
+    InputContent:
+      description: Message content - either a string or array of content parts
+      oneOf:
+      - title: StringContent
+        type: string
+      - items:
+          $ref: '#/components/schemas/InputContentPart'
+        title: ContentPartArray
+        type: array
+      title: InputContent
+    MessageOutputItem:
+      properties:
+        content:
+          items:
+            $ref: '#/components/schemas/ContentPart'
+          type: array
+        id:
+          type: string
+        role:
+          $ref: '#/components/schemas/RoleType'
+        status:
+          $ref: '#/components/schemas/Status'
+        type:
+          enum:
+          - message
+          type: string
+      required:
+      - type
+      - id
+      - status
+      - role
+      - content
+      type: object
+      title: MessageOutputItem
     FunctionCallOutputInput:
       properties:
         call_id:
@@ -66,123 +163,11 @@ components:
       - output
       type: object
       title: FunctionCallOutputInput
-    Input:
-      description: Input content - either a string or array of input items
-      oneOf:
-      - title: StringInput
-        type: string
-      - items:
-          $ref: '#/components/schemas/InputItem'
-        title: InputItemArray
-        type: array
-      title: Input
-    FinanceSearchTool:
-      description: Finance search tool configuration for the Agent API
-      properties:
-        type:
-          description: Tool type identifier
-          enum:
-          - finance_search
-          type: string
-      required:
-      - type
-      type: object
-      title: FinanceSearchTool
-    FetchUrlQueriesEvent:
-      description: 'URL fetch queries event (type: "response.reasoning.fetch_url_queries").
-
-        Contains URLs being fetched.
-
-        '
-      properties:
-        sequence_number:
-          description: Monotonically increasing sequence number for event ordering
-          format: int64
-          type: integer
-        thought:
-          type: string
-        type:
-          $ref: '#/components/schemas/EventType'
-        urls:
-          items:
-            type: string
-          type: array
-      required:
-      - type
-      - sequence_number
-      - urls
-      type: object
-      title: FetchUrlQueriesEvent
-    WebSearchFilters:
-      allOf:
-      - $ref: '#/components/schemas/SearchDomainFilter'
-      - $ref: '#/components/schemas/DateFilters'
-      title: WebSearchFilters
-    Date:
-      description: 'Input: MM/DD/YYYY, Output: YYYY-MM-DD'
+    Currency:
+      description: Currency code for cost values
+      enum:
+      - USD
       type: string
-      title: Date
-    OutputItem:
-      discriminator:
-        mapping:
-          fetch_url_results: '#/components/schemas/FetchUrlResultsOutputItem'
-          function_call: '#/components/schemas/FunctionCallOutputItem'
-          message: '#/components/schemas/MessageOutputItem'
-          search_results: '#/components/schemas/SearchResultsOutputItem'
-        propertyName: type
-      oneOf:
-      - $ref: '#/components/schemas/MessageOutputItem'
-      - $ref: '#/components/schemas/SearchResultsOutputItem'
-      - $ref: '#/components/schemas/FetchUrlResultsOutputItem'
-      - $ref: '#/components/schemas/FunctionCallOutputItem'
-      title: OutputItem
-    FunctionCallInput:
-      properties:
-        arguments:
-          description: Function arguments (JSON string)
-          type: string
-        call_id:
-          description: The call_id that correlates with function_call_output
-          type: string
-        name:
-          description: The function name
-          type: string
-        thought_signature:
-          description: Base64-encoded signature for thinking models
-          type: string
-        type:
-          enum:
-          - function_call
-          type: string
-      required:
-      - type
-      - call_id
-      - name
-      - arguments
-      type: object
-      title: FunctionCallInput
-    ReasoningConfig:
-      properties:
-        effort:
-          description: How much effort the model should spend on reasoning
-          enum:
-          - low
-          - medium
-          - high
-          type: string
-      type: object
-      title: ReasoningConfig
-    SearchDomainFilter:
-      properties:
-        search_domain_filter:
-          description: Limit search results to specific domains (max 20)
-          items:
-            maxLength: 253
-            type: string
-          maxItems: 20
-          type: array
-      type: object
-      title: SearchDomainFilter
     SearchQueriesEvent:
       description: 'Search queries event (type: "response.reasoning.search_queries").
 
@@ -208,15 +193,23 @@ components:
       - queries
       type: object
       title: SearchQueriesEvent
-    ResponseCompletedEvent:
-      description: 'Response event
+    TextDeltaEvent:
+      description: 'Text delta event (type: "response.output_text.delta").
 
-        Contains the full or partial response object.
+        Contains incremental text content.
 
         '
       properties:
-        response:
-          $ref: '#/components/schemas/ResponsesResponse'
+        content_index:
+          format: int64
+          type: integer
+        delta:
+          type: string
+        item_id:
+          type: string
+        output_index:
+          format: int64
+          type: integer
         sequence_number:
           description: Monotonically increasing sequence number for event ordering
           format: int64
@@ -226,23 +219,58 @@ components:
       required:
       - type
       - sequence_number
+      - item_id
+      - output_index
+      - content_index
+      - delta
       type: object
-      title: ResponseCompletedEvent
-    FetchUrlResultsOutputItem:
+      title: TextDeltaEvent
+    RoleType:
+      description: Role in a message
+      enum:
+      - assistant
+      type: string
+      title: RoleType
+    ResponsesObjectType:
+      description: Object type in API responses
+      enum:
+      - response
+      type: string
+      title: ResponsesObjectType
+    ContentPart:
       properties:
-        contents:
+        annotations:
           items:
-            $ref: '#/components/schemas/UrlContent'
+            $ref: '#/components/schemas/Annotation'
           type: array
-        type:
-          enum:
-          - fetch_url_results
+        text:
           type: string
+        type:
+          $ref: '#/components/schemas/ContentPartType'
       required:
       - type
-      - contents
+      - text
       type: object
-      title: FetchUrlResultsOutputItem
+      title: ContentPart
+    DateFilters:
+      properties:
+        last_updated_after_filter:
+          $ref: '#/components/schemas/Date'
+          description: Return results updated after this date (MM/DD/YYYY)
+        last_updated_before_filter:
+          $ref: '#/components/schemas/Date'
+          description: Return results updated before this date (MM/DD/YYYY)
+        search_after_date_filter:
+          $ref: '#/components/schemas/Date'
+          description: Return results published after this date (MM/DD/YYYY)
+        search_before_date_filter:
+          $ref: '#/components/schemas/Date'
+          description: Return results published before this date (MM/DD/YYYY)
+        search_recency_filter:
+          $ref: '#/components/schemas/SearchRecencyFilter'
+          description: Filter by publication recency (hour/day/week/month/year)
+      type: object
+      title: DateFilters
     OutputItemAddedEvent:
       description: 'Output item added event (type: "response.output_item.added").
 
@@ -268,132 +296,6 @@ components:
       - output_index
       type: object
       title: OutputItemAddedEvent
-    SearchResultsEvent:
-      description: 'Search results event (type: "response.reasoning.search_results").
-
-        Contains search results returned.
-
-        '
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/SearchResult'
-          type: array
-        sequence_number:
-          description: Monotonically increasing sequence number for event ordering
-          format: int64
-          type: integer
-        thought:
-          type: string
-        type:
-          $ref: '#/components/schemas/EventType'
-        usage:
-          $ref: '#/components/schemas/ResponsesUsage'
-      required:
-      - type
-      - sequence_number
-      - results
-      type: object
-      title: SearchResultsEvent
-    SearchResult:
-      description: A single search result used in LLM responses
-      properties:
-        date:
-          description: Publication date of the result
-          type: string
-        id:
-          description: Unique numeric identifier for the result
-          format: int64
-          type: integer
-        last_updated:
-          description: Date the result was last updated
-          type: string
-        snippet:
-          description: Text snippet from the search result
-          type: string
-        source:
-          $ref: '#/components/schemas/SearchSource'
-          description: Source type of the result
-        title:
-          description: Title of the search result page
-          type: string
-        url:
-          description: URL of the search result page
-          type: string
-      required:
-      - id
-      - url
-      - title
-      - snippet
-      type: object
-      title: SearchResult
-    ResponseCreatedEvent:
-      description: 'Response created event (type: "response.created").
-
-        Contains the initial response object.
-
-        '
-      properties:
-        response:
-          $ref: '#/components/schemas/ResponsesResponse'
-        sequence_number:
-          description: Monotonically increasing sequence number for event ordering
-          format: int64
-          type: integer
-        type:
-          $ref: '#/components/schemas/EventType'
-      required:
-      - type
-      - sequence_number
-      type: object
-      title: ResponseCreatedEvent
-    ContentPartType:
-      description: Type of a content part
-      enum:
-      - output_text
-      type: string
-      title: ContentPartType
-    SearchResultsOutputItem:
-      properties:
-        queries:
-          items:
-            type: string
-          type: array
-        results:
-          items:
-            $ref: '#/components/schemas/SearchResult'
-          type: array
-        type:
-          enum:
-          - search_results
-          type: string
-      required:
-      - type
-      - results
-      type: object
-      title: SearchResultsOutputItem
-    ToolUserLocation:
-      description: User's geographic location for search personalization
-      properties:
-        city:
-          description: City name
-          type: string
-        country:
-          description: ISO 3166-1 alpha-2 country code
-          type: string
-        latitude:
-          description: Latitude coordinate
-          format: double
-          type: number
-        longitude:
-          description: Longitude coordinate
-          format: double
-          type: number
-        region:
-          description: State or region name
-          type: string
-      type: object
-      title: ToolUserLocation
     ResponsesRequest:
       properties:
         input:
@@ -470,6 +372,93 @@ components:
       - input
       type: object
       title: ResponsesRequest
+    FunctionCallInput:
+      properties:
+        arguments:
+          description: Function arguments (JSON string)
+          type: string
+        call_id:
+          description: The call_id that correlates with function_call_output
+          type: string
+        name:
+          description: The function name
+          type: string
+        thought_signature:
+          description: Base64-encoded signature for thinking models
+          type: string
+        type:
+          enum:
+          - function_call
+          type: string
+      required:
+      - type
+      - call_id
+      - name
+      - arguments
+      type: object
+      title: FunctionCallInput
+    WebSearchTool:
+      description: Web search tool configuration for the Responses API
+      properties:
+        filters:
+          $ref: '#/components/schemas/WebSearchFilters'
+          description: Domain and date filters for search results
+        max_tokens:
+          description: Maximum total tokens for search context
+          format: int32
+          type: integer
+        max_tokens_per_page:
+          description: Maximum tokens to extract per search result page
+          format: int32
+          type: integer
+        type:
+          description: Tool type identifier
+          enum:
+          - web_search
+          type: string
+        user_location:
+          $ref: '#/components/schemas/ToolUserLocation'
+          description: User's location for search personalization
+      required:
+      - type
+      type: object
+      title: WebSearchTool
+    ContentPartType:
+      description: Type of a content part
+      enum:
+      - output_text
+      type: string
+      title: ContentPartType
+    FunctionCallOutputItem:
+      properties:
+        arguments:
+          description: JSON string of arguments
+          type: string
+        call_id:
+          description: Correlates with function_call_output input
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          $ref: '#/components/schemas/Status'
+        thought_signature:
+          description: Base64-encoded opaque signature for thinking models
+          type: string
+        type:
+          enum:
+          - function_call
+          type: string
+      required:
+      - type
+      - id
+      - status
+      - name
+      - call_id
+      - arguments
+      type: object
+      title: FunctionCallOutputItem
     TextDoneEvent:
       description: 'Text done event (type: "response.output_text.done").
 
@@ -502,56 +491,20 @@ components:
       - text
       type: object
       title: TextDoneEvent
-    ReasoningStoppedEvent:
-      description: 'Reasoning stopped event (type: "response.reasoning.stopped").
-
-        Signals the model has finished reasoning/searching.
-
-        '
-      properties:
-        sequence_number:
-          description: Monotonically increasing sequence number for event ordering
-          format: int64
-          type: integer
-        thought:
-          type: string
-        type:
-          $ref: '#/components/schemas/EventType'
-      required:
-      - type
-      - sequence_number
-      type: object
-      title: ReasoningStoppedEvent
-    FunctionCallOutputItem:
-      properties:
-        arguments:
-          description: JSON string of arguments
-          type: string
-        call_id:
-          description: Correlates with function_call_output input
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        status:
-          $ref: '#/components/schemas/Status'
-        thought_signature:
-          description: Base64-encoded opaque signature for thinking models
-          type: string
-        type:
-          enum:
-          - function_call
-          type: string
-      required:
-      - type
-      - id
-      - status
-      - name
-      - call_id
-      - arguments
-      type: object
-      title: FunctionCallOutputItem
+    OutputItem:
+      discriminator:
+        mapping:
+          fetch_url_results: '#/components/schemas/FetchUrlResultsOutputItem'
+          function_call: '#/components/schemas/FunctionCallOutputItem'
+          message: '#/components/schemas/MessageOutputItem'
+          search_results: '#/components/schemas/SearchResultsOutputItem'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/MessageOutputItem'
+      - $ref: '#/components/schemas/SearchResultsOutputItem'
+      - $ref: '#/components/schemas/FetchUrlResultsOutputItem'
+      - $ref: '#/components/schemas/FunctionCallOutputItem'
+      title: OutputItem
     ResponsesResponse:
       description: Non-streaming response returned when stream is false
       properties:
@@ -591,74 +544,27 @@ components:
       - output
       type: object
       title: ResponsesResponse
-    FetchUrlResultsEvent:
-      description: 'URL fetch results event (type: "response.reasoning.fetch_url_results").
-
-        Contains fetched URL contents.
-
-        '
+    FinanceSearchTool:
+      description: Finance search tool configuration for the Agent API
       properties:
-        contents:
-          items:
-            $ref: '#/components/schemas/UrlContent'
-          type: array
-        sequence_number:
-          description: Monotonically increasing sequence number for event ordering
-          format: int64
-          type: integer
-        thought:
-          type: string
         type:
-          $ref: '#/components/schemas/EventType'
-      required:
-      - type
-      - sequence_number
-      - contents
-      type: object
-      title: FetchUrlResultsEvent
-    ToolCallDetails:
-      description: Details about a tool call invocation
-      properties:
-        invocation:
-          description: Number of times this tool was invoked
-          format: int64
-          type: integer
-      type: object
-      title: ToolCallDetails
-    FetchUrlTool:
-      properties:
-        max_urls:
-          description: Maximum number of URLs to fetch per tool call
-          format: int32
-          maximum: 10
-          minimum: 1
-          type: integer
-        type:
+          description: Tool type identifier
           enum:
-          - fetch_url
+          - finance_search
           type: string
       required:
       - type
       type: object
-      title: FetchUrlTool
-    ResponsesObjectType:
-      description: Object type in API responses
-      enum:
-      - response
-      type: string
-      title: ResponsesObjectType
-    OutputItemDoneEvent:
-      description: 'Output item done event (type: "response.output_item.done").
+      title: FinanceSearchTool
+    ResponseFailedEvent:
+      description: 'Response failed event (type: "response.failed").
 
-        Emitted when an output item (message or tool call) completes.
+        Contains error details when streaming fails.
 
         '
       properties:
-        item:
-          $ref: '#/components/schemas/OutputItem'
-        output_index:
-          format: int64
-          type: integer
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
         sequence_number:
           description: Monotonically increasing sequence number for event ordering
           format: int64
@@ -668,139 +574,9 @@ components:
       required:
       - type
       - sequence_number
-      - item
-      - output_index
+      - error
       type: object
-      title: OutputItemDoneEvent
-    ResponseInProgressEvent:
-      description: 'Response in progress event (type: "response.in_progress").
-
-        Emitted when response processing has started.
-
-        '
-      properties:
-        response:
-          $ref: '#/components/schemas/ResponsesResponse'
-        sequence_number:
-          description: Monotonically increasing sequence number for event ordering
-          format: int64
-          type: integer
-        type:
-          $ref: '#/components/schemas/EventType'
-      required:
-      - type
-      - sequence_number
-      type: object
-      title: ResponseInProgressEvent
-    Tool:
-      discriminator:
-        mapping:
-          fetch_url: '#/components/schemas/FetchUrlTool'
-          finance_search: '#/components/schemas/FinanceSearchTool'
-          function: '#/components/schemas/FunctionTool'
-          web_search: '#/components/schemas/WebSearchTool'
-        propertyName: type
-      oneOf:
-      - $ref: '#/components/schemas/WebSearchTool'
-      - $ref: '#/components/schemas/FinanceSearchTool'
-      - $ref: '#/components/schemas/FetchUrlTool'
-      - $ref: '#/components/schemas/FunctionTool'
-      title: Tool
-    JSONSchemaFormat:
-      description: Defines a JSON schema for structured output validation
-      properties:
-        description:
-          description: Optional description of the schema
-          type: string
-        name:
-          description: Name of the schema (1-64 alphanumeric chars)
-          maxLength: 64
-          minLength: 1
-          type: string
-        schema:
-          additionalProperties: true
-          description: The JSON schema object
-          type: object
-        strict:
-          description: Whether to enforce strict schema validation
-          type: boolean
-      required:
-      - name
-      - schema
-      type: object
-      title: JSONSchemaFormat
-    InputContent:
-      description: Message content - either a string or array of content parts
-      oneOf:
-      - title: StringContent
-        type: string
-      - items:
-          $ref: '#/components/schemas/InputContentPart'
-        title: ContentPartArray
-        type: array
-      title: InputContent
-    SearchRecencyFilter:
-      description: Time-based recency filter for search results
-      enum:
-      - hour
-      - day
-      - week
-      - month
-      - year
-      type: string
-      title: SearchRecencyFilter
-    MessageOutputItem:
-      properties:
-        content:
-          items:
-            $ref: '#/components/schemas/ContentPart'
-          type: array
-        id:
-          type: string
-        role:
-          $ref: '#/components/schemas/RoleType'
-        status:
-          $ref: '#/components/schemas/Status'
-        type:
-          enum:
-          - message
-          type: string
-      required:
-      - type
-      - id
-      - status
-      - role
-      - content
-      type: object
-      title: MessageOutputItem
-    RoleType:
-      description: Role in a message
-      enum:
-      - assistant
-      type: string
-      title: RoleType
-    Annotation:
-      description: Text annotation (URL citation)
-      properties:
-        end_index:
-          description: End character index of the annotated text
-          format: int32
-          type: integer
-        start_index:
-          description: Start character index of the annotated text
-          format: int32
-          type: integer
-        title:
-          description: Title of the cited source
-          type: string
-        type:
-          description: Annotation type (url_citation)
-          type: string
-        url:
-          description: URL of the cited source
-          type: string
-      type: object
-      title: Annotation
+      title: ResponseFailedEvent
     ErrorInfo:
       description: Error information returned when a request fails
       properties:
@@ -817,63 +593,50 @@ components:
       - message
       type: object
       title: ErrorInfo
-    UrlContent:
-      description: Content fetched from a URL
+    Status:
+      description: Status of a response or output item
+      enum:
+      - completed
+      - failed
+      - in_progress
+      - requires_action
+      type: string
+      title: Status
+    ResponseFormat:
+      description: Specifies the desired output format for the model response
       properties:
-        snippet:
-          description: The fetched content snippet
-          type: string
-        title:
-          description: The title of the page
-          type: string
-        url:
-          description: The URL from which content was fetched
-          type: string
-      required:
-      - url
-      - title
-      - snippet
-      type: object
-      title: UrlContent
-    ContentPart:
-      properties:
-        annotations:
-          items:
-            $ref: '#/components/schemas/Annotation'
-          type: array
-        text:
-          type: string
+        json_schema:
+          $ref: '#/components/schemas/JSONSchemaFormat'
         type:
-          $ref: '#/components/schemas/ContentPartType'
+          description: The type of response format
+          enum:
+          - json_schema
+          type: string
       required:
       - type
-      - text
       type: object
-      title: ContentPart
-    Currency:
-      description: Currency code for cost values
-      enum:
-      - USD
-      type: string
-    DateFilters:
+      title: ResponseFormat
+    SearchDomainFilter:
       properties:
-        last_updated_after_filter:
-          $ref: '#/components/schemas/Date'
-          description: Return results updated after this date (MM/DD/YYYY)
-        last_updated_before_filter:
-          $ref: '#/components/schemas/Date'
-          description: Return results updated before this date (MM/DD/YYYY)
-        search_after_date_filter:
-          $ref: '#/components/schemas/Date'
-          description: Return results published after this date (MM/DD/YYYY)
-        search_before_date_filter:
-          $ref: '#/components/schemas/Date'
-          description: Return results published before this date (MM/DD/YYYY)
-        search_recency_filter:
-          $ref: '#/components/schemas/SearchRecencyFilter'
-          description: Filter by publication recency (hour/day/week/month/year)
+        search_domain_filter:
+          description: Limit search results to specific domains (max 20)
+          items:
+            maxLength: 253
+            type: string
+          maxItems: 20
+          type: array
       type: object
-      title: DateFilters
+      title: SearchDomainFilter
+    SearchRecencyFilter:
+      description: Time-based recency filter for search results
+      enum:
+      - hour
+      - day
+      - week
+      - month
+      - year
+      type: string
+      title: SearchRecencyFilter
     InputMessage:
       properties:
         content:
@@ -895,71 +658,6 @@ components:
       - content
       type: object
       title: InputMessage
-    FunctionTool:
-      properties:
-        description:
-          description: A description of what the function does
-          type: string
-        name:
-          description: The name of the function
-          type: string
-        parameters:
-          additionalProperties: true
-          description: JSON Schema defining the function's parameters
-          type: object
-        strict:
-          description: Whether to enable strict schema validation
-          type: boolean
-        type:
-          enum:
-          - function
-          type: string
-      required:
-      - type
-      - name
-      type: object
-      title: FunctionTool
-    InputContentPart:
-      properties:
-        image_url:
-          maxLength: 2048
-          type: string
-        text:
-          type: string
-        type:
-          enum:
-          - input_text
-          - input_image
-          type: string
-      required:
-      - type
-      type: object
-      title: InputContentPart
-    EventType:
-      description: SSE event type discriminator
-      enum:
-      - response.created
-      - response.in_progress
-      - response.completed
-      - response.failed
-      - response.output_item.added
-      - response.output_item.done
-      - response.output_text.delta
-      - response.output_text.done
-      - response.reasoning.started
-      - response.reasoning.search_queries
-      - response.reasoning.search_results
-      - response.reasoning.fetch_url_queries
-      - response.reasoning.fetch_url_results
-      - response.reasoning.stopped
-      type: string
-      title: EventType
-    SearchSource:
-      description: Source of search results
-      enum:
-      - web
-      type: string
-      title: SearchSource
     InputItem:
       discriminator:
         mapping:
@@ -972,46 +670,75 @@ components:
       - $ref: '#/components/schemas/FunctionCallOutputInput'
       - $ref: '#/components/schemas/FunctionCallInput'
       title: InputItem
-    ResponsesUsage:
-      description: Token usage and cost information for a Responses API request
+    SearchResult:
+      description: A single search result used in LLM responses
       properties:
-        cost:
-          $ref: '#/components/schemas/ResponsesCost'
-          description: Cost breakdown for the request
-        input_tokens:
-          description: Number of input tokens used
+        date:
+          description: Publication date of the result
+          type: string
+        id:
+          description: Unique numeric identifier for the result
           format: int64
           type: integer
-        input_tokens_details:
-          properties:
-            cache_creation_input_tokens:
-              description: Tokens used for cache creation
-              format: int64
-              type: integer
-            cache_read_input_tokens:
-              description: Tokens read from cache
-              format: int64
-              type: integer
-          type: object
-        output_tokens:
-          description: Number of output tokens generated
-          format: int64
-          type: integer
-        tool_calls_details:
-          description: Details about tool call invocations
-          additionalProperties:
-            $ref: '#/components/schemas/ToolCallDetails'
-          type: object
-        total_tokens:
-          description: Total tokens used (input + output)
-          format: int64
-          type: integer
+        last_updated:
+          description: Date the result was last updated
+          type: string
+        snippet:
+          description: Text snippet from the search result
+          type: string
+        source:
+          $ref: '#/components/schemas/SearchSource'
+          description: Source type of the result
+        title:
+          description: Title of the search result page
+          type: string
+        url:
+          description: URL of the search result page
+          type: string
       required:
-      - input_tokens
-      - output_tokens
-      - total_tokens
+      - id
+      - url
+      - title
+      - snippet
       type: object
-      title: ResponsesUsage
+      title: SearchResult
+    ResponsesCost:
+      description: Cost breakdown for a Responses API request
+      properties:
+        cache_creation_cost:
+          description: Cost for cache creation in USD
+          format: double
+          type: number
+        cache_read_cost:
+          description: Cost for cache reads in USD
+          format: double
+          type: number
+        currency:
+          $ref: '#/components/schemas/Currency'
+          description: Currency of the cost values
+        input_cost:
+          description: Cost for input tokens in USD
+          format: double
+          type: number
+        output_cost:
+          description: Cost for output tokens in USD
+          format: double
+          type: number
+        tool_calls_cost:
+          description: Cost for tool call invocations in USD
+          format: double
+          type: number
+        total_cost:
+          description: Total cost for the request in USD
+          format: double
+          type: number
+      required:
+      - currency
+      - input_cost
+      - output_cost
+      - total_cost
+      type: object
+      title: ResponsesCost
     ResponseStreamEvent:
       description: 'SSE stream event. Discriminate by the `type` field:
 
@@ -1077,145 +804,184 @@ components:
       - $ref: '#/components/schemas/FetchUrlResultsEvent'
       - $ref: '#/components/schemas/ReasoningStoppedEvent'
       title: ResponseStreamEvent
-    Status:
-      description: Status of a response or output item
-      enum:
-      - completed
-      - failed
-      - in_progress
-      - requires_action
+    ResponseCompletedEvent:
+      description: 'Response event
+
+        Contains the full or partial response object.
+
+        '
+      properties:
+        response:
+          $ref: '#/components/schemas/ResponsesResponse'
+        sequence_number:
+          description: Monotonically increasing sequence number for event ordering
+          format: int64
+          type: integer
+        type:
+          $ref: '#/components/schemas/EventType'
+      required:
+      - type
+      - sequence_number
+      type: object
+      title: ResponseCompletedEvent
+    WebSearchFilters:
+      allOf:
+      - $ref: '#/components/schemas/SearchDomainFilter'
+      - $ref: '#/components/schemas/DateFilters'
+      title: WebSearchFilters
+    Annotation:
+      description: Text annotation (URL citation)
+      properties:
+        end_index:
+          description: End character index of the annotated text
+          format: int32
+          type: integer
+        start_index:
+          description: Start character index of the annotated text
+          format: int32
+          type: integer
+        title:
+          description: Title of the cited source
+          type: string
+        type:
+          description: Annotation type (url_citation)
+          type: string
+        url:
+          description: URL of the cited source
+          type: string
+      type: object
+      title: Annotation
+    SearchResultsEvent:
+      description: 'Search results event (type: "response.reasoning.search_results").
+
+        Contains search results returned.
+
+        '
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/SearchResult'
+          type: array
+        sequence_number:
+          description: Monotonically increasing sequence number for event ordering
+          format: int64
+          type: integer
+        thought:
+          type: string
+        type:
+          $ref: '#/components/schemas/EventType'
+        usage:
+          $ref: '#/components/schemas/ResponsesUsage'
+      required:
+      - type
+      - sequence_number
+      - results
+      type: object
+      title: SearchResultsEvent
+    ToolUserLocation:
+      description: User's geographic location for search personalization
+      properties:
+        city:
+          description: City name
+          type: string
+        country:
+          description: ISO 3166-1 alpha-2 country code
+          type: string
+        latitude:
+          description: Latitude coordinate
+          format: double
+          type: number
+        longitude:
+          description: Longitude coordinate
+          format: double
+          type: number
+        region:
+          description: State or region name
+          type: string
+      type: object
+      title: ToolUserLocation
+    InputContentPart:
+      properties:
+        image_url:
+          maxLength: 2048
+          type: string
+        text:
+          type: string
+        type:
+          enum:
+          - input_text
+          - input_image
+          type: string
+      required:
+      - type
+      type: object
+      title: InputContentPart
+    Input:
+      description: Input content - either a string or array of input items
+      oneOf:
+      - title: StringInput
+        type: string
+      - items:
+          $ref: '#/components/schemas/InputItem'
+        title: InputItemArray
+        type: array
+      title: Input
+    FunctionTool:
+      properties:
+        description:
+          description: A description of what the function does
+          type: string
+        name:
+          description: The name of the function
+          type: string
+        parameters:
+          additionalProperties: true
+          description: JSON Schema defining the function's parameters
+          type: object
+        strict:
+          description: Whether to enable strict schema validation
+          type: boolean
+        type:
+          enum:
+          - function
+          type: string
+      required:
+      - type
+      - name
+      type: object
+      title: FunctionTool
+    ToolCallDetails:
+      description: Details about a tool call invocation
+      properties:
+        invocation:
+          description: Number of times this tool was invoked
+          format: int64
+          type: integer
+      type: object
+      title: ToolCallDetails
+    Date:
+      description: 'Input: MM/DD/YYYY, Output: YYYY-MM-DD'
       type: string
-      title: Status
-    ResponseFailedEvent:
-      description: 'Response failed event (type: "response.failed").
-
-        Contains error details when streaming fails.
-
-        '
+      title: Date
+    SearchResultsOutputItem:
       properties:
-        error:
-          $ref: '#/components/schemas/ErrorInfo'
-        sequence_number:
-          description: Monotonically increasing sequence number for event ordering
-          format: int64
-          type: integer
+        queries:
+          items:
+            type: string
+          type: array
+        results:
+          items:
+            $ref: '#/components/schemas/SearchResult'
+          type: array
         type:
-          $ref: '#/components/schemas/EventType'
-      required:
-      - type
-      - sequence_number
-      - error
-      type: object
-      title: ResponseFailedEvent
-    TextDeltaEvent:
-      description: 'Text delta event (type: "response.output_text.delta").
-
-        Contains incremental text content.
-
-        '
-      properties:
-        content_index:
-          format: int64
-          type: integer
-        delta:
-          type: string
-        item_id:
-          type: string
-        output_index:
-          format: int64
-          type: integer
-        sequence_number:
-          description: Monotonically increasing sequence number for event ordering
-          format: int64
-          type: integer
-        type:
-          $ref: '#/components/schemas/EventType'
-      required:
-      - type
-      - sequence_number
-      - item_id
-      - output_index
-      - content_index
-      - delta
-      type: object
-      title: TextDeltaEvent
-    ResponsesCost:
-      description: Cost breakdown for a Responses API request
-      properties:
-        cache_creation_cost:
-          description: Cost for cache creation in USD
-          format: double
-          type: number
-        cache_read_cost:
-          description: Cost for cache reads in USD
-          format: double
-          type: number
-        currency:
-          $ref: '#/components/schemas/Currency'
-          description: Currency of the cost values
-        input_cost:
-          description: Cost for input tokens in USD
-          format: double
-          type: number
-        output_cost:
-          description: Cost for output tokens in USD
-          format: double
-          type: number
-        tool_calls_cost:
-          description: Cost for tool call invocations in USD
-          format: double
-          type: number
-        total_cost:
-          description: Total cost for the request in USD
-          format: double
-          type: number
-      required:
-      - currency
-      - input_cost
-      - output_cost
-      - total_cost
-      type: object
-      title: ResponsesCost
-    ResponseFormat:
-      description: Specifies the desired output format for the model response
-      properties:
-        json_schema:
-          $ref: '#/components/schemas/JSONSchemaFormat'
-        type:
-          description: The type of response format
           enum:
-          - json_schema
+          - search_results
           type: string
       required:
       - type
+      - results
       type: object
-      title: ResponseFormat
-    WebSearchTool:
-      description: Web search tool configuration for the Responses API
-      properties:
-        filters:
-          $ref: '#/components/schemas/WebSearchFilters'
-          description: Domain and date filters for search results
-        max_tokens:
-          description: Maximum total tokens for search context
-          format: int32
-          type: integer
-        max_tokens_per_page:
-          description: Maximum tokens to extract per search result page
-          format: int32
-          type: integer
-        type:
-          description: Tool type identifier
-          enum:
-          - web_search
-          type: string
-        user_location:
-          $ref: '#/components/schemas/ToolUserLocation'
-          description: User's location for search personalization
-      required:
-      - type
-      type: object
-      title: WebSearchTool
+      title: SearchResultsOutputItem
     ReasoningStartedEvent:
       description: 'Reasoning started event (type: "response.reasoning.started").
 
@@ -1236,6 +1002,240 @@ components:
       - sequence_number
       type: object
       title: ReasoningStartedEvent
+    Tool:
+      discriminator:
+        mapping:
+          fetch_url: '#/components/schemas/FetchUrlTool'
+          finance_search: '#/components/schemas/FinanceSearchTool'
+          function: '#/components/schemas/FunctionTool'
+          web_search: '#/components/schemas/WebSearchTool'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/WebSearchTool'
+      - $ref: '#/components/schemas/FinanceSearchTool'
+      - $ref: '#/components/schemas/FetchUrlTool'
+      - $ref: '#/components/schemas/FunctionTool'
+      title: Tool
+    FetchUrlQueriesEvent:
+      description: 'URL fetch queries event (type: "response.reasoning.fetch_url_queries").
+
+        Contains URLs being fetched.
+
+        '
+      properties:
+        sequence_number:
+          description: Monotonically increasing sequence number for event ordering
+          format: int64
+          type: integer
+        thought:
+          type: string
+        type:
+          $ref: '#/components/schemas/EventType'
+        urls:
+          items:
+            type: string
+          type: array
+      required:
+      - type
+      - sequence_number
+      - urls
+      type: object
+      title: FetchUrlQueriesEvent
+    FetchUrlResultsOutputItem:
+      properties:
+        contents:
+          items:
+            $ref: '#/components/schemas/UrlContent'
+          type: array
+        type:
+          enum:
+          - fetch_url_results
+          type: string
+      required:
+      - type
+      - contents
+      type: object
+      title: FetchUrlResultsOutputItem
+    SearchSource:
+      description: Source of search results
+      enum:
+      - web
+      type: string
+      title: SearchSource
+    ResponsesUsage:
+      description: Token usage and cost information for a Responses API request
+      properties:
+        cost:
+          $ref: '#/components/schemas/ResponsesCost'
+          description: Cost breakdown for the request
+        input_tokens:
+          description: Number of input tokens used
+          format: int64
+          type: integer
+        input_tokens_details:
+          properties:
+            cache_creation_input_tokens:
+              description: Tokens used for cache creation
+              format: int64
+              type: integer
+            cache_read_input_tokens:
+              description: Tokens read from cache
+              format: int64
+              type: integer
+          type: object
+        output_tokens:
+          description: Number of output tokens generated
+          format: int64
+          type: integer
+        tool_calls_details:
+          description: Details about tool call invocations
+          additionalProperties:
+            $ref: '#/components/schemas/ToolCallDetails'
+          type: object
+        total_tokens:
+          description: Total tokens used (input + output)
+          format: int64
+          type: integer
+      required:
+      - input_tokens
+      - output_tokens
+      - total_tokens
+      type: object
+      title: ResponsesUsage
+    JSONSchemaFormat:
+      description: Defines a JSON schema for structured output validation
+      properties:
+        description:
+          description: Optional description of the schema
+          type: string
+        name:
+          description: Name of the schema (1-64 alphanumeric chars)
+          maxLength: 64
+          minLength: 1
+          type: string
+        schema:
+          additionalProperties: true
+          description: The JSON schema object
+          type: object
+        strict:
+          description: Whether to enforce strict schema validation
+          type: boolean
+      required:
+      - name
+      - schema
+      type: object
+      title: JSONSchemaFormat
+    ResponseInProgressEvent:
+      description: 'Response in progress event (type: "response.in_progress").
+
+        Emitted when response processing has started.
+
+        '
+      properties:
+        response:
+          $ref: '#/components/schemas/ResponsesResponse'
+        sequence_number:
+          description: Monotonically increasing sequence number for event ordering
+          format: int64
+          type: integer
+        type:
+          $ref: '#/components/schemas/EventType'
+      required:
+      - type
+      - sequence_number
+      type: object
+      title: ResponseInProgressEvent
+    ReasoningConfig:
+      properties:
+        effort:
+          description: How much effort the model should spend on reasoning
+          enum:
+          - low
+          - medium
+          - high
+          type: string
+      type: object
+      title: ReasoningConfig
+    ResponseCreatedEvent:
+      description: 'Response created event (type: "response.created").
+
+        Contains the initial response object.
+
+        '
+      properties:
+        response:
+          $ref: '#/components/schemas/ResponsesResponse'
+        sequence_number:
+          description: Monotonically increasing sequence number for event ordering
+          format: int64
+          type: integer
+        type:
+          $ref: '#/components/schemas/EventType'
+      required:
+      - type
+      - sequence_number
+      type: object
+      title: ResponseCreatedEvent
+    EventType:
+      description: SSE event type discriminator
+      enum:
+      - response.created
+      - response.in_progress
+      - response.completed
+      - response.failed
+      - response.output_item.added
+      - response.output_item.done
+      - response.output_text.delta
+      - response.output_text.done
+      - response.reasoning.started
+      - response.reasoning.search_queries
+      - response.reasoning.search_results
+      - response.reasoning.fetch_url_queries
+      - response.reasoning.fetch_url_results
+      - response.reasoning.stopped
+      type: string
+      title: EventType
+    FetchUrlResultsEvent:
+      description: 'URL fetch results event (type: "response.reasoning.fetch_url_results").
+
+        Contains fetched URL contents.
+
+        '
+      properties:
+        contents:
+          items:
+            $ref: '#/components/schemas/UrlContent'
+          type: array
+        sequence_number:
+          description: Monotonically increasing sequence number for event ordering
+          format: int64
+          type: integer
+        thought:
+          type: string
+        type:
+          $ref: '#/components/schemas/EventType'
+      required:
+      - type
+      - sequence_number
+      - contents
+      type: object
+      title: FetchUrlResultsEvent
+    FetchUrlTool:
+      properties:
+        max_urls:
+          description: Maximum number of URLs to fetch per tool call
+          format: int32
+          maximum: 10
+          minimum: 1
+          type: integer
+        type:
+          enum:
+          - fetch_url
+          type: string
+      required:
+      - type
+      type: object
+      title: FetchUrlTool
   securitySchemes:
     HTTPBearer:
       type: http

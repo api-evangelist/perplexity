@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Perplexity AI Agent Search API
+  title: Perplexity AI Search API
   description: Perplexity AI API
   version: 1.0.0
 servers:
@@ -39,36 +39,51 @@ paths:
       - Search
 components:
   schemas:
-    HTTPValidationError:
+    Date:
+      description: 'Input: MM/DD/YYYY, Output: YYYY-MM-DD'
+      type: string
+      title: Date
+    SearchDomainFilter:
       properties:
-        detail:
+        search_domain_filter:
+          description: Limit search results to specific domains (max 20)
           items:
-            $ref: '#/components/schemas/ValidationError'
+            maxLength: 253
+            type: string
+          maxItems: 20
           type: array
-          title: Detail
       type: object
-      title: HTTPValidationError
-    ValidationError:
+      title: SearchDomainFilter
+    SearchRecencyFilter:
+      description: Time-based recency filter for search results
+      enum:
+      - hour
+      - day
+      - week
+      - month
+      - year
+      type: string
+      title: SearchRecencyFilter
+    ApiSearchResponse:
       properties:
-        loc:
+        results:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/ApiSearchPage'
           type: array
-          title: Location
-        msg:
+          title: Results
+        id:
           type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+          title: Id
+        server_time:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Server Time
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - results
+      - id
+      title: ApiSearchResponse
     ApiSearchPage:
       description: A single page from search results
       properties:
@@ -102,6 +117,36 @@ components:
       - url
       - snippet
       title: ApiSearchPage
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     ApiSearchRequest:
       allOf:
       - properties:
@@ -151,51 +196,6 @@ components:
       - $ref: '#/components/schemas/DateFilters'
       type: object
       title: ApiSearchRequest
-    Date:
-      description: 'Input: MM/DD/YYYY, Output: YYYY-MM-DD'
-      type: string
-      title: Date
-    ApiSearchResponse:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/ApiSearchPage'
-          type: array
-          title: Results
-        id:
-          type: string
-          title: Id
-        server_time:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Server Time
-      type: object
-      required:
-      - results
-      - id
-      title: ApiSearchResponse
-    SearchRecencyFilter:
-      description: Time-based recency filter for search results
-      enum:
-      - hour
-      - day
-      - week
-      - month
-      - year
-      type: string
-      title: SearchRecencyFilter
-    SearchDomainFilter:
-      properties:
-        search_domain_filter:
-          description: Limit search results to specific domains (max 20)
-          items:
-            maxLength: 253
-            type: string
-          maxItems: 20
-          type: array
-      type: object
-      title: SearchDomainFilter
     DateFilters:
       properties:
         last_updated_after_filter:

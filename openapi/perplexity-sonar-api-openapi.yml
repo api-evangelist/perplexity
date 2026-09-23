@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Perplexity AI Agent Sonar API
+  title: Perplexity AI Sonar API
   description: Perplexity AI API
   version: 1.0.0
 servers:
@@ -39,6 +39,21 @@ paths:
       - Sonar
 components:
   schemas:
+    VideoURL:
+      properties:
+        url:
+          type: string
+          title: Url
+        frame_interval:
+          anyOf:
+          - type: string
+          - type: integer
+          title: Frame Interval
+          default: 25
+      type: object
+      required:
+      - url
+      title: VideoURL
     ValidationError:
       properties:
         loc:
@@ -60,91 +75,29 @@ components:
       - msg
       - type
       title: ValidationError
-    URL:
+    ChatMessage-Output:
       properties:
-        url:
-          type: string
-          title: Url
-      type: object
-      required:
-      - url
-      title: URL
-    ResponseFormatText:
-      properties:
-        type:
-          type: string
-          const: text
-          title: Type
-          description: Must be `text`.
-      type: object
-      required:
-      - type
-      title: ResponseFormatText
-    ImageResult:
-      properties:
-        image_url:
-          type: string
-          title: Image Url
-          description: URL of the image
-        origin_url:
-          type: string
-          title: Origin Url
-          description: Original URL where the image was found
-        title:
-          type: string
-          title: Title
-          description: Title or description of the image
-        width:
-          type: integer
-          title: Width
-          description: Width of the image in pixels
-        height:
-          type: integer
-          title: Height
-          description: Height of the image in pixels
-      type: object
-      required:
-      - image_url
-      - origin_url
-      - title
-      - width
-      - height
-      title: ImageResult
-    UserLocation:
-      description: User's geographic location for search personalization
-      properties:
-        latitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Latitude
-          description: Latitude coordinate
-        longitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Longitude
-          description: Longitude coordinate
-        country:
+        role:
+          $ref: '#/components/schemas/ChatMessageRole'
+        content:
           anyOf:
           - type: string
+          - items:
+              anyOf:
+              - $ref: '#/components/schemas/ChatMessageContentTextChunk'
+              - $ref: '#/components/schemas/ChatMessageContentImageChunk'
+              - $ref: '#/components/schemas/ChatMessageContentFileChunk'
+              - $ref: '#/components/schemas/ChatMessageContentPDFChunk'
+              - $ref: '#/components/schemas/ChatMessageContentVideoChunk'
+            type: array
+            title: Structured Content
           - type: 'null'
-          title: Country
-          description: ISO 3166-1 alpha-2 country code
-        city:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: City
-          description: City name
-        region:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Region
-          description: State or region name
+          title: Content
       type: object
-      title: UserLocation
+      required:
+      - role
+      - content
+      title: ChatMessage
     CompletionResponse:
       properties:
         id:
@@ -213,35 +166,6 @@ components:
       - created
       - choices
       title: CompletionResponse
-    ResponseFormatJSONSchema:
-      description: Constrains the model output to match the provided JSON schema.
-      properties:
-        type:
-          type: string
-          const: json_schema
-          title: Type
-          description: Must be `json_schema`.
-        json_schema:
-          $ref: '#/components/schemas/JSONSchema'
-      type: object
-      required:
-      - type
-      - json_schema
-      title: ResponseFormatJSONSchema
-    ChatMessageContentTextChunk:
-      properties:
-        type:
-          type: string
-          const: text
-          title: Type
-        text:
-          type: string
-          title: Text
-      type: object
-      required:
-      - type
-      - text
-      title: ChatMessageContentTextChunk
     WebSearchOptions:
       description: Configuration options for web search behavior
       properties:
@@ -275,177 +199,6 @@ components:
           default: false
       type: object
       title: WebSearchOptions
-    Choice:
-      description: A single completion choice
-      properties:
-        index:
-          type: integer
-          title: Index
-          description: Index of the choice in the array
-        finish_reason:
-          anyOf:
-          - type: string
-            enum:
-            - stop
-            - length
-          - type: 'null'
-          title: Finish Reason
-          description: Reason generation stopped (stop or length)
-        message:
-          $ref: '#/components/schemas/ChatMessage-Output'
-          description: Complete message (non-streaming)
-        delta:
-          $ref: '#/components/schemas/ChatMessage-Output'
-          description: Incremental message delta (streaming)
-      type: object
-      required:
-      - index
-      - message
-      - delta
-      title: Choice
-    VideoURL:
-      properties:
-        url:
-          type: string
-          title: Url
-        frame_interval:
-          anyOf:
-          - type: string
-          - type: integer
-          title: Frame Interval
-          default: 25
-      type: object
-      required:
-      - url
-      title: VideoURL
-    UsageInfo:
-      description: Token usage and cost information for a request
-      properties:
-        prompt_tokens:
-          type: integer
-          title: Prompt Tokens
-          description: Number of tokens in the prompt/input
-        completion_tokens:
-          type: integer
-          title: Completion Tokens
-          description: Number of tokens in the completion/output
-        total_tokens:
-          type: integer
-          title: Total Tokens
-          description: Total tokens used (prompt + completion)
-        search_context_size:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Search Context Size
-          description: Size of search context used
-        citation_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Citation Tokens
-          description: Number of tokens used for citations
-        num_search_queries:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Num Search Queries
-          description: Number of search queries executed
-        reasoning_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Reasoning Tokens
-          description: Number of tokens used for reasoning
-        cost:
-          $ref: '#/components/schemas/Cost'
-          description: Cost breakdown for the request
-      type: object
-      required:
-      - prompt_tokens
-      - completion_tokens
-      - total_tokens
-      - cost
-      title: UsageInfo
-    ChatMessageContentVideoChunk:
-      properties:
-        type:
-          type: string
-          const: video_url
-          title: Type
-        video_url:
-          anyOf:
-          - $ref: '#/components/schemas/VideoURL'
-          - type: string
-          title: Video Url
-      type: object
-      required:
-      - type
-      - video_url
-      title: ChatMessageContentVideoChunk
-    Cost:
-      description: Cost breakdown for a chat completion request
-      properties:
-        input_tokens_cost:
-          type: number
-          title: Input Tokens Cost
-          description: Cost for input tokens in USD
-        output_tokens_cost:
-          type: number
-          title: Output Tokens Cost
-          description: Cost for output tokens in USD
-        reasoning_tokens_cost:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Reasoning Tokens Cost
-          description: Cost for reasoning tokens in USD
-        request_cost:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Request Cost
-          description: Cost for web search requests in USD (includes pro search cost if applicable)
-        citation_tokens_cost:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Citation Tokens Cost
-          description: Cost for citation tokens in USD
-        search_queries_cost:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Search Queries Cost
-          description: Cost for search queries in USD
-        total_cost:
-          type: number
-          title: Total Cost
-          description: Total cost for the request in USD
-      type: object
-      required:
-      - input_tokens_cost
-      - output_tokens_cost
-      - total_cost
-      title: Cost
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ChatMessageRole:
-      type: string
-      enum:
-      - system
-      - user
-      - assistant
-      - tool
-      title: ChatMessageRole
-      description: Chat roles enum
     JSONSchema:
       properties:
         schema:
@@ -473,43 +226,22 @@ components:
       required:
       - schema
       title: JSONSchema
-    ChatMessageContentFileChunk:
+    ChatMessageContentImageChunk:
       properties:
         type:
           type: string
-          const: file_url
+          const: image_url
           title: Type
-        file_url:
+        image_url:
           anyOf:
           - $ref: '#/components/schemas/URL'
           - type: string
-          title: File Url
-        file_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: File Name
+          title: Image Url
       type: object
       required:
       - type
-      - file_url
-      title: ChatMessageContentFileChunk
-    ChatMessageContentPDFChunk:
-      properties:
-        type:
-          type: string
-          const: pdf_url
-          title: Type
-        pdf_url:
-          anyOf:
-          - $ref: '#/components/schemas/URL'
-          - type: string
-          title: Pdf Url
-      type: object
-      required:
-      - type
-      - pdf_url
-      title: ChatMessageContentPDFChunk
+      - image_url
+      title: ChatMessageContentImageChunk
     ApiChatCompletionsRequest:
       properties:
         max_tokens:
@@ -736,45 +468,144 @@ components:
       - role
       - content
       title: ChatMessage
-    ChatMessageContentImageChunk:
+    ResponseFormatText:
       properties:
         type:
           type: string
-          const: image_url
+          const: text
           title: Type
-        image_url:
-          anyOf:
-          - $ref: '#/components/schemas/URL'
-          - type: string
-          title: Image Url
+          description: Must be `text`.
       type: object
       required:
       - type
-      - image_url
-      title: ChatMessageContentImageChunk
-    ChatMessage-Output:
+      title: ResponseFormatText
+    ResponseFormatJSONSchema:
+      description: Constrains the model output to match the provided JSON schema.
       properties:
-        role:
-          $ref: '#/components/schemas/ChatMessageRole'
-        content:
-          anyOf:
-          - type: string
-          - items:
-              anyOf:
-              - $ref: '#/components/schemas/ChatMessageContentTextChunk'
-              - $ref: '#/components/schemas/ChatMessageContentImageChunk'
-              - $ref: '#/components/schemas/ChatMessageContentFileChunk'
-              - $ref: '#/components/schemas/ChatMessageContentPDFChunk'
-              - $ref: '#/components/schemas/ChatMessageContentVideoChunk'
-            type: array
-            title: Structured Content
-          - type: 'null'
-          title: Content
+        type:
+          type: string
+          const: json_schema
+          title: Type
+          description: Must be `json_schema`.
+        json_schema:
+          $ref: '#/components/schemas/JSONSchema'
       type: object
       required:
-      - role
-      - content
-      title: ChatMessage
+      - type
+      - json_schema
+      title: ResponseFormatJSONSchema
+    Choice:
+      description: A single completion choice
+      properties:
+        index:
+          type: integer
+          title: Index
+          description: Index of the choice in the array
+        finish_reason:
+          anyOf:
+          - type: string
+            enum:
+            - stop
+            - length
+          - type: 'null'
+          title: Finish Reason
+          description: Reason generation stopped (stop or length)
+        message:
+          $ref: '#/components/schemas/ChatMessage-Output'
+          description: Complete message (non-streaming)
+        delta:
+          $ref: '#/components/schemas/ChatMessage-Output'
+          description: Incremental message delta (streaming)
+      type: object
+      required:
+      - index
+      - message
+      - delta
+      title: Choice
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ChatMessageContentFileChunk:
+      properties:
+        type:
+          type: string
+          const: file_url
+          title: Type
+        file_url:
+          anyOf:
+          - $ref: '#/components/schemas/URL'
+          - type: string
+          title: File Url
+        file_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Name
+      type: object
+      required:
+      - type
+      - file_url
+      title: ChatMessageContentFileChunk
+    Cost:
+      description: Cost breakdown for a chat completion request
+      properties:
+        input_tokens_cost:
+          type: number
+          title: Input Tokens Cost
+          description: Cost for input tokens in USD
+        output_tokens_cost:
+          type: number
+          title: Output Tokens Cost
+          description: Cost for output tokens in USD
+        reasoning_tokens_cost:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Reasoning Tokens Cost
+          description: Cost for reasoning tokens in USD
+        request_cost:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Request Cost
+          description: Cost for web search requests in USD (includes pro search cost if applicable)
+        citation_tokens_cost:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Citation Tokens Cost
+          description: Cost for citation tokens in USD
+        search_queries_cost:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Search Queries Cost
+          description: Cost for search queries in USD
+        total_cost:
+          type: number
+          title: Total Cost
+          description: Total cost for the request in USD
+      type: object
+      required:
+      - input_tokens_cost
+      - output_tokens_cost
+      - total_cost
+      title: Cost
+    ChatMessageRole:
+      type: string
+      enum:
+      - system
+      - user
+      - assistant
+      - tool
+      title: ChatMessageRole
+      description: Chat roles enum
     ApiPublicSearchResult:
       description: A single search result from the web
       properties:
@@ -816,6 +647,175 @@ components:
       - title
       - url
       title: ApiPublicSearchResult
+    ChatMessageContentVideoChunk:
+      properties:
+        type:
+          type: string
+          const: video_url
+          title: Type
+        video_url:
+          anyOf:
+          - $ref: '#/components/schemas/VideoURL'
+          - type: string
+          title: Video Url
+      type: object
+      required:
+      - type
+      - video_url
+      title: ChatMessageContentVideoChunk
+    URL:
+      properties:
+        url:
+          type: string
+          title: Url
+      type: object
+      required:
+      - url
+      title: URL
+    UsageInfo:
+      description: Token usage and cost information for a request
+      properties:
+        prompt_tokens:
+          type: integer
+          title: Prompt Tokens
+          description: Number of tokens in the prompt/input
+        completion_tokens:
+          type: integer
+          title: Completion Tokens
+          description: Number of tokens in the completion/output
+        total_tokens:
+          type: integer
+          title: Total Tokens
+          description: Total tokens used (prompt + completion)
+        search_context_size:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Search Context Size
+          description: Size of search context used
+        citation_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Citation Tokens
+          description: Number of tokens used for citations
+        num_search_queries:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Search Queries
+          description: Number of search queries executed
+        reasoning_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Reasoning Tokens
+          description: Number of tokens used for reasoning
+        cost:
+          $ref: '#/components/schemas/Cost'
+          description: Cost breakdown for the request
+      type: object
+      required:
+      - prompt_tokens
+      - completion_tokens
+      - total_tokens
+      - cost
+      title: UsageInfo
+    ChatMessageContentTextChunk:
+      properties:
+        type:
+          type: string
+          const: text
+          title: Type
+        text:
+          type: string
+          title: Text
+      type: object
+      required:
+      - type
+      - text
+      title: ChatMessageContentTextChunk
+    UserLocation:
+      description: User's geographic location for search personalization
+      properties:
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+          description: Latitude coordinate
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+          description: Longitude coordinate
+        country:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country
+          description: ISO 3166-1 alpha-2 country code
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+          description: City name
+        region:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Region
+          description: State or region name
+      type: object
+      title: UserLocation
+    ImageResult:
+      properties:
+        image_url:
+          type: string
+          title: Image Url
+          description: URL of the image
+        origin_url:
+          type: string
+          title: Origin Url
+          description: Original URL where the image was found
+        title:
+          type: string
+          title: Title
+          description: Title or description of the image
+        width:
+          type: integer
+          title: Width
+          description: Width of the image in pixels
+        height:
+          type: integer
+          title: Height
+          description: Height of the image in pixels
+      type: object
+      required:
+      - image_url
+      - origin_url
+      - title
+      - width
+      - height
+      title: ImageResult
+    ChatMessageContentPDFChunk:
+      properties:
+        type:
+          type: string
+          const: pdf_url
+          title: Type
+        pdf_url:
+          anyOf:
+          - $ref: '#/components/schemas/URL'
+          - type: string
+          title: Pdf Url
+      type: object
+      required:
+      - type
+      - pdf_url
+      title: ChatMessageContentPDFChunk
   securitySchemes:
     HTTPBearer:
       type: http
