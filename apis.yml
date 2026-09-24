@@ -39,6 +39,7 @@ tags:
 - Agents
 - Embeddings
 - Research
+- Agentic Commerce
 tags_raw:
 - Artificial Intelligence
 - Large Language Models
@@ -47,6 +48,7 @@ tags_raw:
 - Embeddings
 - Research
 - LLM
+- Agentic Commerce
 created: '2025-02-21'
 modified: '2026-09-16'
 url: https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/apis.yml
@@ -55,11 +57,9 @@ apis:
 - aid: perplexity:perplexity
   name: Perplexity
   description: What do you want to know?
-  humanURL: ' https://www.perplexity.ai/'
+  humanURL: https://www.perplexity.ai/
   tags: []
   properties:
-  - url: graphql/perplexity-graphql.md
-    type: GraphQL
 - aid: perplexity:async-chat-completions-api
   name: Perplexity Async Chat Completions API
   description: The Async Chat Completions API enables developers to submit long-running chat completion
@@ -165,7 +165,7 @@ apis:
 - aid: perplexity:perplexity-agent-api
   name: Perplexity Agent API
   description: The Agent API from Perplexity — 1 operation(s) for agent.
-  humanURL: ' https://www.perplexity.ai/'
+  humanURL: https://www.perplexity.ai/
   baseURL: https://api.perplexity.ai
   tags:
   - Agents
@@ -187,7 +187,7 @@ apis:
 - aid: perplexity:perplexity-async-api
   name: Perplexity Async API
   description: The Async API from Perplexity — 2 operation(s) for async.
-  humanURL: ' https://www.perplexity.ai/'
+  humanURL: https://www.perplexity.ai/
   baseURL: https://api.perplexity.ai
   tags:
   - Async
@@ -207,7 +207,7 @@ apis:
 - aid: perplexity:perplexity-contextualizedembeddings-api
   name: Perplexity Contextualizedembeddings API
   description: The Contextualizedembeddings API from Perplexity — 1 operation(s) for contextualizedembeddings.
-  humanURL: ' https://www.perplexity.ai/'
+  humanURL: https://www.perplexity.ai/
   baseURL: https://api.perplexity.ai
   tags:
   - Contextualizedembeddings
@@ -227,7 +227,7 @@ apis:
 - aid: perplexity:perplexity-embeddings-api
   name: Perplexity Embeddings API
   description: The Embeddings API from Perplexity — 1 operation(s) for embeddings.
-  humanURL: ' https://www.perplexity.ai/'
+  humanURL: https://www.perplexity.ai/
   baseURL: https://api.perplexity.ai
   tags:
   - Embeddings
@@ -247,7 +247,7 @@ apis:
 - aid: perplexity:perplexity-models-api
   name: Perplexity Models API
   description: The Models API from Perplexity — 1 operation(s) for models.
-  humanURL: ' https://www.perplexity.ai/'
+  humanURL: https://www.perplexity.ai/
   baseURL: https://api.perplexity.ai
   tags:
   - Models
@@ -267,7 +267,7 @@ apis:
 - aid: perplexity:perplexity-search-api
   name: Perplexity Search API
   description: The Search API from Perplexity — 1 operation(s) for search.
-  humanURL: ' https://www.perplexity.ai/'
+  humanURL: https://www.perplexity.ai/
   baseURL: https://api.perplexity.ai
   tags:
   - Search
@@ -287,7 +287,7 @@ apis:
 - aid: perplexity:perplexity-sonar-api
   name: Perplexity Sonar API
   description: The Sonar API from Perplexity — 1 operation(s) for sonar.
-  humanURL: ' https://www.perplexity.ai/'
+  humanURL: https://www.perplexity.ai/
   baseURL: https://api.perplexity.ai
   tags:
   - Sonar
