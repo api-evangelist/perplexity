@@ -39,21 +39,6 @@ paths:
       - Search
 components:
   schemas:
-    Date:
-      description: 'Input: MM/DD/YYYY, Output: YYYY-MM-DD'
-      type: string
-      title: Date
-    SearchDomainFilter:
-      properties:
-        search_domain_filter:
-          description: Limit search results to specific domains (max 20)
-          items:
-            maxLength: 253
-            type: string
-          maxItems: 20
-          type: array
-      type: object
-      title: SearchDomainFilter
     SearchRecencyFilter:
       description: Time-based recency filter for search results
       enum:
@@ -64,89 +49,6 @@ components:
       - year
       type: string
       title: SearchRecencyFilter
-    ApiSearchResponse:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/ApiSearchPage'
-          type: array
-          title: Results
-        id:
-          type: string
-          title: Id
-        server_time:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Server Time
-      type: object
-      required:
-      - results
-      - id
-      title: ApiSearchResponse
-    ApiSearchPage:
-      description: A single page from search results
-      properties:
-        title:
-          type: string
-          title: Title
-          description: Title of the page
-        url:
-          type: string
-          title: Url
-          description: URL of the page
-        snippet:
-          type: string
-          title: Snippet
-          description: Content snippet extracted from the page
-        date:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date
-          description: Publication date of the page
-        last_updated:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Last Updated
-          description: Date the page was last updated
-      type: object
-      required:
-      - title
-      - url
-      - snippet
-      title: ApiSearchPage
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     ApiSearchRequest:
       allOf:
       - properties:
@@ -196,6 +98,100 @@ components:
       - $ref: '#/components/schemas/DateFilters'
       type: object
       title: ApiSearchRequest
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SearchDomainFilter:
+      properties:
+        search_domain_filter:
+          description: Limit search results to specific domains (max 20)
+          items:
+            maxLength: 253
+            type: string
+          maxItems: 20
+          type: array
+      type: object
+      title: SearchDomainFilter
+    ApiSearchPage:
+      description: A single page from search results
+      properties:
+        title:
+          type: string
+          title: Title
+          description: Title of the page
+        url:
+          type: string
+          title: Url
+          description: URL of the page
+        snippet:
+          type: string
+          title: Snippet
+          description: Content snippet extracted from the page
+        date:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Date
+          description: Publication date of the page
+        last_updated:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Last Updated
+          description: Date the page was last updated
+      type: object
+      required:
+      - title
+      - url
+      - snippet
+      title: ApiSearchPage
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ApiSearchResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/ApiSearchPage'
+          type: array
+          title: Results
+        id:
+          type: string
+          title: Id
+        server_time:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Server Time
+      type: object
+      required:
+      - results
+      - id
+      title: ApiSearchResponse
     DateFilters:
       properties:
         last_updated_after_filter:
@@ -215,6 +211,10 @@ components:
           description: Filter by publication recency (hour/day/week/month/year)
       type: object
       title: DateFilters
+    Date:
+      description: 'Input: MM/DD/YYYY, Output: YYYY-MM-DD'
+      type: string
+      title: Date
   securitySchemes:
     HTTPBearer:
       type: http
