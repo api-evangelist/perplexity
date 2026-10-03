@@ -39,16 +39,77 @@ paths:
       - Search
 components:
   schemas:
-    SearchRecencyFilter:
-      description: Time-based recency filter for search results
-      enum:
-      - hour
-      - day
-      - week
-      - month
-      - year
-      type: string
-      title: SearchRecencyFilter
+    DateFilters:
+      properties:
+        last_updated_after_filter:
+          $ref: '#/components/schemas/Date'
+          description: Return results updated after this date (MM/DD/YYYY)
+        last_updated_before_filter:
+          $ref: '#/components/schemas/Date'
+          description: Return results updated before this date (MM/DD/YYYY)
+        search_after_date_filter:
+          $ref: '#/components/schemas/Date'
+          description: Return results published after this date (MM/DD/YYYY)
+        search_before_date_filter:
+          $ref: '#/components/schemas/Date'
+          description: Return results published before this date (MM/DD/YYYY)
+        search_recency_filter:
+          $ref: '#/components/schemas/SearchRecencyFilter'
+          description: Filter by publication recency (hour/day/week/month/year)
+      type: object
+      title: DateFilters
+    SearchDomainFilter:
+      properties:
+        search_domain_filter:
+          description: Limit search results to specific domains (max 20)
+          items:
+            maxLength: 253
+            type: string
+          maxItems: 20
+          type: array
+      type: object
+      title: SearchDomainFilter
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ApiSearchResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/ApiSearchPage'
+          type: array
+          title: Results
+        id:
+          type: string
+          title: Id
+        server_time:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Server Time
+      type: object
+      required:
+      - results
+      - id
+      title: ApiSearchResponse
     ApiSearchRequest:
       allOf:
       - properties:
@@ -98,38 +159,20 @@ components:
       - $ref: '#/components/schemas/DateFilters'
       type: object
       title: ApiSearchRequest
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    SearchDomainFilter:
-      properties:
-        search_domain_filter:
-          description: Limit search results to specific domains (max 20)
-          items:
-            maxLength: 253
-            type: string
-          maxItems: 20
-          type: array
-      type: object
-      title: SearchDomainFilter
+    Date:
+      description: 'Input: MM/DD/YYYY, Output: YYYY-MM-DD'
+      type: string
+      title: Date
+    SearchRecencyFilter:
+      description: Time-based recency filter for search results
+      enum:
+      - hour
+      - day
+      - week
+      - month
+      - year
+      type: string
+      title: SearchRecencyFilter
     ApiSearchPage:
       description: A single page from search results
       properties:
@@ -172,49 +215,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    ApiSearchResponse:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/ApiSearchPage'
-          type: array
-          title: Results
-        id:
-          type: string
-          title: Id
-        server_time:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Server Time
-      type: object
-      required:
-      - results
-      - id
-      title: ApiSearchResponse
-    DateFilters:
-      properties:
-        last_updated_after_filter:
-          $ref: '#/components/schemas/Date'
-          description: Return results updated after this date (MM/DD/YYYY)
-        last_updated_before_filter:
-          $ref: '#/components/schemas/Date'
-          description: Return results updated before this date (MM/DD/YYYY)
-        search_after_date_filter:
-          $ref: '#/components/schemas/Date'
-          description: Return results published after this date (MM/DD/YYYY)
-        search_before_date_filter:
-          $ref: '#/components/schemas/Date'
-          description: Return results published before this date (MM/DD/YYYY)
-        search_recency_filter:
-          $ref: '#/components/schemas/SearchRecencyFilter'
-          description: Filter by publication recency (hour/day/week/month/year)
-      type: object
-      title: DateFilters
-    Date:
-      description: 'Input: MM/DD/YYYY, Output: YYYY-MM-DD'
-      type: string
-      title: Date
   securitySchemes:
     HTTPBearer:
       type: http

@@ -41,24 +41,6 @@ paths:
       - Models
 components:
   schemas:
-    ListModelsResponse:
-      type: object
-      description: Response from the List Models endpoint. Contains a list of available models.
-      properties:
-        object:
-          type: string
-          description: The object type, which is always `list`.
-          enum:
-          - list
-          example: list
-        data:
-          type: array
-          description: A list of model objects.
-          items:
-            $ref: '#/components/schemas/Model'
-      required:
-      - object
-      - data
     Model:
       type: object
       description: Represents a model available through the Agent API.
@@ -86,6 +68,24 @@ components:
       - object
       - created
       - owned_by
+    ListModelsResponse:
+      type: object
+      description: Response from the List Models endpoint. Contains a list of available models.
+      properties:
+        object:
+          type: string
+          description: The object type, which is always `list`.
+          enum:
+          - list
+          example: list
+        data:
+          type: array
+          description: A list of model objects.
+          items:
+            $ref: '#/components/schemas/Model'
+      required:
+      - object
+      - data
   securitySchemes:
     HTTPBearer:
       type: http
