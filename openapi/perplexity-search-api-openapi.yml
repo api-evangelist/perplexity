@@ -69,47 +69,6 @@ components:
           type: array
       type: object
       title: SearchDomainFilter
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ApiSearchResponse:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/ApiSearchPage'
-          type: array
-          title: Results
-        id:
-          type: string
-          title: Id
-        server_time:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Server Time
-      type: object
-      required:
-      - results
-      - id
-      title: ApiSearchResponse
     ApiSearchRequest:
       allOf:
       - properties:
@@ -159,10 +118,6 @@ components:
       - $ref: '#/components/schemas/DateFilters'
       type: object
       title: ApiSearchRequest
-    Date:
-      description: 'Input: MM/DD/YYYY, Output: YYYY-MM-DD'
-      type: string
-      title: Date
     SearchRecencyFilter:
       description: Time-based recency filter for search results
       enum:
@@ -173,6 +128,60 @@ components:
       - year
       type: string
       title: SearchRecencyFilter
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Date:
+      description: 'Input: MM/DD/YYYY, Output: YYYY-MM-DD'
+      type: string
+      title: Date
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ApiSearchResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/ApiSearchPage'
+          type: array
+          title: Results
+        id:
+          type: string
+          title: Id
+        server_time:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Server Time
+      type: object
+      required:
+      - results
+      - id
+      title: ApiSearchResponse
     ApiSearchPage:
       description: A single page from search results
       properties:
@@ -206,15 +215,6 @@ components:
       - url
       - snippet
       title: ApiSearchPage
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http
