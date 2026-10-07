@@ -313,6 +313,8 @@ maintainers:
   email: support@perplexity.ai
   url: https://www.perplexity.ai
 common:
+- type: Plans
+  url: plans/perplexity-plans-pricing.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/perplexity/overview
 - type: AgenticAccess
