@@ -313,6 +313,8 @@ maintainers:
   email: support@perplexity.ai
   url: https://www.perplexity.ai
 common:
+- type: FinOps
+  url: finops/perplexity-finops.yml
 - type: Plans
   url: plans/perplexity-plans-pricing.yml
 - type: PostmanWorkspace
