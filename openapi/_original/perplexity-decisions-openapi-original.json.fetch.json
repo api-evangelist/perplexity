@@ -1,0 +1,11 @@
+{
+ "url": "https://docs.perplexity.ai/openapi-gateway-preview.json",
+ "requested_url": "https://docs.perplexity.ai/openapi-gateway-preview.json",
+ "status": 200,
+ "bytes": 30854,
+ "sha256": "3f31174d2aa458848b3016d2ea006d112314c6e38943c250d5ec46460a1a8ce4",
+ "fetched_at": "2026-10-12",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "new",
+ "note": "Perplexity gateway preview spec carrying the Decisions API (POST /decisions); split copy at openapi/perplexity-decisions-api-openapi.yml."
+}

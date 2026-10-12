@@ -286,6 +286,20 @@ apis:
     url: https://docs.perplexity.ai/docs/getting-started/pricing
   - type: AsyncAPI
     url: https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/asyncapi/perplexity-asyncapi.yml
+- aid: perplexity:perplexity-decisions-api
+  name: Perplexity Decisions API
+  description: The Decisions API from Perplexity — 1 operation(s) for decisions. Ask yes/no, multiple-choice, and rating questions about your content and get probabilities back (gateway preview).
+  humanURL: https://docs.perplexity.ai/
+  baseURL: https://api.perplexity.ai
+  tags:
+  - Decisions
+  properties:
+  - type: OpenAPI
+    url: openapi/perplexity-decisions-api-openapi.yml
+  - type: Authentication
+    url: https://docs.perplexity.ai/guides/api-key-management
+  - type: Pricing
+    url: https://docs.perplexity.ai/docs/getting-started/pricing
 - aid: perplexity:perplexity-sonar-api
   name: Perplexity Sonar API
   description: The Sonar API from Perplexity — 1 operation(s) for sonar.
