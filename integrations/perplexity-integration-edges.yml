@@ -1,4 +1,52 @@
 edges:
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=ai.perplexity
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: ai.perplexity/mcp-server
+    register_id: ai.perplexity/mcp-server
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  mcp_registry:
+    servers:
+    - ai.perplexity/mcp-server
+    hosted_remote: 0
+    local_package: 1
+    transports:
+      stdio: 1
+    auth_declared: 0
+    catalog_declared: true
+    namespace_domains:
+    - perplexity.ai
+  matched_by:
+  - namespace-domain+label
+  detected_by: sweep-agent-tools.py
+  first_seen: '2026-10-14'
+- partner_name: Stripe (own)
+  partner: stripe
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.stripe.com/apps/perplexity
+  mirror_of: stripe/integrations/stripe-integration-edges.yml
+  apps:
+  - Perplexity
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: developer_tools
 - partner_name: OpenRouter
   partner: openrouter
   partner_match: router
@@ -102,37 +150,6 @@ edges:
   matched_by: verified-token-table
   detected_by: sweep-model-routing.py
   first_seen: '2026-10-13'
-- partner_name: MCP Registry
-  partner: mcp
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=ai.perplexity
-  contract_reference:
-    register: registry.modelcontextprotocol.io
-    spec_file: null
-    role: mcp-server-listing
-    registered_name: ai.perplexity/mcp-server
-    register_id: ai.perplexity/mcp-server
-    detected_by: sweep-agent-tools.py
-    detected: '2026-10-14'
-  mcp_registry:
-    servers:
-    - ai.perplexity/mcp-server
-    hosted_remote: 0
-    local_package: 1
-    transports:
-      stdio: 1
-    auth_declared: 0
-    catalog_declared: true
-    namespace_domains:
-    - perplexity.ai
-  matched_by:
-  - namespace-domain+label
-  detected_by: sweep-agent-tools.py
-  first_seen: '2026-10-14'
 generated: '2026-10-13'
 method: searched
 checked:
@@ -142,3 +159,6 @@ checked:
 - https://github.com/Portkey-AI/gateway/tree/main/src/providers
 - https://openrouter.ai/api/v1/models
 - https://registry.modelcontextprotocol.io/v0/servers
+- stripe/integrations/stripe-integration-edges.yml
+source:
+- stripe/integrations/stripe-integration-edges.yml
