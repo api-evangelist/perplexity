@@ -1,35 +1,4 @@
 edges:
-- partner_name: MCP Registry
-  partner: mcp
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=ai.perplexity
-  contract_reference:
-    register: registry.modelcontextprotocol.io
-    spec_file: null
-    role: mcp-server-listing
-    registered_name: ai.perplexity/mcp-server
-    register_id: ai.perplexity/mcp-server
-    detected_by: sweep-agent-tools.py
-    detected: '2026-10-14'
-  mcp_registry:
-    servers:
-    - ai.perplexity/mcp-server
-    hosted_remote: 0
-    local_package: 1
-    transports:
-      stdio: 1
-    auth_declared: 0
-    catalog_declared: true
-    namespace_domains:
-    - perplexity.ai
-  matched_by:
-  - namespace-domain+label
-  detected_by: sweep-agent-tools.py
-  first_seen: '2026-10-14'
 - partner_name: Stripe (own)
   partner: stripe
   partner_match: mirror
@@ -150,15 +119,125 @@ edges:
   matched_by: verified-token-table
   detected_by: sweep-model-routing.py
   first_seen: '2026-10-13'
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=ai.perplexity
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: ai.perplexity/mcp-server
+    register_id: ai.perplexity/mcp-server
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-15'
+  mcp_registry:
+    servers:
+    - ai.perplexity/mcp-server
+    hosted_remote: 0
+    local_package: 1
+    transports:
+      stdio: 1
+    auth_declared: 0
+    catalog_declared: true
+    namespace_domains:
+    - perplexity.ai
+  matched_by:
+  - namespace-domain+label
+  detected_by: sweep-agent-tools.py
+  first_seen: '2026-10-14'
+- partner_name: Zapier
+  partner: zapier
+  partner_match: aggregator
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://zapier.com/apps/perplexity/integrations
+  category: null
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Perplexity
+    matched_domain: perplexity.ai
+    matched_by: domain+name-among-holders
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: perplexity
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
+- partner_name: n8n
+  partner: n8n
+  partner_match: aggregator
+  type: marketplace
+  marketplace: n8n-nodes-base
+  channel: open-source-node
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://github.com/n8n-io/n8n/tree/860f1273ebd73fabbd668cbec2c49ed9b48a286d/packages/nodes-base/nodes/Perplexity
+  category: null
+  contract_reference:
+    register: n8n built-in nodes (n8n-io/n8n packages/nodes-base)
+    spec_file: null
+    role: ipaas-connector:n8n-nodes-base
+    registered_name: Perplexity
+    matched_domain: perplexity.ai
+    matched_by: domain+name-among-holders
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    node_path: Perplexity
+    trigger: false
+    builder: n8n (built-in node)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
+- partner_name: Pipedream
+  partner: pipedream
+  partner_match: aggregator
+  type: marketplace
+  marketplace: pipedream-components
+  channel: open-source-node
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/perplexity
+  category: null
+  contract_reference:
+    register: Pipedream components (PipedreamHQ/pipedream components/)
+    spec_file: null
+    role: ipaas-connector:pipedream
+    registered_name: perplexity
+    matched_domain: perplexity.ai
+    matched_by: domain+name-among-holders
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: perplexity
+    actions: true
+    sources: false
+    builder: Pipedream repo (component)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 generated: '2026-10-13'
 method: searched
 checked:
 - https://api.llmgateway.io/v1/models
 - https://developers.cloudflare.com/ai-gateway/usage/providers/
 - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+- https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
 - https://github.com/Portkey-AI/gateway/tree/main/src/providers
+- https://github.com/n8n-io/n8n/tree/860f1273ebd73fabbd668cbec2c49ed9b48a286d/packages/nodes-base/nodes/
 - https://openrouter.ai/api/v1/models
 - https://registry.modelcontextprotocol.io/v0/servers
+- https://zapier.com/api/v4/apps/
 - stripe/integrations/stripe-integration-edges.yml
 source:
 - stripe/integrations/stripe-integration-edges.yml
