@@ -1,9 +1,11 @@
 {
   "provider": "perplexity",
   "sources": [
+    "_original/perplexity-decisions-openapi-original.json",
     "_original/perplexity-openapi.json"
   ],
   "outputs": [
+    "perplexity-decisions-api-openapi.yml",
     "perplexity-agent-api-openapi.yml",
     "perplexity-async-api-openapi.yml",
     "perplexity-contextualizedembeddings-api-openapi.yml",
@@ -16,7 +18,10 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "perplexity-decisions-openapi-original.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "perplexity-decisions-openapi-original.json: tagged paths POST /decisions -> Decisions",
+    "perplexity-decisions-openapi-original.json: declared missing tag: Decisions",
     "perplexity-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "perplexity-openapi.json: tagged paths POST /v1/sonar -> Sonar",
     "perplexity-openapi.json: tagged paths POST /search -> Search",
@@ -40,6 +45,7 @@
     "perplexity-agent-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "perplexity-async-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "perplexity-contextualizedembeddings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "perplexity-decisions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "perplexity-embeddings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "perplexity-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "perplexity-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",

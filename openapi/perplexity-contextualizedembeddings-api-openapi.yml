@@ -39,24 +39,6 @@ paths:
       - Contextualizedembeddings
 components:
   schemas:
-    EmbeddingObject:
-      type: object
-      title: Embedding Object
-      description: A single embedding result
-      properties:
-        object:
-          type: string
-          title: Object
-          description: The object type
-          example: embedding
-        index:
-          type: integer
-          title: Index
-          description: The index of the input text this embedding corresponds to
-        embedding:
-          type: string
-          title: Embedding
-          description: 'Base64-encoded embedding vector. For base64_int8: decode to signed int8 array (length = dimensions). For base64_binary: decode to packed bits (length = dimensions / 8 bytes).'
     HTTPValidationError:
       properties:
         detail:
@@ -88,27 +70,6 @@ components:
           description: The model used to generate embeddings
         usage:
           $ref: '#/components/schemas/EmbeddingsUsage'
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     EmbeddingsUsage:
       type: object
       title: Embeddings Usage
@@ -141,6 +102,24 @@ components:
               description: Currency of the cost values
               enum:
               - USD
+    EmbeddingObject:
+      type: object
+      title: Embedding Object
+      description: A single embedding result
+      properties:
+        object:
+          type: string
+          title: Object
+          description: The object type
+          example: embedding
+        index:
+          type: integer
+          title: Index
+          description: The index of the input text this embedding corresponds to
+        embedding:
+          type: string
+          title: Embedding
+          description: 'Base64-encoded embedding vector. For base64_int8: decode to signed int8 array (length = dimensions). For base64_binary: decode to packed bits (length = dimensions / 8 bytes).'
     ContextualizedEmbeddingsRequest:
       type: object
       title: Contextualized Embeddings Request
@@ -182,6 +161,27 @@ components:
           - base64_int8
           - base64_binary
           default: base64_int8
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     ContextualizedEmbeddingObject:
       type: object
       title: Contextualized Embedding Object

@@ -95,6 +95,74 @@ paths:
       - Async
 components:
   schemas:
+    VideoURL:
+      properties:
+        url:
+          type: string
+          title: Url
+        frame_interval:
+          anyOf:
+          - type: string
+          - type: integer
+          title: Frame Interval
+          default: 25
+      type: object
+      required:
+      - url
+      title: VideoURL
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    AsyncApiChatCompletionsResponseSummary:
+      properties:
+        id:
+          type: string
+          title: Id
+        created_at:
+          type: integer
+          title: Created At
+        started_at:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Started At
+        completed_at:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Completed At
+        failed_at:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Failed At
+        model:
+          type: string
+          title: Model
+        status:
+          $ref: '#/components/schemas/AsyncProcessingStatus'
+      type: object
+      required:
+      - id
+      - created_at
+      - model
+      - status
+      title: AsyncApiChatCompletionsResponseSummary
+    ChatMessageRole:
+      type: string
+      enum:
+      - system
+      - user
+      - assistant
+      - tool
+      title: ChatMessageRole
+      description: Chat roles enum
     ChatMessageContentTextChunk:
       properties:
         type:
@@ -109,7 +177,282 @@ components:
       - type
       - text
       title: ChatMessageContentTextChunk
-    ChatMessage-Input:
+    UsageInfo:
+      description: Token usage and cost information for a request
+      properties:
+        prompt_tokens:
+          type: integer
+          title: Prompt Tokens
+          description: Number of tokens in the prompt/input
+        completion_tokens:
+          type: integer
+          title: Completion Tokens
+          description: Number of tokens in the completion/output
+        total_tokens:
+          type: integer
+          title: Total Tokens
+          description: Total tokens used (prompt + completion)
+        search_context_size:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Search Context Size
+          description: Size of search context used
+        citation_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Citation Tokens
+          description: Number of tokens used for citations
+        num_search_queries:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Search Queries
+          description: Number of search queries executed
+        reasoning_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Reasoning Tokens
+          description: Number of tokens used for reasoning
+        cost:
+          $ref: '#/components/schemas/Cost'
+          description: Cost breakdown for the request
+      type: object
+      required:
+      - prompt_tokens
+      - completion_tokens
+      - total_tokens
+      - cost
+      title: UsageInfo
+    ChatMessageContentImageChunk:
+      properties:
+        type:
+          type: string
+          const: image_url
+          title: Type
+        image_url:
+          anyOf:
+          - $ref: '#/components/schemas/URL'
+          - type: string
+          title: Image Url
+      type: object
+      required:
+      - type
+      - image_url
+      title: ChatMessageContentImageChunk
+    AsyncApiChatCompletionsRequest:
+      description: Request body for creating an asynchronous chat completion
+      properties:
+        request:
+          $ref: '#/components/schemas/ApiChatCompletionsRequest'
+          description: The chat completion request to execute asynchronously
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Idempotency Key
+          description: Unique key to prevent duplicate requests
+      type: object
+      required:
+      - request
+      title: AsyncApiChatCompletionsRequest
+    ApiPublicSearchResult:
+      description: A single search result from the web
+      properties:
+        title:
+          type: string
+          title: Title
+          description: Title of the search result page
+        url:
+          type: string
+          title: Url
+          description: URL of the search result page
+        date:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Date
+          description: Publication date of the result
+        last_updated:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Last Updated
+          description: Date the result was last updated
+        snippet:
+          type: string
+          title: Snippet
+          description: Text snippet from the search result
+          default: ''
+        source:
+          type: string
+          enum:
+          - web
+          - attachment
+          title: Source
+          description: Source type of the result (web or attachment)
+          default: web
+      type: object
+      required:
+      - title
+      - url
+      title: ApiPublicSearchResult
+    ChatMessageContentFileChunk:
+      properties:
+        type:
+          type: string
+          const: file_url
+          title: Type
+        file_url:
+          anyOf:
+          - $ref: '#/components/schemas/URL'
+          - type: string
+          title: File Url
+        file_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Name
+      type: object
+      required:
+      - type
+      - file_url
+      title: ChatMessageContentFileChunk
+    ChatMessageContentPDFChunk:
+      properties:
+        type:
+          type: string
+          const: pdf_url
+          title: Type
+        pdf_url:
+          anyOf:
+          - $ref: '#/components/schemas/URL'
+          - type: string
+          title: Pdf Url
+      type: object
+      required:
+      - type
+      - pdf_url
+      title: ChatMessageContentPDFChunk
+    URL:
+      properties:
+        url:
+          type: string
+          title: Url
+      type: object
+      required:
+      - url
+      title: URL
+    AsyncProcessingStatus:
+      type: string
+      enum:
+      - CREATED
+      - IN_PROGRESS
+      - COMPLETED
+      - FAILED
+      title: AsyncProcessingStatus
+      description: Status enum for async processing.
+    ImageResult:
+      properties:
+        image_url:
+          type: string
+          title: Image Url
+          description: URL of the image
+        origin_url:
+          type: string
+          title: Origin Url
+          description: Original URL where the image was found
+        title:
+          type: string
+          title: Title
+          description: Title or description of the image
+        width:
+          type: integer
+          title: Width
+          description: Width of the image in pixels
+        height:
+          type: integer
+          title: Height
+          description: Height of the image in pixels
+      type: object
+      required:
+      - image_url
+      - origin_url
+      - title
+      - width
+      - height
+      title: ImageResult
+    CompletionResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: Unique identifier for the completion
+        model:
+          type: string
+          title: Model
+          description: Model used for generation
+        created:
+          type: integer
+          title: Created
+          description: Unix timestamp when the completion was created
+        usage:
+          anyOf:
+          - $ref: '#/components/schemas/UsageInfo'
+          - type: 'null'
+        object:
+          type: string
+          title: Object
+          description: Object type identifier
+          default: chat.completion
+        choices:
+          items:
+            $ref: '#/components/schemas/Choice'
+          type: array
+          title: Choices
+          description: Array of completion choices
+        citations:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Citations
+          description: URLs of sources used to generate the response
+        search_results:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ApiPublicSearchResult'
+            type: array
+          - type: 'null'
+          title: Search Results
+          description: Search results used for context in the response
+        images:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ImageResult'
+            type: array
+          - type: 'null'
+          title: Images
+          description: Array of images returned when return_images is true
+        related_questions:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Related Questions
+          description: Array of related questions returned when return_related_questions is true
+      type: object
+      required:
+      - id
+      - model
+      - created
+      - choices
+      title: CompletionResponse
+    ChatMessage-Output:
       properties:
         role:
           $ref: '#/components/schemas/ChatMessageRole'
@@ -132,22 +475,48 @@ components:
       - role
       - content
       title: ChatMessage
-    ChatMessageContentImageChunk:
+    ResponseFormatJSONSchema:
+      description: Constrains the model output to match the provided JSON schema.
       properties:
         type:
           type: string
-          const: image_url
+          const: json_schema
           title: Type
-        image_url:
-          anyOf:
-          - $ref: '#/components/schemas/URL'
-          - type: string
-          title: Image Url
+          description: Must be `json_schema`.
+        json_schema:
+          $ref: '#/components/schemas/JSONSchema'
       type: object
       required:
       - type
-      - image_url
-      title: ChatMessageContentImageChunk
+      - json_schema
+      title: ResponseFormatJSONSchema
+    JSONSchema:
+      properties:
+        schema:
+          additionalProperties: true
+          type: object
+          title: Schema
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          default: schema
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        strict:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Strict
+          default: true
+      type: object
+      required:
+      - schema
+      title: JSONSchema
     Cost:
       description: Cost breakdown for a chat completion request
       properties:
@@ -193,134 +562,90 @@ components:
       - output_tokens_cost
       - total_cost
       title: Cost
-    ImageResult:
-      properties:
-        image_url:
-          type: string
-          title: Image Url
-          description: URL of the image
-        origin_url:
-          type: string
-          title: Origin Url
-          description: Original URL where the image was found
-        title:
-          type: string
-          title: Title
-          description: Title or description of the image
-        width:
-          type: integer
-          title: Width
-          description: Width of the image in pixels
-        height:
-          type: integer
-          title: Height
-          description: Height of the image in pixels
-      type: object
-      required:
-      - image_url
-      - origin_url
-      - title
-      - width
-      - height
-      title: ImageResult
-    JSONSchema:
-      properties:
-        schema:
-          additionalProperties: true
-          type: object
-          title: Schema
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-          default: schema
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-        strict:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Strict
-          default: true
-      type: object
-      required:
-      - schema
-      title: JSONSchema
-    ListAsyncApiChatCompletionsResponse:
-      properties:
-        next_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Token
-        requests:
-          items:
-            $ref: '#/components/schemas/AsyncApiChatCompletionsResponseSummary'
-          type: array
-          title: Requests
-      type: object
-      required:
-      - requests
-      title: ListAsyncApiChatCompletionsResponse
-    AsyncProcessingStatus:
-      type: string
-      enum:
-      - CREATED
-      - IN_PROGRESS
-      - COMPLETED
-      - FAILED
-      title: AsyncProcessingStatus
-      description: Status enum for async processing.
-    AsyncApiChatCompletionsRequest:
-      description: Request body for creating an asynchronous chat completion
-      properties:
-        request:
-          $ref: '#/components/schemas/ApiChatCompletionsRequest'
-          description: The chat completion request to execute asynchronously
-        idempotency_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Idempotency Key
-          description: Unique key to prevent duplicate requests
-      type: object
-      required:
-      - request
-      title: AsyncApiChatCompletionsRequest
-    VideoURL:
-      properties:
-        url:
-          type: string
-          title: Url
-        frame_interval:
-          anyOf:
-          - type: string
-          - type: integer
-          title: Frame Interval
-          default: 25
-      type: object
-      required:
-      - url
-      title: VideoURL
-    ResponseFormatJSONSchema:
-      description: Constrains the model output to match the provided JSON schema.
+    ChatMessageContentVideoChunk:
       properties:
         type:
           type: string
-          const: json_schema
+          const: video_url
           title: Type
-          description: Must be `json_schema`.
-        json_schema:
-          $ref: '#/components/schemas/JSONSchema'
+        video_url:
+          anyOf:
+          - $ref: '#/components/schemas/VideoURL'
+          - type: string
+          title: Video Url
       type: object
       required:
       - type
-      - json_schema
-      title: ResponseFormatJSONSchema
+      - video_url
+      title: ChatMessageContentVideoChunk
+    UserLocation:
+      description: User's geographic location for search personalization
+      properties:
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+          description: Latitude coordinate
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+          description: Longitude coordinate
+        country:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country
+          description: ISO 3166-1 alpha-2 country code
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+          description: City name
+        region:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Region
+          description: State or region name
+      type: object
+      title: UserLocation
+    WebSearchOptions:
+      description: Configuration options for web search behavior
+      properties:
+        search_context_size:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          title: Search Context Size
+          description: Amount of search context to include (low, medium, or high)
+          default: low
+        search_type:
+          anyOf:
+          - type: string
+            enum:
+            - fast
+            - pro
+            - auto
+          - type: 'null'
+          title: Search Type
+          description: Search type (fast for speed, pro for quality, auto to let the model decide)
+        user_location:
+          anyOf:
+          - $ref: '#/components/schemas/UserLocation'
+          - type: 'null'
+        image_results_enhanced_relevance:
+          type: boolean
+          title: Image Results Enhanced Relevance
+          description: When true, applies enhanced relevance filtering to image results
+          default: false
+      type: object
+      title: WebSearchOptions
     ApiChatCompletionsRequest:
       properties:
         max_tokens:
@@ -524,73 +849,29 @@ components:
       - model
       - messages
       title: ApiChatCompletionsRequest
-    ValidationError:
+    ChatMessage-Input:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+        role:
+          $ref: '#/components/schemas/ChatMessageRole'
+        content:
+          anyOf:
+          - type: string
+          - items:
+              anyOf:
+              - $ref: '#/components/schemas/ChatMessageContentTextChunk'
+              - $ref: '#/components/schemas/ChatMessageContentImageChunk'
+              - $ref: '#/components/schemas/ChatMessageContentFileChunk'
+              - $ref: '#/components/schemas/ChatMessageContentPDFChunk'
+              - $ref: '#/components/schemas/ChatMessageContentVideoChunk'
+            type: array
+            title: Structured Content
+          - type: 'null'
+          title: Content
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    AsyncApiChatCompletionsResponseSummary:
-      properties:
-        id:
-          type: string
-          title: Id
-        created_at:
-          type: integer
-          title: Created At
-        started_at:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Started At
-        completed_at:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Completed At
-        failed_at:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Failed At
-        model:
-          type: string
-          title: Model
-        status:
-          $ref: '#/components/schemas/AsyncProcessingStatus'
-      type: object
-      required:
-      - id
-      - created_at
-      - model
-      - status
-      title: AsyncApiChatCompletionsResponseSummary
-    ResponseFormatText:
-      properties:
-        type:
-          type: string
-          const: text
-          title: Type
-          description: Must be `text`.
-      type: object
-      required:
-      - type
-      title: ResponseFormatText
+      - role
+      - content
+      title: ChatMessage
     Choice:
       description: A single completion choice
       properties:
@@ -619,15 +900,6 @@ components:
       - message
       - delta
       title: Choice
-    ChatMessageRole:
-      type: string
-      enum:
-      - system
-      - user
-      - assistant
-      - tool
-      title: ChatMessageRole
-      description: Chat roles enum
     AsyncApiChatCompletionsResponse:
       properties:
         id:
@@ -680,326 +952,54 @@ components:
       - created_at
       - status
       title: AsyncApiChatCompletionsResponse
-    WebSearchOptions:
-      description: Configuration options for web search behavior
+    ResponseFormatText:
       properties:
-        search_context_size:
+        type:
           type: string
-          enum:
-          - low
-          - medium
-          - high
-          title: Search Context Size
-          description: Amount of search context to include (low, medium, or high)
-          default: low
-        search_type:
-          anyOf:
-          - type: string
-            enum:
-            - fast
-            - pro
-            - auto
-          - type: 'null'
-          title: Search Type
-          description: Search type (fast for speed, pro for quality, auto to let the model decide)
-        user_location:
-          anyOf:
-          - $ref: '#/components/schemas/UserLocation'
-          - type: 'null'
-        image_results_enhanced_relevance:
-          type: boolean
-          title: Image Results Enhanced Relevance
-          description: When true, applies enhanced relevance filtering to image results
-          default: false
+          const: text
+          title: Type
+          description: Must be `text`.
       type: object
-      title: WebSearchOptions
-    UserLocation:
-      description: User's geographic location for search personalization
+      required:
+      - type
+      title: ResponseFormatText
+    ListAsyncApiChatCompletionsResponse:
       properties:
-        latitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Latitude
-          description: Latitude coordinate
-        longitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Longitude
-          description: Longitude coordinate
-        country:
+        next_token:
           anyOf:
           - type: string
           - type: 'null'
-          title: Country
-          description: ISO 3166-1 alpha-2 country code
-        city:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: City
-          description: City name
-        region:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Region
-          description: State or region name
-      type: object
-      title: UserLocation
-    HTTPValidationError:
-      properties:
-        detail:
+          title: Next Token
+        requests:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            $ref: '#/components/schemas/AsyncApiChatCompletionsResponseSummary'
           type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ApiPublicSearchResult:
-      description: A single search result from the web
-      properties:
-        title:
-          type: string
-          title: Title
-          description: Title of the search result page
-        url:
-          type: string
-          title: Url
-          description: URL of the search result page
-        date:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date
-          description: Publication date of the result
-        last_updated:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Last Updated
-          description: Date the result was last updated
-        snippet:
-          type: string
-          title: Snippet
-          description: Text snippet from the search result
-          default: ''
-        source:
-          type: string
-          enum:
-          - web
-          - attachment
-          title: Source
-          description: Source type of the result (web or attachment)
-          default: web
+          title: Requests
       type: object
       required:
-      - title
-      - url
-      title: ApiPublicSearchResult
-    URL:
+      - requests
+      title: ListAsyncApiChatCompletionsResponse
+    ValidationError:
       properties:
-        url:
-          type: string
-          title: Url
-      type: object
-      required:
-      - url
-      title: URL
-    ChatMessage-Output:
-      properties:
-        role:
-          $ref: '#/components/schemas/ChatMessageRole'
-        content:
-          anyOf:
-          - type: string
-          - items:
-              anyOf:
-              - $ref: '#/components/schemas/ChatMessageContentTextChunk'
-              - $ref: '#/components/schemas/ChatMessageContentImageChunk'
-              - $ref: '#/components/schemas/ChatMessageContentFileChunk'
-              - $ref: '#/components/schemas/ChatMessageContentPDFChunk'
-              - $ref: '#/components/schemas/ChatMessageContentVideoChunk'
-            type: array
-            title: Structured Content
-          - type: 'null'
-          title: Content
-      type: object
-      required:
-      - role
-      - content
-      title: ChatMessage
-    ChatMessageContentVideoChunk:
-      properties:
-        type:
-          type: string
-          const: video_url
-          title: Type
-        video_url:
-          anyOf:
-          - $ref: '#/components/schemas/VideoURL'
-          - type: string
-          title: Video Url
-      type: object
-      required:
-      - type
-      - video_url
-      title: ChatMessageContentVideoChunk
-    ChatMessageContentFileChunk:
-      properties:
-        type:
-          type: string
-          const: file_url
-          title: Type
-        file_url:
-          anyOf:
-          - $ref: '#/components/schemas/URL'
-          - type: string
-          title: File Url
-        file_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: File Name
-      type: object
-      required:
-      - type
-      - file_url
-      title: ChatMessageContentFileChunk
-    ChatMessageContentPDFChunk:
-      properties:
-        type:
-          type: string
-          const: pdf_url
-          title: Type
-        pdf_url:
-          anyOf:
-          - $ref: '#/components/schemas/URL'
-          - type: string
-          title: Pdf Url
-      type: object
-      required:
-      - type
-      - pdf_url
-      title: ChatMessageContentPDFChunk
-    CompletionResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-          description: Unique identifier for the completion
-        model:
-          type: string
-          title: Model
-          description: Model used for generation
-        created:
-          type: integer
-          title: Created
-          description: Unix timestamp when the completion was created
-        usage:
-          anyOf:
-          - $ref: '#/components/schemas/UsageInfo'
-          - type: 'null'
-        object:
-          type: string
-          title: Object
-          description: Object type identifier
-          default: chat.completion
-        choices:
+        loc:
           items:
-            $ref: '#/components/schemas/Choice'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Choices
-          description: Array of completion choices
-        citations:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Citations
-          description: URLs of sources used to generate the response
-        search_results:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ApiPublicSearchResult'
-            type: array
-          - type: 'null'
-          title: Search Results
-          description: Search results used for context in the response
-        images:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ImageResult'
-            type: array
-          - type: 'null'
-          title: Images
-          description: Array of images returned when return_images is true
-        related_questions:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Related Questions
-          description: Array of related questions returned when return_related_questions is true
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
       required:
-      - id
-      - model
-      - created
-      - choices
-      title: CompletionResponse
-    UsageInfo:
-      description: Token usage and cost information for a request
-      properties:
-        prompt_tokens:
-          type: integer
-          title: Prompt Tokens
-          description: Number of tokens in the prompt/input
-        completion_tokens:
-          type: integer
-          title: Completion Tokens
-          description: Number of tokens in the completion/output
-        total_tokens:
-          type: integer
-          title: Total Tokens
-          description: Total tokens used (prompt + completion)
-        search_context_size:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Search Context Size
-          description: Size of search context used
-        citation_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Citation Tokens
-          description: Number of tokens used for citations
-        num_search_queries:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Num Search Queries
-          description: Number of search queries executed
-        reasoning_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Reasoning Tokens
-          description: Number of tokens used for reasoning
-        cost:
-          $ref: '#/components/schemas/Cost'
-          description: Cost breakdown for the request
-      type: object
-      required:
-      - prompt_tokens
-      - completion_tokens
-      - total_tokens
-      - cost
-      title: UsageInfo
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     HTTPBearer:
       type: http
