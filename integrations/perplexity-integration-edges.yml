@@ -313,6 +313,31 @@ edges:
   - OmniChat
   - Perplexed
   - Co-Intelligence AI
+- partner_name: IFTTT
+  partner: ifttt
+  partner_match: aggregator
+  type: marketplace
+  marketplace: ifttt-services
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://ifttt.com/perplexity
+  category: null
+  contract_reference:
+    register: IFTTT service directory (ifttt.com/explore/services; ifttt.com/<service>)
+    spec_file: null
+    role: ipaas-connector:ifttt
+    registered_name: Perplexity
+    matched_domain: perplexity.ai
+    matched_by: domain+name-among-holders
+    app_slug: perplexity
+    ifttt_category: AI
+    builder: unknown (the service page does not say who built it)
+    detected_by: sweep-ifttt-services.py
+    detected: '2026-10-23'
+    signal_note: one edge per (provider, platform); triggers, actions and applet counts are context, never read
+  detected_by: sweep-ifttt-services.py
+  first_seen: '2026-10-23'
 - partner_name: Stripe (own)
   partner: stripe
   partner_match: mirror
@@ -403,31 +428,38 @@ edges:
   category: Utilities
   publisher_verified:
   - discord-verified-app
-- partner_name: IFTTT
-  partner: ifttt
-  partner_match: aggregator
+- partner_name: Hugging Face (hugging-face-hub)
+  partner: hugging-face
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
   type: marketplace
-  marketplace: ifttt-services
-  channel: ipaas-listing
-  relationship: ipaas-bridge
+  relationship: platform-app
   direction: third-party
-  evidence: https://ifttt.com/perplexity
-  category: null
-  contract_reference:
-    register: IFTTT service directory (ifttt.com/explore/services; ifttt.com/<service>)
-    spec_file: null
-    role: ipaas-connector:ifttt
-    registered_name: Perplexity
-    matched_domain: perplexity.ai
-    matched_by: domain+name-among-holders
-    app_slug: perplexity
-    ifttt_category: AI
-    builder: unknown (the service page does not say who built it)
-    detected_by: sweep-ifttt-services.py
-    detected: '2026-10-23'
-    signal_note: one edge per (provider, platform); triggers, actions and applet counts are context, never read
-  detected_by: sweep-ifttt-services.py
-  first_seen: '2026-10-23'
+  channel: partner-built
+  marketplace: hugging-face-hub
+  evidence: https://huggingface.co/perplexity-ai
+  mirror_of: hugging-face/integrations/hugging-face-integration-edges.yml
+  apps:
+  - perplexity-ai/draco
+  - perplexity-ai/browsesafe-bench
+  - perplexity-ai/browsesafe-plus-plus
+  - perplexity-ai/PII-TRACE
+  - perplexity-ai/wandr
+  - perplexity-ai/pplx-embed-v1-0.6b
+  - perplexity-ai/pplx-embed-v1-4b
+  - perplexity-ai/pplx-computer-qwen-3-8-27b-dflash2-gguf-20260826
+  - perplexity-ai/PII-Tracer-GGUF
+  - perplexity-ai/PII-Tracer-MLX
+  - perplexity-ai/pplx-embed-context-v1-0.6b
+  - perplexity-ai/pplx-embed-context-v1-4b
+  - perplexity-ai/PII-Tracer
+  - perplexity-ai/q2d-web-leaderboard
+  listing_count: 3
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Hugging Face Hub datasets
+  badges:
+  - Verified publisher (Hugging Face verified organisation)
 generated: '2026-10-13'
 method: searched
 checked:
@@ -456,5 +488,6 @@ checked:
 - https://ifttt.com/explore/services
 - https://ifttt.com/perplexity
 - https://ifttt.com/sitemap_services.xml
+- hugging-face/integrations/hugging-face-integration-edges.yml
 source:
 - stripe/integrations/stripe-integration-edges.yml
