@@ -1,4 +1,4 @@
-# Perplexity (perplexity)
+# Perplexity
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,202 +66,229 @@
 
 Perplexity AI is an answer engine that delivers accurate answers to complex questions using large language models with real-time web search capabilities.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · LLM · Search · Agents · Embeddings · Research · Agentic Commerce · Foundation Models
 
-## Scope
+## Perplexity on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Perplexity is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/perplexity/](https://apis.io/providers/perplexity/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (13)
 
-- **Created:** 2025-02-21
-- **Modified:** 2026-05-29
+- [Perplexity](https://apis.io/apis/perplexity/perplexity/) — What do you want to know?
+- [Perplexity Async Chat Completions API](https://apis.io/apis/perplexity/async-chat-completions-api/) — The Async Chat Completions API enables developers to submit long-running chat completion requests for background processing. Requests are queued and…
+- [Perplexity Search API](https://apis.io/apis/perplexity/search-api/) — The Search API enables developers to perform ranked web searches with advanced filtering including domain, language, country, and date recency controls,…
+- [Perplexity Responses API](https://apis.io/apis/perplexity/responses-api/) — The Responses API (Agentic Research API) provides access to third-party frontier models from providers like OpenAI, Anthropic, Google, and xAI with…
+- [Perplexity Embeddings API](https://apis.io/apis/perplexity/embeddings-api/) — The Embeddings API generates high-quality text embeddings for semantic search and retrieval, offering both standard embeddings for independent texts and…
+- [Perplexity Agent API](https://apis.io/apis/perplexity/perplexity-agent-api/) — The Agent API from Perplexity — 1 operation(s) for agent.
+- [Perplexity Async API](https://apis.io/apis/perplexity/perplexity-async-api/) — The Async API from Perplexity — 2 operation(s) for async.
+- [Perplexity Contextualizedembeddings API](https://apis.io/apis/perplexity/perplexity-contextualizedembeddings-api/) — The Contextualizedembeddings API from Perplexity — 1 operation(s) for contextualizedembeddings.
+- [Perplexity Embeddings API](https://apis.io/apis/perplexity/perplexity-embeddings-api/) — The Embeddings API from Perplexity — 1 operation(s) for embeddings.
+- [Perplexity Models API](https://apis.io/apis/perplexity/perplexity-models-api/) — The Models API from Perplexity — 1 operation(s) for models.
+- [Perplexity Search API](https://apis.io/apis/perplexity/perplexity-search-api/) — The Search API from Perplexity — 1 operation(s) for search.
+- [Perplexity Decisions API](https://apis.io/apis/perplexity/perplexity-decisions-api/) — The Decisions API from Perplexity — 1 operation(s) for decisions. Ask yes/no, multiple-choice, and rating questions about your content and get probabilities…
+- [Perplexity Sonar API](https://apis.io/apis/perplexity/perplexity-sonar-api/) — The Sonar API from Perplexity — 1 operation(s) for sonar.
 
-## APIs
+### Published properties
 
-### Perplexity
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-What do you want to know?
+#### AsyncAPI (1)
 
-- **Human URL:** [ https://www.perplexity.ai/]( https://www.perplexity.ai/)
+Event-driven and webhook contracts.
 
-#### Properties
+- [Perplexity Streaming API (HTTP + Server-Sent Events)](https://apis.io/asyncapis/perplexity/perplexity-asyncapi/)
 
-- [Documentation]( https://www.perplexity.ai/)
-- [Postman Collection](collections/perplexity.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/perplexity.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Event channels (4)
 
-### Perplexity Sonar API
+Individual events and webhooks the provider emits.
 
-The Sonar API provides access to Perplexity's Sonar family of models including sonar, sonar-pro, sonar-reasoning-pro, and sonar-deep-research via an OpenAI-compatible chat completions endpoint with built-in web search grounding.
+- [/chat/completions](https://apis.io/channels/perplexity/chat-completions/)
+- [/v1/agent](https://apis.io/channels/perplexity/v1-agent/)
+- [/v1/async/sonar](https://apis.io/channels/perplexity/v1-async-sonar/)
+- [/v1/sonar](https://apis.io/channels/perplexity/v1-sonar/)
 
-- **Human URL:** [https://docs.perplexity.ai/docs/sonar/quickstart](https://docs.perplexity.ai/docs/sonar/quickstart)
-- **Base URL:** `https://api.perplexity.ai`
+#### GraphQL (1)
 
-#### Tags
+GraphQL schemas.
 
-- Artificial Intelligence
-- Chat Completions
-- Grounding
-- Large Language Models
-- Search
+- [Moved to /providers/perplexity/](https://apis.io/graphqls/perplexity/perplexity-graphql/)
 
-#### Properties
+#### MCP servers (1)
 
-- [Documentation](https://docs.perplexity.ai/docs/sonar/quickstart)
-- [API Reference](https://docs.perplexity.ai/api-reference/chat-completions-post)
-- [Authentication](https://docs.perplexity.ai/guides/api-key-management)
-- [Pricing](https://docs.perplexity.ai/docs/getting-started/pricing)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/openapi/perplexity-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [AsyncAPI](https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/asyncapi/perplexity-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/perplexity.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/perplexity.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Model Context Protocol servers that expose the API to agents.
 
-### Perplexity Async Chat Completions API
+- [perplexity](https://apis.io/servers/perplexity/perplexity/)
 
-The Async Chat Completions API enables developers to submit long-running chat completion requests for background processing. Requests are queued and processed asynchronously, returning a unique identifier for tracking status through creation, processing, completion, or failure stages, making it ideal for deep research and computationally intensive queries.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.perplexity.ai/api-reference/async-chat-completions-post](https://docs.perplexity.ai/api-reference/async-chat-completions-post)
-- **Base URL:** `https://api.perplexity.ai`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Perplexity Agentic Access](https://apis.io/agentic-access/perplexity/perplexity-agentic-access/)
 
-- Artificial Intelligence
-- Asynchronous
-- Chat Completions
-- Large Language Models
+#### JSON Schema (108)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://docs.perplexity.ai/api-reference/async-chat-completions-post)
-- [API Reference](https://docs.perplexity.ai/api-reference/async-chat-completions-get)
-- [Authentication](https://docs.perplexity.ai/guides/api-key-management)
-- [AsyncAPI](https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/asyncapi/perplexity-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/perplexity.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/perplexity.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Annotation](https://apis.io/schemas/perplexity/perplexity-annotation/)
+- [ApiChatCompletionsRequest](https://apis.io/schemas/perplexity/perplexity-apichatcompletionsrequest/)
+- [ApiPublicSearchResult](https://apis.io/schemas/perplexity/perplexity-apipublicsearchresult/)
+- [ApiSearchPage](https://apis.io/schemas/perplexity/perplexity-apisearchpage/)
+- [ApiSearchRequest](https://apis.io/schemas/perplexity/perplexity-apisearchrequest/)
+- [ApiSearchResponse](https://apis.io/schemas/perplexity/perplexity-apisearchresponse/)
+- [AsyncApiChatCompletionsRequest](https://apis.io/schemas/perplexity/perplexity-asyncapichatcompletionsrequest/)
+- [AsyncApiChatCompletionsResponse](https://apis.io/schemas/perplexity/perplexity-asyncapichatcompletionsresponse/)
+- [AsyncApiChatCompletionsResponseSummary](https://apis.io/schemas/perplexity/perplexity-asyncapichatcompletionsresponsesummary/)
+- [AsyncProcessingStatus](https://apis.io/schemas/perplexity/perplexity-asyncprocessingstatus/)
+- [ChatMessage](https://apis.io/schemas/perplexity/perplexity-chatmessage-input/)
+- [ChatMessage](https://apis.io/schemas/perplexity/perplexity-chatmessage-output/)
+- [ChatMessageContentFileChunk](https://apis.io/schemas/perplexity/perplexity-chatmessagecontentfilechunk/)
+- [ChatMessageContentImageChunk](https://apis.io/schemas/perplexity/perplexity-chatmessagecontentimagechunk/)
+- [ChatMessageContentPDFChunk](https://apis.io/schemas/perplexity/perplexity-chatmessagecontentpdfchunk/)
+- [ChatMessageContentTextChunk](https://apis.io/schemas/perplexity/perplexity-chatmessagecontenttextchunk/)
+- [ChatMessageContentVideoChunk](https://apis.io/schemas/perplexity/perplexity-chatmessagecontentvideochunk/)
+- [ChatMessageRole](https://apis.io/schemas/perplexity/perplexity-chatmessagerole/)
+- [Choice](https://apis.io/schemas/perplexity/perplexity-choice/)
+- [CompletionResponse](https://apis.io/schemas/perplexity/perplexity-completionresponse/)
+- [CompletionResponseStatus](https://apis.io/schemas/perplexity/perplexity-completionresponsestatus/)
+- [CompletionResponseType](https://apis.io/schemas/perplexity/perplexity-completionresponsetype/)
+- [ContentPart](https://apis.io/schemas/perplexity/perplexity-contentpart/)
+- [ContentPartType](https://apis.io/schemas/perplexity/perplexity-contentparttype/)
+- [Contextualized Embedding Object](https://apis.io/schemas/perplexity/perplexity-contextualizedembeddingobject/)
+- …and 83 more published on APIs.io
 
-### Perplexity Search API
+#### JSON Structure (1)
 
-The Search API enables developers to perform ranked web searches with advanced filtering including domain, language, country, and date recency controls, returning structured results with titles, URLs, snippets, and publication dates.
+Data models expressed in JSON Structure.
 
-- **Human URL:** [https://docs.perplexity.ai/guides/search-quickstart](https://docs.perplexity.ai/guides/search-quickstart)
-- **Base URL:** `https://api.perplexity.ai`
+- [Perplexity Structure](https://apis.io/json-structure/perplexity/perplexity-structure/)
 
-#### Tags
+#### Examples (2)
 
-- Filtering
-- Ranking
-- Search
-- Web Search
+Example requests and responses.
 
-#### Properties
+- [Perplexity Create Async Chat Completions Async Chat Completions Post Example](https://apis.io/examples/perplexity/perplexity-create-async-chat-completions-async-chat-completions-post-example/)
+- [Perplexity Listmodels Example](https://apis.io/examples/perplexity/perplexity-listmodels-example/)
 
-- [Documentation](https://docs.perplexity.ai/guides/search-quickstart)
-- [API Reference](https://docs.perplexity.ai/api-reference/search-post)
-- [Authentication](https://docs.perplexity.ai/guides/api-key-management)
-- [Best  Practices](https://docs.perplexity.ai/guides/search-best-practices)
-- [Postman Collection](collections/perplexity.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/perplexity.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Collections (15)
 
-### Perplexity Responses API
+Postman and Open Collection request collections.
 
-The Responses API (Agentic Research API) provides access to third-party frontier models from providers like OpenAI, Anthropic, Google, and xAI with integrated web search tools, URL fetching, function calling, and multi-step reasoning presets such as pro-search and deep-research.
+- [Perplexity AI API](https://apis.io/collections/perplexity/open-perplexity/)
+- [Perplexity AI Agent API](https://apis.io/collections/perplexity/open-perplexity-agent-api/)
+- [Perplexity AI Agent Async API](https://apis.io/collections/perplexity/open-perplexity-async-api/)
+- [Perplexity AI Agent Contextualizedembeddings API](https://apis.io/collections/perplexity/open-perplexity-contextualizedembeddings-api/)
+- [Perplexity AI Agent Embeddings API](https://apis.io/collections/perplexity/open-perplexity-embeddings-api/)
+- [Perplexity AI Agent Models API](https://apis.io/collections/perplexity/open-perplexity-models-api/)
+- [Perplexity AI Agent Search API](https://apis.io/collections/perplexity/open-perplexity-search-api/)
+- [Perplexity AI Agent Sonar API](https://apis.io/collections/perplexity/open-perplexity-sonar-api/)
+- [Perplexity AI Agent API](https://apis.io/collections/perplexity/postman-perplexity-agent-api/)
+- [Perplexity AI Agent Async API](https://apis.io/collections/perplexity/postman-perplexity-async-api/)
+- [Perplexity AI Agent Contextualizedembeddings API](https://apis.io/collections/perplexity/postman-perplexity-contextualizedembeddings-api/)
+- [Perplexity AI Agent Embeddings API](https://apis.io/collections/perplexity/postman-perplexity-embeddings-api/)
+- [Perplexity AI Agent Models API](https://apis.io/collections/perplexity/postman-perplexity-models-api/)
+- [Perplexity AI Agent Search API](https://apis.io/collections/perplexity/postman-perplexity-search-api/)
+- [Perplexity AI Agent Sonar API](https://apis.io/collections/perplexity/postman-perplexity-sonar-api/)
 
-- **Human URL:** [https://docs.perplexity.ai/docs/grounded-llm/responses/quickstart](https://docs.perplexity.ai/docs/grounded-llm/responses/quickstart)
-- **Base URL:** `https://api.perplexity.ai`
+#### Governance rules (2)
 
-#### Tags
+Spectral rulesets for the provider's contracts.
 
-- Agents
-- Artificial Intelligence
-- Large Language Models
-- Research
-- Web Search
+- [Perplexity — asyncapi rules](https://apis.io/rules/perplexity/perplexity-asyncapi-spectral-rules/)
+- [Perplexity — jsonschema rules](https://apis.io/rules/perplexity/perplexity-jsonschema-spectral-rules/)
 
-#### Properties
+#### Security (3)
 
-- [Documentation](https://docs.perplexity.ai/docs/grounded-llm/responses/quickstart)
-- [API Reference](https://docs.perplexity.ai/api-reference/responses-post)
-- [Authentication](https://docs.perplexity.ai/guides/api-key-management)
-- [AsyncAPI](https://raw.githubusercontent.com/api-evangelist/perplexity/refs/heads/main/asyncapi/perplexity-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/perplexity.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/perplexity.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Perplexity Embeddings API
+- [Perplexity Authentication](https://apis.io/security/perplexity/perplexity-authentication/)
+- [Perplexity Domain Security](https://apis.io/security/perplexity/perplexity-domain-security/)
+- [Perplexity Vulnerability Disclosure](https://apis.io/security/perplexity/perplexity-vulnerability-disclosure/)
 
-The Embeddings API generates high-quality text embeddings for semantic search and retrieval, offering both standard embeddings for independent texts and contextualized embeddings for document chunks that share context, with support for Matryoshka representation learning for flexible dimensionality.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://docs.perplexity.ai/docs/embeddings/quickstart](https://docs.perplexity.ai/docs/embeddings/quickstart)
-- **Base URL:** `https://api.perplexity.ai`
+Published plans, tiers and prices.
 
-#### Tags
+- [Perplexity Plans Pricing](https://apis.io/plans/perplexity/perplexity-plans-pricing/)
 
-- Embeddings
-- Retrieval
-- Semantic Search
-- Vectors
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://docs.perplexity.ai/docs/embeddings/quickstart)
-- [API Reference](https://docs.perplexity.ai/api-reference/embeddings-post)
-- [Authentication](https://docs.perplexity.ai/guides/api-key-management)
-- [Best  Practices](https://docs.perplexity.ai/docs/embeddings/best-practices)
-- [Postman Collection](collections/perplexity.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/perplexity.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Perplexity Rate Limits](https://apis.io/rate-limits/perplexity/perplexity-rate-limits/)
 
-## Common Properties
+#### FinOps (1)
 
-- [LinkedIn](https://www.linkedin.com/company/perplexity-ai)
-- [Getting Started](https://docs.perplexity.ai/docs/getting-started)
-- [API Reference](https://docs.perplexity.ai/reference/post_chat_completions)
-- [Models](https://docs.perplexity.ai/docs/model-cards)
-- [Pricing](https://docs.perplexity.ai/docs/pricing)
-- [Terms of Service](https://www.perplexity.ai/hub/terms)
-- [Privacy Policy](https://www.perplexity.ai/hub/privacy)
-- [Blog](https://www.perplexity.ai/hub/blog)
-- [Quickstart](https://docs.perplexity.ai/docs/getting-started/quickstart)
-- [Pricing  Page](https://docs.perplexity.ai/docs/getting-started/pricing)
-- [Model  Directory](https://docs.perplexity.ai/docs/getting-started/models)
-- [Changelog](https://docs.perplexity.ai/docs/resources/changelog)
-- [Product  Change  Log](https://www.perplexity.ai/changelog)
-- [Rate Limits](https://docs.perplexity.ai/guides/usage-tiers)
-- [Sign Up](https://perplexity.ai/account/api)
-- [Dashboard](https://www.perplexity.ai/account/api/group)
-- [A P I  Playground](https://perplexity.ai/account/api/playground/search)
-- [S D Ks](https://docs.perplexity.ai/guides/perplexity-sdk)
-- [Git Hub  Org](https://github.com/perplexityai)
-- [Python  S D K](https://github.com/perplexityai/perplexity-py)
-- [Best  Practices](https://docs.perplexity.ai/guides/search-best-practices)
-- [M C P  Server](https://docs.perplexity.ai/guides/mcp-server)
-- [Support](https://www.perplexity.ai/help-center/en)
-- [Forum](https://community.perplexity.ai)
-- [Portal](https://www.perplexity.ai/api-platform)
-- [L L Ms  T X T](https://docs.perplexity.ai/llms.txt)
+What the API costs to run, by operation.
+
+- [Perplexity Finops](https://apis.io/finops/perplexity/perplexity-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.perplexity.ai)
 - [Documentation](https://docs.perplexity.ai)
-- [Authentication](https://docs.perplexity.ai/guides/api-key-management)
-- [Status Page](https://status.perplexity.com)
-- [Roadmap](https://docs.perplexity.ai/feature-roadmap)
-- [Cookbook](https://docs.perplexity.ai/docs/cookbook)
-- [Prompt  Guide](https://docs.perplexity.ai/guides/prompt-guide)
-- [Structured  Outputs  Guide](https://docs.perplexity.ai/guides/structured-outputs)
-- [Performance  Guide](https://docs.perplexity.ai/guides/perplexity-sdk-performance)
-- [Date  Range  Filter  Guide](https://docs.perplexity.ai/guides/date-range-filter-guide)
-- [Academic  Filter  Guide](https://docs.perplexity.ai/guides/academic-filter-guide)
-- [Crawlers](https://docs.perplexity.ai/docs/resources/perplexity-crawlers)
-- [A P I  Terms of  Service](https://www.perplexity.ai/hub/legal/perplexity-api-terms-of-service)
-- [Discussions](https://docs.perplexity.ai/discussions/discussions)
-- [Discord](https://discord.com/invite/perplexity-ai)
-- [X (Twitter)](https://x.com/perplexity_ai)
-- [Features](undefined)
+- [Getting started](https://docs.perplexity.ai/docs/getting-started)
+- [API reference](https://docs.perplexity.ai/reference/post_chat_completions)
+- [Pricing](https://docs.perplexity.ai/docs/pricing)
+- [Support](https://www.perplexity.ai/help-center/en)
+- [Changelog](https://docs.perplexity.ai/docs/resources/changelog)
+- [Blog](https://www.perplexity.ai/hub/blog)
+- [Terms of service](https://www.perplexity.ai/hub/terms)
+- [Privacy policy](https://www.perplexity.ai/hub/privacy)
+- [Status](https://status.perplexity.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
-**FN:** Perplexity AI
-**Email:** support@perplexity.ai
-**URL:** https://www.perplexity.ai
+**Kin Score 61.6** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 58.3 |
+| Contract quality | 60.0 |
+| Contract governance | 13.6 |
+| Operational transparency | 60.5 |
+| Developer ergonomics | 65.5 |
+| Access clarity | 76.3 |
+
+**Agent readiness 61.6** — agent-native
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | verified |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | verified |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 23.6** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/perplexity/](https://apis.io/providers/perplexity/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Perplexity: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/perplexity/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
